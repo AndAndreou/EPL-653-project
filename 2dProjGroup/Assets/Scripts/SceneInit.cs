@@ -2,10 +2,13 @@
 using System.Collections;
 
 public class SceneInit : MonoBehaviour {
+	public Material cubeMaterial;
+	private GameRepository repository;
+
 
 	// Use this for initialization
 	void Start() {
-		GameRepository repository = GameRepository.getInstance();
+		repository = GameRepository.getInstance();
 
 		int x=0, y=0, z=0;
 
@@ -100,6 +103,9 @@ public class SceneInit : MonoBehaviour {
 		cube.AddComponent<Cube>();
 		cube.tag = "StaticCube";
 
+		Renderer renderer = cube.GetComponent<Renderer> ();
+		//renderer.material = cubeMaterial;
+		renderer.material.color = new Color (10, 10, 10, 1.0f);
 
 		if (dimension==Dimension.FRONT){
 			cube.transform.Rotate(new Vector3(0.0f,0.0f,0.0f));
@@ -136,6 +142,10 @@ public class SceneInit : MonoBehaviour {
 		Rigidbody rigidBody = cube.AddComponent<Rigidbody>();
 		rigidBody.isKinematic = false;
 		rigidBody.useGravity = true;
+
+		Renderer renderer = cube.GetComponent<Renderer> ();
+		//renderer.material = cubeMaterial;
+		renderer.material.color = new Color (1, 1, 20, 1.0f);
 
 		if (dimension == Dimension.FRONT || dimension == Dimension.BACK) {
 			rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
