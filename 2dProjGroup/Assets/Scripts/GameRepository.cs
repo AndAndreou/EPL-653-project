@@ -17,7 +17,6 @@ public class GameRepository : MonoBehaviour {
 	//common game variables
 	private Dimension currentDimension;
 	private float playerLife;
-	private bool rotate;
 
 	private GameRepository () { }
 
@@ -69,13 +68,5 @@ public class GameRepository : MonoBehaviour {
 
 	public void winPlayerLife(float win) {
 		instance.playerLife += win;
-	}
-
-	public void setRotate(bool rotate) {
-		instance.rotate = rotate;
-	}
-
-	public bool getRotate() {
-		return instance.rotate;
 	}
 }
