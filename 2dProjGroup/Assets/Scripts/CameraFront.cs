@@ -19,17 +19,18 @@ public class CameraFront : MonoBehaviour {
 		direction = true;
 		rotate = false;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		if (!rotate && transform.position.y >= 0.0f) {
 			if (repository.getCurrentDimension() == Dimension.FRONT || repository.getCurrentDimension() == Dimension.BACK) {
 				transform.position = new Vector3 (player.position.x, player.position.y, Mathf.Round (transform.position.z));
 			}
+
 			if (repository.getCurrentDimension() == Dimension.RIGHT || repository.getCurrentDimension() == Dimension.LEFT) {
 				transform.position = new Vector3 (Mathf.Round (transform.position.x), player.position.y, player.position.z);
 			}
 		}
+
 		if (transform.position.y >= 0.0f) {
 			transform.LookAt (new Vector3 (player.position.x, player.position.y, player.position.z), new Vector3 (0, 1, 0));
 		}
@@ -44,6 +45,7 @@ public class CameraFront : MonoBehaviour {
 				rotate = true;
 				direction = true;
 			}
+
 			if (Input.GetKeyDown (KeyCode.Z) && (!rotate)) {
 				
 				repository.setCurrentDimension( (Dimension)(((int)repository.getCurrentDimension() + 2 + 1)%4));
@@ -54,13 +56,13 @@ public class CameraFront : MonoBehaviour {
 				direction = false;
 			}
 		}
-		//Debug.Log(player.position);
+
 		float trAngles = transform.eulerAngles.y;
 		if (rotate) {
 			if(direction){
 				float angle = (Time.deltaTime - timestamp) / 0.1f * 90.0f;
 				startRot = startRot + Mathf.Abs (angle);
-				//Debug.Log (angle + " " + startRot + Camera.main.transform.position);
+
 				if(startRot < 90.0f){
 					transform.RotateAround(player.position, new Vector3 (0.0f, 1.0f, 0.0f), angle);
 
@@ -72,7 +74,7 @@ public class CameraFront : MonoBehaviour {
 			} else {
 				float angle = (Time.deltaTime - timestamp) / 0.1f * -90.0f;
 				startRot = startRot - Mathf.Abs (angle);
-				//Debug.Log (angle + " " + startRot + Camera.main.transform.position);
+
 				if(startRot > -90.0f){
 					transform.RotateAround(player.position, new Vector3 (0.0f, 1.0f, 0.0f), angle);
 				}
