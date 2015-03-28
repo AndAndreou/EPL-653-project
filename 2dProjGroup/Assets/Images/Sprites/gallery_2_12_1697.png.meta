@@ -1,0 +1,209 @@
+fileFormatVersion: 2
+guid: b7fac6f02fc61694aa58accfddd7dea8
+timeCreated: 1427302944
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: gallery_2_12_1697_0
+    21300002: gallery_2_12_1697_1
+    21300004: gallery_2_12_1697_2
+    21300006: gallery_2_12_1697_3
+    21300008: gallery_2_12_1697_4
+    21300010: gallery_2_12_1697_5
+    21300012: gallery_2_12_1697_6
+    21300014: gallery_2_12_1697_7
+    21300016: gallery_2_12_1697_8
+    21300018: gallery_2_12_1697_9
+    21300020: gallery_2_12_1697_10
+    21300022: gallery_2_12_1697_11
+    21300024: gallery_2_12_1697_12
+    21300026: gallery_2_12_1697_13
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: gallery_2_12_1697_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 333
+        width: 82
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gallery_2_12_1697_1
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 333
+        width: 85
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gallery_2_12_1697_2
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 333
+        width: 82
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gallery_2_12_1697_3
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 333
+        width: 85
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gallery_2_12_1697_4
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 222
+        width: 79
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gallery_2_12_1697_5
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 222
+        width: 59
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gallery_2_12_1697_6
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 111
+        width: 80
+        height: 218
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gallery_2_12_1697_7
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 111
+        width: 59
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gallery_2_12_1697_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 111
+        width: 84
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gallery_2_12_1697_9
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 111
+        width: 59
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gallery_2_12_1697_10
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 82
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gallery_2_12_1697_11
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 0
+        width: 84
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gallery_2_12_1697_12
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 0
+        width: 83
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: gallery_2_12_1697_13
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 0
+        width: 84
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
