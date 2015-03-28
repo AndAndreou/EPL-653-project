@@ -12,25 +12,29 @@ public class Cube : MonoBehaviour {
 		repository = GameRepository.getInstance();
 		renderer = this.GetComponent<Renderer> ();
 		player = GameObject.FindGameObjectWithTag(("Player"));
-		camera = GameObject.FindGameObjectWithTag(("Main Camera"));
+		camera = GameObject.FindGameObjectWithTag(("MainCamera"));
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if ((repository.getCurrentDimension() == Dimension.FRONT) || (repository.getCurrentDimension() == Dimension.BACK)) { //dimension cube = 0
 			if (player.transform.position.z == this.transform.position.z) {
+				//Debug.Log("Z - Z");
 				renderer.enabled = true;
 			}
 			else {
 				renderer.enabled = false;
+				//Debug.Log("Z !- Z");
 			}
 		} 
 		else  {
 			if (player.transform.position.x == this.transform.position.x) {
 				renderer.enabled = true;
+				//Debug.Log("X - X");
 			}
 			else {
 				renderer.enabled = false;
+				//Debug.Log("X !- X");
 			}
 		}
 

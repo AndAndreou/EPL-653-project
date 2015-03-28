@@ -3,10 +3,9 @@ using System.Collections;
 
 public class CameraFront : MonoBehaviour {
 	public Transform player;
-	private Transform target;
 	private Vector3 targetPosition;
-	private bool rotate;
 	private bool direction;
+	private bool rotate;
 	private float timestamp;
 	private float startRot;
 	private GameRepository repository;
@@ -15,13 +14,13 @@ public class CameraFront : MonoBehaviour {
 		repository = GameRepository.getInstance();
 		repository.setCurrentDimension(Dimension.FRONT);
 		transform.position = new Vector3 (player.position.x, player.position.y, transform.position.z);
-		target = this.transform;
 		timestamp = Time.deltaTime;
 		startRot = 0.0f;
 		direction = true;
 		rotate = false;
 	}
-
+	
+	// Update is called once per frame
 	void Update () {
 		if (!rotate && transform.position.y >= 0.0f) {
 			if (repository.getCurrentDimension() == Dimension.FRONT || repository.getCurrentDimension() == Dimension.BACK) {
@@ -37,36 +36,34 @@ public class CameraFront : MonoBehaviour {
 		
 		if (transform.position.y >= 0.0f) {
 			if (Input.GetKeyDown (KeyCode.C) && (!rotate)) {
-				targetPosition = new Vector3 (0.0f, 0.0f, 0.0f);
-
-				if (repository.getCurrentDimension() == Dimension.FRONT) {
-					targetPosition = new Vector3 (transform.position.x + 10.0f, transform.position.y, transform.position.z + 10.0f);
-				}
-				if (repository.getCurrentDimension() == Dimension.RIGHT) {
-					targetPosition = new Vector3 (transform.position.x - 10.0f, transform.position.y, transform.position.z + 10.0f);
-				}
-				if (repository.getCurrentDimension() == Dimension.BACK) {
-					targetPosition = new Vector3 (transform.position.x - 10.0f, transform.position.y, transform.position.z - 10.0f);
-				}
-				if (repository.getCurrentDimension() == Dimension.LEFT) {
-					targetPosition = new Vector3 (transform.position.x + 10.0f, transform.position.y, transform.position.z - 10.0f);
-				}
 
 				repository.setCurrentDimension( (Dimension)(((int)repository.getCurrentDimension() + 1)%4));
 
 				Debug.Log("Camera dimension: " + (int)repository.getCurrentDimension());
 
 				rotate = true;
+				direction = true;
+			}
+			if (Input.GetKeyDown (KeyCode.Z) && (!rotate)) {
+				
+				repository.setCurrentDimension( (Dimension)(((int)repository.getCurrentDimension() + 2 + 1)%4));
+				
+				Debug.Log("Camera dimension: " + (int)repository.getCurrentDimension());
+				
+				rotate = true;
+				direction = false;
 			}
 		}
-
+		//Debug.Log(player.position);
 		float trAngles = transform.eulerAngles.y;
 		if (rotate) {
-			if(direction) {
+			if(direction){
 				float angle = (Time.deltaTime - timestamp) / 0.1f * 90.0f;
 				startRot = startRot + Mathf.Abs (angle);
+				//Debug.Log (angle + " " + startRot + Camera.main.transform.position);
 				if(startRot < 90.0f){
-					transform.RotateAround(this.transform.position, new Vector3 (0.0f, 1.0f, 0.0f), angle);
+					transform.RotateAround(player.position, new Vector3 (0.0f, 1.0f, 0.0f), angle);
+
 				}
 				if(startRot >= 90.0f){
 					rotate = false;
@@ -74,19 +71,16 @@ public class CameraFront : MonoBehaviour {
 				}
 			} else {
 				float angle = (Time.deltaTime - timestamp) / 0.1f * -90.0f;
-				startRot = startRot + Mathf.Abs (angle);
-				if(startRot < 90.0f){
-					transform.RotateAround(this.transform.position, new Vector3 (0.0f, 1.0f, 0.0f), angle);
+				startRot = startRot - Mathf.Abs (angle);
+				//Debug.Log (angle + " " + startRot + Camera.main.transform.position);
+				if(startRot > -90.0f){
+					transform.RotateAround(player.position, new Vector3 (0.0f, 1.0f, 0.0f), angle);
 				}
-				if(startRot >= 90.0f){
+				if(startRot <= -90.0f){
 					rotate = false;
 					startRot = 0.0f;
 				}
 			}
 		}
-	}
-
-	bool isRotating () {
-		return rotate;
 	}
 }

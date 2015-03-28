@@ -18,6 +18,7 @@ public class Player : MonoBehaviour {
 		timestamp = Time.deltaTime;
 		startRot = 0.0f;
 		rotate = false;
+		direction = true;
 		jump = true;
 	}
 
@@ -53,7 +54,9 @@ public class Player : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown (KeyCode.C) && (!rotate)) {
+			rigidBodyTransform.position = new Vector3 (Mathf.Round(rigidBodyTransform.position.x) , rigidBodyTransform.position.y, Mathf.Round(rigidBodyTransform.position.z));
 			rotate = true;
+			//direction = true;
 
 			if (repository.getCurrentDimension() == Dimension.FRONT || repository.getCurrentDimension() == Dimension.BACK) {
 				rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
@@ -65,11 +68,13 @@ public class Player : MonoBehaviour {
 
 		float trAngles = transform.eulerAngles.y;
 		if (rotate) {
-			if(direction) {
+			if(direction){
 				float angle = (Time.deltaTime - timestamp) / 0.1f * 90.0f;
 				startRot = startRot + Mathf.Abs (angle);
+				//Debug.Log (angle + " " + startRot + Camera.main.transform.position);
 				if(startRot < 90.0f){
-					transform.RotateAround(this.transform.position, new Vector3 (0.0f, 1.0f, 0.0f), angle);
+					transform.RotateAround(transform.position, new Vector3 (0.0f, 1.0f, 0.0f), angle);
+					
 				}
 				if(startRot >= 90.0f){
 					rotate = false;
@@ -77,11 +82,12 @@ public class Player : MonoBehaviour {
 				}
 			} else {
 				float angle = (Time.deltaTime - timestamp) / 0.1f * -90.0f;
-				startRot = startRot + Mathf.Abs (angle);
-				if(startRot < 90.0f){
-					transform.RotateAround(this.transform.position, new Vector3 (0.0f, 1.0f, 0.0f), angle);
+				startRot = startRot - Mathf.Abs (angle);
+				//Debug.Log (angle + " " + startRot + Camera.main.transform.position);
+				if(startRot > -90.0f){
+					transform.RotateAround(transform.position, new Vector3 (0.0f, 1.0f, 0.0f), angle);
 				}
-				if(startRot >= 90.0f){
+				if(startRot <= -90.0f){
 					rotate = false;
 					startRot = 0.0f;
 				}
