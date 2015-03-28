@@ -23,7 +23,7 @@ public class Player : MonoBehaviour {
 	}
 
 	void Update () {
-		if(Input.GetKey(KeyCode.LeftArrow)) {
+		if(Input.GetKey(KeyCode.LeftArrow) && (!rotate)) {
 			if (repository.getCurrentDimension() == Dimension.FRONT) {
 				rigidBodyTransform.position = new Vector3( rigidBodyTransform.position.x - 0.1f, rigidBodyTransform.position.y, rigidBodyTransform.position.z);
 			}
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetKey(KeyCode.RightArrow)) {
+		if (Input.GetKey(KeyCode.RightArrow) && (!rotate)) {
 			if (repository.getCurrentDimension() == Dimension.FRONT) {
 				rigidBodyTransform.position = new Vector3( rigidBodyTransform.position.x + 0.1f, rigidBodyTransform.position.y, rigidBodyTransform.position.z);
 			}
@@ -56,7 +56,7 @@ public class Player : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.C) && (!rotate)) {
 			rigidBodyTransform.position = new Vector3 (Mathf.Round(rigidBodyTransform.position.x) , rigidBodyTransform.position.y, Mathf.Round(rigidBodyTransform.position.z));
 			rotate = true;
-			//direction = true;
+			direction = true;
 
 			if (repository.getCurrentDimension() == Dimension.FRONT || repository.getCurrentDimension() == Dimension.BACK) {
 				rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
@@ -66,12 +66,24 @@ public class Player : MonoBehaviour {
 			}
 		}
 
-		float trAngles = transform.eulerAngles.y;
+		if (Input.GetKeyDown (KeyCode.Z) && (!rotate)) {
+			rigidBodyTransform.position = new Vector3 (Mathf.Round(rigidBodyTransform.position.x) , rigidBodyTransform.position.y, Mathf.Round(rigidBodyTransform.position.z));
+			rotate = true;
+			direction = false;
+			
+			if (repository.getCurrentDimension() == Dimension.FRONT || repository.getCurrentDimension() == Dimension.BACK) {
+				rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+			}
+			if (repository.getCurrentDimension() == Dimension.RIGHT || repository.getCurrentDimension() == Dimension.LEFT) {
+				rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
+			}
+		}
+
 		if (rotate) {
 			if(direction){
 				float angle = (Time.deltaTime - timestamp) / 0.1f * 90.0f;
 				startRot = startRot + Mathf.Abs (angle);
-				//Debug.Log (angle + " " + startRot + Camera.main.transform.position);
+
 				if(startRot < 90.0f){
 					transform.RotateAround(transform.position, new Vector3 (0.0f, 1.0f, 0.0f), angle);
 					
@@ -83,7 +95,7 @@ public class Player : MonoBehaviour {
 			} else {
 				float angle = (Time.deltaTime - timestamp) / 0.1f * -90.0f;
 				startRot = startRot - Mathf.Abs (angle);
-				//Debug.Log (angle + " " + startRot + Camera.main.transform.position);
+
 				if(startRot > -90.0f){
 					transform.RotateAround(transform.position, new Vector3 (0.0f, 1.0f, 0.0f), angle);
 				}

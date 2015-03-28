@@ -79,7 +79,7 @@ public class GameRepository : MonoBehaviour {
 		instance.rotate = rotateInput;
 	}
 
-	public bool isRunning(){
+	public bool isRotating(){
 		return instance.rotate;
 	}
 
