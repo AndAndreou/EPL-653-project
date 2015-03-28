@@ -2,83 +2,112 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-	private float pos;
-	private Transform tr;
+	private Transform rigidBodyTransform;
 	private GameRepository repository;
-	private Rigidbody rb;
-	
-	// Use this for initialization
+	private Rigidbody rigidBody;
+	private float startRot;
+	private float timestamp;
+	private bool rotate;
+	private bool direction; //true = right false = left
+	private bool jump;
+
 	void Start () {
-		tr = GetComponent<Rigidbody> ().transform;
+		rigidBodyTransform = GetComponent<Rigidbody> ().transform;
 		repository = GameRepository.getInstance();
-		rb = GetComponent<Rigidbody> ();
+		rigidBody = GetComponent<Rigidbody> ();
+		timestamp = Time.deltaTime;
+		startRot = 0.0f;
+		rotate = false;
+		jump = true;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		if(Input.GetKey(KeyCode.LeftArrow)) {
 			if (repository.getCurrentDimension() == Dimension.FRONT) {
-				tr.position = new Vector3( tr.position.x - 0.1f, tr.position.y, tr.position.z);
+				rigidBodyTransform.position = new Vector3( rigidBodyTransform.position.x - 0.1f, rigidBodyTransform.position.y, rigidBodyTransform.position.z);
 			}
 			if (repository.getCurrentDimension() == Dimension.RIGHT) {
-				tr.position = new Vector3( tr.position.x, tr.position.y, tr.position.z - 0.1f);
+				rigidBodyTransform.position = new Vector3( rigidBodyTransform.position.x, rigidBodyTransform.position.y, rigidBodyTransform.position.z - 0.1f);
 			}
 			if (repository.getCurrentDimension() == Dimension.BACK) {
-				tr.position = new Vector3( tr.position.x + 0.1f, tr.position.y, tr.position.z);
+				rigidBodyTransform.position = new Vector3( rigidBodyTransform.position.x + 0.1f, rigidBodyTransform.position.y, rigidBodyTransform.position.z);
 			}
 			if (repository.getCurrentDimension() == Dimension.LEFT) {
-				tr.position = new Vector3( tr.position.x, tr.position.y, tr.position.z + 0.1f);
+				rigidBodyTransform.position = new Vector3( rigidBodyTransform.position.x, rigidBodyTransform.position.y, rigidBodyTransform.position.z + 0.1f);
 			}
 		}
+
 		if (Input.GetKey(KeyCode.RightArrow)) {
 			if (repository.getCurrentDimension() == Dimension.FRONT) {
-				tr.position = new Vector3( tr.position.x + 0.1f, tr.position.y, tr.position.z);
+				rigidBodyTransform.position = new Vector3( rigidBodyTransform.position.x + 0.1f, rigidBodyTransform.position.y, rigidBodyTransform.position.z);
 			}
 			if (repository.getCurrentDimension() == Dimension.RIGHT) {
-				tr.position = new Vector3( tr.position.x, tr.position.y, tr.position.z + 0.1f);
+				rigidBodyTransform.position = new Vector3( rigidBodyTransform.position.x, rigidBodyTransform.position.y, rigidBodyTransform.position.z + 0.1f);
 			}
 			if (repository.getCurrentDimension() == Dimension.BACK) {
-				tr.position = new Vector3( tr.position.x - 0.1f, tr.position.y, tr.position.z);
+				rigidBodyTransform.position = new Vector3( rigidBodyTransform.position.x - 0.1f, rigidBodyTransform.position.y, rigidBodyTransform.position.z);
 			}
 			if (repository.getCurrentDimension() == Dimension.LEFT) {
-				tr.position = new Vector3( tr.position.x, tr.position.y, tr.position.z - 0.1f);
+				rigidBodyTransform.position = new Vector3( rigidBodyTransform.position.x, rigidBodyTransform.position.y, rigidBodyTransform.position.z - 0.1f);
 			}
 		}
-		if (Input.GetKeyDown (KeyCode.C)) {
-			tr.position = new Vector3 (Mathf.Round(tr.position.x) , tr.position.y, Mathf.Round(tr.position.z));
-			tr.Rotate(new Vector3( 0.0f, -90.0f, 0.0f));
+
+		if (Input.GetKeyDown (KeyCode.C) && (!rotate)) {
+			rotate = true;
 
 			if (repository.getCurrentDimension() == Dimension.FRONT || repository.getCurrentDimension() == Dimension.BACK) {
-				rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+				rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
 			}
 			if (repository.getCurrentDimension() == Dimension.RIGHT || repository.getCurrentDimension() == Dimension.LEFT) {
-				rb.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
+				rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
 			}
 		}
-		
-		//new code
-		//Debug.Log (repository.getPlayerLife());
+
+		float trAngles = transform.eulerAngles.y;
+		if (rotate) {
+			if(direction) {
+				float angle = (Time.deltaTime - timestamp) / 0.1f * 90.0f;
+				startRot = startRot + Mathf.Abs (angle);
+				if(startRot < 90.0f){
+					transform.RotateAround(this.transform.position, new Vector3 (0.0f, 1.0f, 0.0f), angle);
+				}
+				if(startRot >= 90.0f){
+					rotate = false;
+					startRot = 0.0f;
+				}
+			} else {
+				float angle = (Time.deltaTime - timestamp) / 0.1f * -90.0f;
+				startRot = startRot + Mathf.Abs (angle);
+				if(startRot < 90.0f){
+					transform.RotateAround(this.transform.position, new Vector3 (0.0f, 1.0f, 0.0f), angle);
+				}
+				if(startRot >= 90.0f){
+					rotate = false;
+					startRot = 0.0f;
+				}
+			}
+		}
+
+		if (jump && transform.position.y >= 0.0f && Input.GetKeyDown (KeyCode.UpArrow)) {
+			rigidBody.AddForce(Vector3.up * 300.0f);
+		}
+
+		if (rigidBody.velocity.y != 0.0f) {
+			jump = false;
+		} else {
+			jump = true;
+		}
+
 		if (repository.getPlayerLife() <= 0.0f) {
 			Destroy(this);
-			//end game
 		}
 	}
 	
 	void FixedUpdate () {
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			//pos += Time.deltaTime;
-			if (repository.getCurrentDimension() == Dimension.FRONT || repository.getCurrentDimension() == Dimension.BACK) {
-				tr.position = new Vector3(tr.position.x, tr.position.y + 1.5f, tr.position.z);
-			}
-			if (repository.getCurrentDimension() == Dimension.RIGHT || repository.getCurrentDimension() == Dimension.LEFT) {
-				tr.position = new Vector3(tr.position.x, tr.position.y + 1.5f, tr.position.z);
-			}
-		}
+
 	}
-	
+
 	void OnCollisionEnter(Collision other){
-		if (other.gameObject.name == "Cube 8") {
-			//Debug.Log("Collides");
-		}
+
 	}
 }
