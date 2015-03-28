@@ -12,11 +12,14 @@ using System.Collections;
 public class GameRepository : MonoBehaviour {  
 	//Singleton specific attributes
 	private static GameRepository instance = null;
-	bool created = false;
 
 	//common game variables
 	private Dimension currentDimension;
 	private float playerLife;
+
+	//camera specific variables
+	private bool rotate;
+	private bool raise;
 
 	private GameRepository () { }
 
@@ -26,6 +29,8 @@ public class GameRepository : MonoBehaviour {
 			instance = new GameRepository();
 			instance.playerLife = 100.0f;
 			instance.currentDimension = Dimension.FRONT;
+			instance.rotate = false;
+			instance.raise = false;
 		}
 		return instance;
 	}
@@ -68,5 +73,21 @@ public class GameRepository : MonoBehaviour {
 
 	public void winPlayerLife(float win) {
 		instance.playerLife += win;
+	}
+
+	public void setRotate(bool rotateInput){
+		instance.rotate = rotateInput;
+	}
+
+	public bool isRunning(){
+		return instance.rotate;
+	}
+
+	public void setRaise(bool raiseInput){
+		instance.raise = raiseInput;
+	}
+	
+	public bool isRaised(){
+		return instance.raise;
 	}
 }
