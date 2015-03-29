@@ -9,25 +9,26 @@ public class Enemy : MonoBehaviour {
 	private float speed=0.05f;
 	private float life=100;
 	private float damage=30;
-	private float jump=1.5f;
+	private float jump=375.0f;
 	private bool findDimension= true;
 	private string lookAt; //metavliti p krato p vlepi o enemy left or right
-	private int lookLef;
+	private bool isJump=false;
 
 
 	
 	// Use this for initialization
 	void Start () {
+		int lookLeft;
 		GameR = GameRepository.getInstance();
 		target = GameObject.FindGameObjectWithTag("Player");
 		damage = Random.Range (10.0f, 80.0f);
 		Color c = new Color ((damage/100.0f),0.0f,0.0f,1.0f);
 		GetComponent<SpriteRenderer>().color = c;
-		lookLef = Random.Range (0, 10);
-		if (lookLef < 5) { //vlepi aristera
+		lookLeft = Random.Range (0, 10);
+		if (lookLeft < 5) { //vlepi aristera
 			lookAt = "left";
 		} 
-		else {
+		else { //vlepi deksia
 			lookAt = "right";
 			transform.Rotate(new Vector3(0.0f,1.0f,0.0f),180.0f);
 		}
@@ -41,25 +42,23 @@ public class Enemy : MonoBehaviour {
 
 		bool isRayHit = false;
 		RaycastHit rayHit ;
-		Vector3 startPosRay= new Vector3 (transform.position.x,transform.position.y,transform.position.z);
+		Vector3 startPosRay= new Vector3 (transform.position.x,transform.position.y + 0.6f,transform.position.z); //exi sxesi me to ipsos tou enemy to 1.0f
 		Vector3 rayDirection = target.transform.position - transform.position;
-		Debug.Log("*****" + lookAt);
 		if (((rayDirection.x < 0) && (lookAt=="right") && (Mathf.Abs(rayDirection.z)<=1)) || ((rayDirection.z < 0)&& (lookAt=="right") && (Mathf.Abs(rayDirection.x)<=1)) ) {
 			isRayHit = Physics.Raycast (startPosRay, rayDirection, out rayHit, vision / 2);
-			Debug.Log("-----test1");
+
 
 		} 
 		else if ((Mathf.Abs(rayDirection.z)<=1) || (Mathf.Abs(rayDirection.x)<=1))  {
 			isRayHit = Physics.Raycast (startPosRay, rayDirection, out rayHit, vision);
-			Debug.Log("-----test2");
+
 		}
 
 		string tagRayHit="";
 
 		if (isRayHit) {
 			tagRayHit = rayHit.transform.tag;  
-			Debug.DrawLine (startPosRay, target.transform.position, Color.green);
-			Debug.Log (rayDirection);
+			//Debug.DrawLine (startPosRay, target.transform.position, Color.green);
 		}
 
 
@@ -149,7 +148,7 @@ public class Enemy : MonoBehaviour {
 			GameR.losePlayerLife(damage);
 		}
 		if (findDimension){ //elexos gia na vro ti diastasi ke na kano to analogo rotation tou enemy elexo mono tin proti fora
-			if(other.gameObject.tag=="StaticCube"){ 
+			if((other.gameObject.tag=="StaticCube") || (other.gameObject.tag=="MovableCube")){ 
 				
 				if(other.transform.localEulerAngles.y==0){ //dimension cube = 0
 					transform.Rotate(new Vector3(0.0f,0.0f,0.0f));
@@ -174,7 +173,16 @@ public class Enemy : MonoBehaviour {
 		}
 		
 		if (((other.gameObject.tag == "StaticCube") || (other.gameObject.tag == "MovableCube")) && (Mathf.Abs(other.transform.position.y-transform.position.y)>0.0f)&& (Mathf.Abs(other.transform.position.y-transform.position.y)<1.0f)) { //o ekthros pida an vriski empodio 
-			transform.position = new Vector3(transform.position.x, transform.position.y + jump, transform.position.z);
+			//transform.position = new Vector3(transform.position.x, transform.position.y + jump, transform.position.z);
+			if (!isJump ) {
+				GetComponent<Rigidbody>().AddForce(Vector3.up * jump);
+			}
+			
+			if (GetComponent<Rigidbody>().velocity.y != 0.0f) {
+				isJump = true;
+			} else {
+				isJump = false;
+			}
 		}
 	}
 	

@@ -1,10 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SceneInit : MonoBehaviour {
 	public Material cubeMaterial;
 	private GameRepository repository;
-
+	//
+	public Transform Enemy;
+	private Dimension prevDiv; //karata to proigoumeno dimension
+	private int count=-15;	//metra ta cube p mpikan stin idia diastasi
+	List<Vector3> listPosEnemy = new List<Vector3>();
+	private int numOfEnemy; //arithmos ton exthron
+	//
 
 	// Use this for initialization
 	void Start() {
@@ -75,6 +82,20 @@ public class SceneInit : MonoBehaviour {
 			createStaticCube(position, size, Dimension.BACK, Color.red);
 		}
 
+		//
+
+		numOfEnemy = Random.Range (3, listPosEnemy.Count / 10); //tixeos arithmos exthron
+		for (int i=0; i<numOfEnemy; i++) { //dimiourgia ekthron
+			int p = Random.Range(0, listPosEnemy.Count);
+			Transform  newEnemy = Instantiate(Enemy,listPosEnemy[p],Quaternion.identity ) as Transform;
+			newEnemy.tag="Enemy";
+			listPosEnemy.RemoveRange(p-2,5);
+			/*listPosEnemy.RemoveAt(p-1);
+			listPosEnemy.RemoveAt(p);
+			listPosEnemy.RemoveAt(p+1);*/
+		}
+		Debug.Log("-----" + numOfEnemy);
+		//
 	}
 
 	/*
@@ -87,6 +108,16 @@ public class SceneInit : MonoBehaviour {
 	 * - Color: the color of the cube
 	 */
 	private void createStaticCube(Vector3 position, Vector3 size, Dimension dimension, Color color) {
+		//
+		if ((prevDiv != dimension)&&(count>=0)) { //se kathe alagi tou divension midenizete to count , to (count>=0) xrismopoite gia tin arxi, na min ginonte spawn enemy konta s stin arxi
+			count=0;
+		}
+		prevDiv = dimension;
+		count++;
+		if (count >= 5) {
+			listPosEnemy.Add(new Vector3(position.x,position.y+3,position.z));
+		}
+		//
 		GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
 
 		Vector3 scale = transform.localScale;
