@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
 	private bool rotate;
 	private bool direction; //true = right false = left
 	private bool jump;
-
+	
 	void Start () {
 		rigidBodyTransform = GetComponent<Rigidbody> ().transform;
 		repository = GameRepository.getInstance();
@@ -21,8 +21,24 @@ public class Player : MonoBehaviour {
 		direction = true;
 		jump = true;
 	}
-
+	
 	void Update () {
+		rigidBody.isKinematic = false;
+		if (!repository.isRotating() && !repository.isRaised() && transform.position.y >= 0.0f) {
+			if (repository.getCurrentDimension() == Dimension.FRONT) {
+				transform.localEulerAngles  = new Vector3 (0.0f, 0.0f, 0.0f);
+			}
+			if (repository.getCurrentDimension() == Dimension.RIGHT) {
+				transform.localEulerAngles  = new Vector3 (0.0f, 270.0f, 0.0f);
+			}
+			if (repository.getCurrentDimension() == Dimension.BACK) {
+				transform.localEulerAngles  = new Vector3 (0.0f, 180.0f, 0.0f);
+			}
+			if (repository.getCurrentDimension() == Dimension.LEFT) {
+				transform.localEulerAngles  = new Vector3 (0.0f, 90.0f, 0.0f);
+			}
+		}
+		
 		if(Input.GetKey(KeyCode.LeftArrow) && (!rotate)) {
 			if (repository.getCurrentDimension() == Dimension.FRONT) {
 				rigidBodyTransform.position = new Vector3( rigidBodyTransform.position.x - 0.1f, rigidBodyTransform.position.y, rigidBodyTransform.position.z);
@@ -37,7 +53,7 @@ public class Player : MonoBehaviour {
 				rigidBodyTransform.position = new Vector3( rigidBodyTransform.position.x, rigidBodyTransform.position.y, rigidBodyTransform.position.z + 0.1f);
 			}
 		}
-
+		
 		if (Input.GetKey(KeyCode.RightArrow) && (!rotate)) {
 			if (repository.getCurrentDimension() == Dimension.FRONT) {
 				rigidBodyTransform.position = new Vector3( rigidBodyTransform.position.x + 0.1f, rigidBodyTransform.position.y, rigidBodyTransform.position.z);
@@ -52,12 +68,12 @@ public class Player : MonoBehaviour {
 				rigidBodyTransform.position = new Vector3( rigidBodyTransform.position.x, rigidBodyTransform.position.y, rigidBodyTransform.position.z - 0.1f);
 			}
 		}
-
+		
 		if (Input.GetKeyDown (KeyCode.C) && (!rotate)) {
 			rigidBodyTransform.position = new Vector3 (Mathf.Round(rigidBodyTransform.position.x) , rigidBodyTransform.position.y, Mathf.Round(rigidBodyTransform.position.z));
 			rotate = true;
 			direction = true;
-
+			
 			if (repository.getCurrentDimension() == Dimension.FRONT || repository.getCurrentDimension() == Dimension.BACK) {
 				rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
 			}
@@ -65,7 +81,7 @@ public class Player : MonoBehaviour {
 				rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
 			}
 		}
-
+		
 		if (Input.GetKeyDown (KeyCode.Z) && (!rotate)) {
 			rigidBodyTransform.position = new Vector3 (Mathf.Round(rigidBodyTransform.position.x) , rigidBodyTransform.position.y, Mathf.Round(rigidBodyTransform.position.z));
 			rotate = true;
@@ -78,12 +94,12 @@ public class Player : MonoBehaviour {
 				rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
 			}
 		}
-
+		
 		if (rotate) {
 			if(direction){
 				float angle = (Time.deltaTime - timestamp) / 0.1f * 90.0f;
 				startRot = startRot + Mathf.Abs (angle);
-
+				
 				if(startRot < 90.0f){
 					transform.RotateAround(transform.position, new Vector3 (0.0f, 1.0f, 0.0f), angle);
 					
@@ -95,7 +111,7 @@ public class Player : MonoBehaviour {
 			} else {
 				float angle = (Time.deltaTime - timestamp) / 0.1f * -90.0f;
 				startRot = startRot - Mathf.Abs (angle);
-
+				
 				if(startRot > -90.0f){
 					transform.RotateAround(transform.position, new Vector3 (0.0f, 1.0f, 0.0f), angle);
 				}
@@ -105,27 +121,42 @@ public class Player : MonoBehaviour {
 				}
 			}
 		}
-
+		
 		if (jump && transform.position.y >= 0.0f && Input.GetKeyDown (KeyCode.UpArrow)) {
 			rigidBody.AddForce(Vector3.up * 300.0f);
-		}
-
-		if (rigidBody.velocity.y != 0.0f) {
 			jump = false;
-		} else {
-			jump = true;
 		}
-
+		
+		if (rigidBody.velocity.y != 0.0f) {
+			jump = true;
+		}// else {
+		//	jump = true;
+		//}
+		
 		if (repository.getPlayerLife() <= 0.0f) {
 			Destroy(this);
 		}
 	}
 	
 	void FixedUpdate () {
-
+		
 	}
-
+	
 	void OnCollisionEnter(Collision other){
-
+		if (other.gameObject.tag == "StaticCube") {
+			Vector3 hit = other.contacts[0].normal;
+			
+			float angle = Vector3.Angle(hit, Vector3.up);
+			
+			if (Vector3.Dot(hit,Vector3.up) > 0) { // top
+				Debug.Log("Top" + hit);
+			}else if(Vector3.Dot(hit,Vector3.up) < 0){
+				Debug.Log ("Bottom" + hit);
+			}else if(Vector3.Dot(hit,Vector3.up) == 0){
+				Debug.Log ("Sides" + hit);
+				rigidBody.isKinematic = true;
+				//rigidBody.velocity = Vector3.zero;
+			}
+		}
 	}
 }
