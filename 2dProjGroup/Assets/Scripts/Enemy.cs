@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour {
 			tagVisonRayHit = visionRayHit.transform.tag;  
 
 		}
-		Debug.DrawLine (startPosVisionRay, visionRayHit.transform.position, Color.green);
+		//Debug.DrawLine (startPosVisionRay, visionRayHit.transform.position, Color.green);
 		/*Debug.Log(isVisionRayHit);
 		Debug.Log(tagVisonRayHit);*/
 
@@ -156,11 +156,11 @@ public class Enemy : MonoBehaviour {
 			
 			if (isRayHit) {
 				tagRayHit = RayHit.transform.tag;  
-				Debug.Log("-------------");
+				//Debug.Log("-------------");
 			}
-			Debug.DrawLine (startPosRay, RayHit.transform.position, Color.red);
-			Debug.Log(isJump);
-			Debug.Log(tagRayHit);
+			//Debug.DrawLine (startPosRay, RayHit.transform.position, Color.red);
+			//Debug.Log(isJump);
+			//Debug.Log(tagRayHit);
 			//
 			if ((!isJump) && ((tagRayHit == "StaticCube") || (tagRayHit == "MovableCube"))) {
 				GetComponent<Rigidbody>().AddForce(Vector3.up * jump);
@@ -214,7 +214,7 @@ public class Enemy : MonoBehaviour {
 		if ((other.gameObject.tag == "StaticCube") || (other.gameObject.tag == "MovableCube")) {
 
 			if (GetComponent<Rigidbody> ().velocity.y == 0.0f) {
-				Debug.Log("*****************");
+				//Debug.Log("*****************");
 				isJump = false;
 			}
 		}

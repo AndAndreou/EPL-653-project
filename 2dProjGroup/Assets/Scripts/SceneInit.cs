@@ -7,9 +7,11 @@ public class SceneInit : MonoBehaviour {
 	private GameRepository repository;
 	//
 	public Transform Enemy;
-	private Dimension prevDiv; //karata to proigoumeno dimension
+	private Dimension prevDim; //karata to proigoumeno dimension
 	private int count=-15;	//metra ta cube p mpikan stin idia diastasi
+	private int countOfList=0; //counter gia to poses listes exoume
 	List<Vector3> listPosEnemy = new List<Vector3>();
+	List<List<Vector3>> listOfList = new List<List<Vector3>>();
 	private int numOfEnemy; //arithmos ton exthron
 	//
 
@@ -17,9 +19,13 @@ public class SceneInit : MonoBehaviour {
 	void Start() {
 		repository = GameRepository.getInstance();
 
+		listOfList.Add(new List<Vector3>());
+
 		int x=0, y=0, z=0;
 
 		//dimension FRONT
+
+		prevDim = Dimension.FRONT;
 
 		Vector3 position = new Vector3(-5,0,0);
 		Vector3 size = new Vector3(1,1,1);
@@ -84,17 +90,42 @@ public class SceneInit : MonoBehaviour {
 
 		//
 
-		numOfEnemy = Random.Range (3, listPosEnemy.Count / 10); //tixeos arithmos exthron
-		for (int i=0; i<numOfEnemy; i++) { //dimiourgia ekthron
-			int p = Random.Range(0, listPosEnemy.Count);
-			Transform  newEnemy = Instantiate(Enemy,listPosEnemy[p],Quaternion.identity ) as Transform;
-			newEnemy.tag="Enemy";
-			listPosEnemy.RemoveRange(p-2,5);
-			/*listPosEnemy.RemoveAt(p-1);
-			listPosEnemy.RemoveAt(p);
-			listPosEnemy.RemoveAt(p+1);*/
+		//Debug.Log("-----" + listOfList.Count);
+		List<int> zeroOrOne = new List<int>();// pithanotita 5/2 gia ton elaxisto aritmo ton exthron se mia grami 1:0
+		zeroOrOne.Add(1);
+		zeroOrOne.Add(1);
+		zeroOrOne.Add(0);
+		zeroOrOne.Add(1);
+		zeroOrOne.Add(1);
+		zeroOrOne.Add(0);
+		zeroOrOne.Add(1);
+		//random dimiourgia exthron
+		for (int c=0 ; c<listOfList.Count ; c++){
+			numOfEnemy = Random.Range (Random.Range(0,zeroOrOne.Count), (Mathf.CeilToInt(listOfList[c].Count / 40.0f))); //tixeos arithmos exthron
+			for (int i=0; i<numOfEnemy; i++) { //dimiourgia ekthron
+				if (listOfList[c].Count>0){
+					int p = Random.Range(0, ((listOfList[c].Count)-1));
+					Transform  newEnemy = Instantiate(Enemy,listOfList[c][p],Quaternion.identity ) as Transform;
+					newEnemy.tag="Enemy";
+					if (p+2<=listOfList[c].Count-1){
+						listOfList[c].RemoveAt(p+2);
+					}
+					if (p+1<=listOfList[c].Count-1){
+						listOfList[c].RemoveAt(p+1);
+					}
+
+					listOfList[c].RemoveAt(p);
+
+					if (p-1>=0){ // p-1
+						listOfList[c].RemoveAt(p-1);
+					}
+					if (p-2>=0){ //p-2
+						listOfList[c].RemoveAt(p-2);
+					}
+				}
+			}
 		}
-		Debug.Log("-----" + numOfEnemy);
+		/*Debug.Log("-----" + numOfEnemy);*/
 		//
 	}
 
@@ -109,13 +140,15 @@ public class SceneInit : MonoBehaviour {
 	 */
 	private void createStaticCube(Vector3 position, Vector3 size, Dimension dimension, Color color) {
 		//
-		if ((prevDiv != dimension)&&(count>=0)) { //se kathe alagi tou divension midenizete to count , to (count>=0) xrismopoite gia tin arxi, na min ginonte spawn enemy konta s stin arxi
+		if ((prevDim != dimension)&&(count>=0)) { //se kathe alagi tou divension midenizete to count , to (count>=0) xrismopoite gia tin arxi, na min ginonte spawn enemy konta s stin arxi
+			listOfList.Add(new List<Vector3>());
+			countOfList++;
 			count=0;
 		}
-		prevDiv = dimension;
+		prevDim = dimension;
 		count++;
 		if (count >= 5) {
-			listPosEnemy.Add(new Vector3(position.x,position.y+3,position.z));
+			listOfList[countOfList].Add(new Vector3(position.x,position.y+3,position.z));
 		}
 		//
 		GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
