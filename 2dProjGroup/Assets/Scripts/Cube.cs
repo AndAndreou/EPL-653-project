@@ -17,6 +17,11 @@ public class Cube : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (repository.isRaised() || repository.isRotating() ) {
+			renderer.enabled = true;
+			return;
+		}
+
 		if ((repository.getCurrentDimension() == Dimension.FRONT) || (repository.getCurrentDimension() == Dimension.BACK)) { //dimension cube = 0
 			if (player.transform.position.z == this.transform.position.z) {
 				//Debug.Log("Z - Z");
