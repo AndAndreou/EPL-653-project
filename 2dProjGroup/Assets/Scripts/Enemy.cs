@@ -13,21 +13,22 @@ public class Enemy : MonoBehaviour {
 	private bool findDimension= true;
 	private string lookAt; //metavliti p krato p vlepi o enemy left or right
 	private bool isJump=false;
-
-
+	private Animator animator;
 	
+
 	// Use this for initialization
 	void Start () {
 		int lookLeft;
 		GameR = GameRepository.getInstance();
 		target = GameObject.FindGameObjectWithTag("Player");
 		damage = Random.Range (10.0f, 80.0f);
-		Color c = new Color ((damage/100.0f),0.0f,0.0f,1.0f);
-		GetComponent<SpriteRenderer>().color = c;
+		animator = GetComponent<Animator> ();
+		//Color c = new Color ((damage/100.0f),0.0f,0.0f,1.0f);
+		//GetComponent<SpriteRenderer>().color = c;
 		lookLeft = Random.Range (0, 10);
 		if (lookLeft < 5) { //vlepi aristera
 			lookAt = "left";
-		} 
+		}
 		else { //vlepi deksia
 			lookAt = "right";
 			transform.Rotate(new Vector3(0.0f,1.0f,0.0f),180.0f);
@@ -65,9 +66,14 @@ public class Enemy : MonoBehaviour {
 		/*Debug.Log(isVisionRayHit);
 		Debug.Log(tagVisonRayHit);*/
 
+		if ( ((isVisionRayHit) && (tagVisonRayHit != "Player")) || (!isVisionRayHit) ) {
+			animator.SetBool("enemyWalk", false);
+		}
+
 		//if(GameR.getCurrentDimension() == dimension){  //elenxos an vriskonte stin idia diastasi
 			//if (Mathf.Abs(target.transform.position.y-transform.position.y)<=2){ //elenxos an vriskonte sto dio y
 			if ((isVisionRayHit) && (tagVisonRayHit == "Player")) {
+				animator.SetBool("enemyWalk", true);
 				if (dimension == Dimension.FRONT || dimension == Dimension.BACK) {
 					//if (Mathf.Abs(target.transform.position.z-transform.position.z)<=1){ //elenxos an vriskonte sto dio z
 					//	float distance=target.transform.position.x-transform.position.x;
@@ -150,7 +156,7 @@ public class Enemy : MonoBehaviour {
 			Vector3 startPosRay= new Vector3 (transform.position.x,transform.position.y - 0.6f,transform.position.z); //exi sxesi me to ipsos tou enemy to 1.0f
 			Vector3 RayDirection = target.transform.position - transform.position;
 			
-			isRayHit = Physics.Raycast (startPosRay, RayDirection, out RayHit, 1);
+			isRayHit = Physics.Raycast (startPosRay, RayDirection, out RayHit, 1.5f);
 			
 			string tagRayHit="";
 			
@@ -213,7 +219,7 @@ public class Enemy : MonoBehaviour {
 			}*/
 		if ((other.gameObject.tag == "StaticCube") || (other.gameObject.tag == "MovableCube")) {
 
-			if (GetComponent<Rigidbody> ().velocity.y == 0.0f) {
+			if (GetComponent<Rigidbody> ().velocity.y == 0.0f) {//provlima apo aristera pros deksia kapies fores den pida
 				//Debug.Log("*****************");
 				isJump = false;
 			}

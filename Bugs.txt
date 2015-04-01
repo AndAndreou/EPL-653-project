@@ -11,8 +11,3 @@
 
 
 
-- i camera exei themata, mallon den egine commit i teleftea ekdosi
-
-- o pektis kanei multible jumps
-
-
