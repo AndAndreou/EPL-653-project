@@ -1,0 +1,18 @@
+
+- o exthros peftei otan sproksei kinoumeno kivo. LISI: freeze dimensions (kamnoume to sto script tou player)
+
+- o exthros den petassete ton kivo otan eine apo aristera (isos na en simptosi, edokimasa to 2-3 fores pantos)
+
+- o exthros fenete otan eine se lathos diastasi. LISI: opos ekamamen me tous kivous
+
+
+
+- ta collectibles fenontai se lathos diastaseis. LISI: opos ekamamen me tous kivous
+
+
+
+- i camera exei themata, mallon den egine commit i teleftea ekdosi
+
+- o pektis kanei multible jumps
+
+

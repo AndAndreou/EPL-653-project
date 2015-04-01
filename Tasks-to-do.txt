@@ -1,0 +1,3 @@
+- prepei na ginoun sprites gia: jump, damage, idle
+
+- Na dimiourgithoun to score, i zoi tou pexti kai alla statistika
