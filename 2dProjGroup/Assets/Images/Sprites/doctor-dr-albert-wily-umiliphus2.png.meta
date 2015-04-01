@@ -1,0 +1,803 @@
+fileFormatVersion: 2
+guid: c4148d5e9d007d64a944fb9d653d5217
+timeCreated: 1427820417
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: doctor-dr-albert-wily-umiliphus2_0
+    21300002: doctor-dr-albert-wily-umiliphus2_1
+    21300004: doctor-dr-albert-wily-umiliphus2_2
+    21300006: doctor-dr-albert-wily-umiliphus2_3
+    21300008: doctor-dr-albert-wily-umiliphus2_4
+    21300010: doctor-dr-albert-wily-umiliphus2_5
+    21300012: doctor-dr-albert-wily-umiliphus2_6
+    21300014: doctor-dr-albert-wily-umiliphus2_7
+    21300016: doctor-dr-albert-wily-umiliphus2_8
+    21300018: doctor-dr-albert-wily-umiliphus2_9
+    21300020: doctor-dr-albert-wily-umiliphus2_10
+    21300022: doctor-dr-albert-wily-umiliphus2_11
+    21300024: doctor-dr-albert-wily-umiliphus2_12
+    21300026: doctor-dr-albert-wily-umiliphus2_13
+    21300028: doctor-dr-albert-wily-umiliphus2_14
+    21300030: doctor-dr-albert-wily-umiliphus2_15
+    21300032: doctor-dr-albert-wily-umiliphus2_16
+    21300034: doctor-dr-albert-wily-umiliphus2_17
+    21300036: doctor-dr-albert-wily-umiliphus2_18
+    21300038: doctor-dr-albert-wily-umiliphus2_19
+    21300040: doctor-dr-albert-wily-umiliphus2_20
+    21300042: doctor-dr-albert-wily-umiliphus2_21
+    21300044: doctor-dr-albert-wily-umiliphus2_22
+    21300046: doctor-dr-albert-wily-umiliphus2_23
+    21300048: doctor-dr-albert-wily-umiliphus2_24
+    21300050: doctor-dr-albert-wily-umiliphus2_25
+    21300052: doctor-dr-albert-wily-umiliphus2_26
+    21300054: doctor-dr-albert-wily-umiliphus2_27
+    21300056: doctor-dr-albert-wily-umiliphus2_28
+    21300058: doctor-dr-albert-wily-umiliphus2_29
+    21300060: doctor-dr-albert-wily-umiliphus2_30
+    21300062: doctor-dr-albert-wily-umiliphus2_31
+    21300064: doctor-dr-albert-wily-umiliphus2_32
+    21300066: doctor-dr-albert-wily-umiliphus2_33
+    21300068: doctor-dr-albert-wily-umiliphus2_34
+    21300070: doctor-dr-albert-wily-umiliphus2_35
+    21300072: doctor-dr-albert-wily-umiliphus2_36
+    21300074: doctor-dr-albert-wily-umiliphus2_37
+    21300076: doctor-dr-albert-wily-umiliphus2_38
+    21300078: doctor-dr-albert-wily-umiliphus2_39
+    21300080: doctor-dr-albert-wily-umiliphus2_40
+    21300082: doctor-dr-albert-wily-umiliphus2_41
+    21300084: doctor-dr-albert-wily-umiliphus2_42
+    21300086: doctor-dr-albert-wily-umiliphus2_43
+    21300088: doctor-dr-albert-wily-umiliphus2_44
+    21300090: doctor-dr-albert-wily-umiliphus2_45
+    21300092: doctor-dr-albert-wily-umiliphus2_46
+    21300094: doctor-dr-albert-wily-umiliphus2_47
+    21300096: doctor-dr-albert-wily-umiliphus2_48
+    21300098: doctor-dr-albert-wily-umiliphus2_49
+    21300100: doctor-dr-albert-wily-umiliphus2_50
+    21300102: doctor-dr-albert-wily-umiliphus2_51
+    21300104: doctor-dr-albert-wily-umiliphus2_52
+    21300106: doctor-dr-albert-wily-umiliphus2_53
+    21300108: doctor-dr-albert-wily-umiliphus2_54
+    21300110: doctor-dr-albert-wily-umiliphus2_55
+    21300112: doctor-dr-albert-wily-umiliphus2_56
+    21300114: doctor-dr-albert-wily-umiliphus2_57
+    21300116: doctor-dr-albert-wily-umiliphus2_58
+    21300118: doctor-dr-albert-wily-umiliphus2_59
+    21300120: doctor-dr-albert-wily-umiliphus2_60
+    21300122: doctor-dr-albert-wily-umiliphus2_61
+    21300124: doctor-dr-albert-wily-umiliphus2_62
+    21300126: doctor-dr-albert-wily-umiliphus2_63
+    21300128: doctor-dr-albert-wily-umiliphus2_64
+    21300130: doctor-dr-albert-wily-umiliphus2_65
+    21300132: doctor-dr-albert-wily-umiliphus2_66
+    21300134: doctor-dr-albert-wily-umiliphus2_67
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: doctor-dr-albert-wily-umiliphus2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 385
+        width: 84
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_1
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 385
+        width: 48
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_2
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 373
+        width: 34
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_3
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 373
+        width: 34
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_4
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 373
+        width: 33
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_5
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 376
+        width: 55
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_6
+      rect:
+        serializedVersion: 2
+        x: 347
+        y: 329
+        width: 94
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_7
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 368
+        width: 59
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_8
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 343
+        width: 49
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_9
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 344
+        width: 50
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_10
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 308
+        width: 34
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_11
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 309
+        width: 34
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_12
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 311
+        width: 30
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_13
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 314
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_14
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 314
+        width: 59
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_15
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 282
+        width: 68
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_16
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 282
+        width: 48
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_17
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 250
+        width: 35
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_18
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 250
+        width: 35
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_19
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 247
+        width: 34
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_20
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 252
+        width: 38
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_21
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 254
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_22
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 253
+        width: 32
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_23
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 252
+        width: 59
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_24
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 238
+        width: 39
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_25
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 242
+        width: 42
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_26
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 242
+        width: 42
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_27
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 185
+        width: 47
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_28
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 191
+        width: 74
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_29
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 181
+        width: 35
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_30
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 181
+        width: 41
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_31
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 186
+        width: 48
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_32
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 186
+        width: 48
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_33
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 187
+        width: 49
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_34
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 185
+        width: 40
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_35
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 189
+        width: 46
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_36
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 191
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_37
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 121
+        width: 34
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_38
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 122
+        width: 29
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_39
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 121
+        width: 29
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_40
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 123
+        width: 39
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_41
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 127
+        width: 58
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_42
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 130
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_43
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 125
+        width: 49
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_44
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 128
+        width: 30
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_45
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 142
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_46
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 143
+        width: 63
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_47
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 61
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_48
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 61
+        width: 59
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_49
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 78
+        width: 56
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_50
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 78
+        width: 10
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_51
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 81
+        width: 49
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_52
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 70
+        width: 34
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_53
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 69
+        width: 35
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_54
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 68
+        width: 34
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_55
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 69
+        width: 75
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_56
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 79
+        width: 53
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_57
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 5
+        width: 48
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_58
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 5
+        width: 48
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_59
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 11
+        width: 33
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_60
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 28
+        width: 37
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_61
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 28
+        width: 37
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_62
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 26
+        width: 33
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_63
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 26
+        width: 20
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_64
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 26
+        width: 32
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_65
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 26
+        width: 22
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_66
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 25
+        width: 27
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: doctor-dr-albert-wily-umiliphus2_67
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 25
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

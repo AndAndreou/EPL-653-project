@@ -17,6 +17,7 @@ public class Cube : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		if (repository.isRaised() || repository.isRotating() ) {
 			renderer.enabled = true;
 			return;
@@ -42,6 +43,27 @@ public class Cube : MonoBehaviour {
 				//Debug.Log("X !- X");
 			}
 		}
+
+		/*
+		int x = Mathf.RoundToInt (player.transform.position.x);
+		int z = Mathf.RoundToInt(player.transform.position.z);
+		if ( (x == this.transform.position.x) && ( z == this.transform.position.z)) {
+			renderer.material.color = Color.black;
+		} else if ( ( Mathf.Abs(x - this.transform.position.x) == 1 ) && ( z == this.transform.position.z) ){
+			renderer.material.color = Color.gray;
+		}
+		else if ( ( Mathf.Abs(z - this.transform.position.z) == 1 ) && ( x == this.transform.position.x) ){
+			renderer.material.color = Color.gray;
+		}
+		else if ( ( Mathf.Abs(x - this.transform.position.x) == 2 ) && ( z == this.transform.position.z) ){
+			renderer.material.color = Color.white;
+		}
+		else if ( ( Mathf.Abs(z - this.transform.position.z) == 2 ) && ( x == this.transform.position.x) ){
+			renderer.material.color = Color.white;
+		}
+	else {
+			renderer.material.color = new Color (10, 10, 10, 1.0f);
+		}*/
 
 	}
 

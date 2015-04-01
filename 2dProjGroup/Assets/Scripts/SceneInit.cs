@@ -7,6 +7,8 @@ public class SceneInit : MonoBehaviour {
 	private GameRepository repository;
 	//
 	public Transform Enemy;
+	public Transform coin;
+
 	private Dimension prevDim; //karata to proigoumeno dimension
 	private int count=-15;	//metra ta cube p mpikan stin idia diastasi
 	private int countOfList=0; //counter gia to poses listes exoume
@@ -23,73 +25,150 @@ public class SceneInit : MonoBehaviour {
 
 		int x=0, y=0, z=0;
 
+		//CREATING THE SCENE
+
 		//dimension FRONT
 
 		prevDim = Dimension.FRONT;
 
-		Vector3 position = new Vector3(-5,0,0);
 		Vector3 size = new Vector3(1,1,1);
-		for (y=0; y<4; y++) {
-			position.y = y;
+		Vector3 position = new Vector3(0,0,0);
+
+		position = new Vector3 (-5,0,0);
+		for (; position.y<4; position.y++) {
 			createStaticCube(position, size, Dimension.FRONT, Color.red);
 		}
 
-		position = new Vector3(0,0,0);
-		for (x=-5; x<55; x++) {
-			position.x = x;
+		position = new Vector3(-5,0,0);
+		for (; position.x<55; position.x++) {
 			createStaticCube(position, size, Dimension.FRONT, Color.red);
 		}
 
-		position.x = 10;
-		position.y = 1;
+		position = new Vector3 (10,1,0);
 		createStaticCube (position, size, Dimension.FRONT, Color.red);
+
+		position = new Vector3 (30,1.5f,0);
+		for (; position.x<40; position.x = position.x +2) {
+			createCoin (position);
+		}
+
+		position = new Vector3 (50,0,1);
+		for (; position.x<55; position.x++) {
+			createStaticCube(position, size, Dimension.FRONT, Color.red);
+		}
+
+		position = new Vector3 (51,0,2);
+		for (; position.x<55; position.x++) {
+			createStaticCube(position, size, Dimension.FRONT, Color.red);
+		}
+
+		position = new Vector3 (52,0,3);
+		for (; position.x<55; position.x++) {
+			createStaticCube(position, size, Dimension.FRONT, Color.red);
+		}
+
+		position = new Vector3 (53,0,4);
+		for (; position.x<55; position.x++) {
+			createStaticCube(position, size, Dimension.FRONT, Color.red);
+		}
+
+		position = new Vector3 (54,0,5);
+		createStaticCube(position, size, Dimension.FRONT, Color.red);
+
 
 		//dimension RIGHT
 
-		position = new Vector3(x,0,0);
-		for (z=0; z<=15; z++) {
-			position.z = z;
+		position = new Vector3(55,0,0);
+		for (; position.z<=15; position.z++) {
 			createStaticCube(position, size, Dimension.RIGHT, Color.red);
 		}
 
-		position.y = 1;
-		position.z = 5;
+		position = new Vector3(55,1,5);
 		createStaticCube (position, size, Dimension.RIGHT, Color.red);
 
-		position.z = 10;
+		position = new Vector3(55,1,10);
 		createMovableCube(position, size, Dimension.RIGHT, Color.red);
 
-		position.z = 15;
+		position = new Vector3(55,1,15);
 		createStaticCube(position, size, Dimension.RIGHT, Color.red);
 
-		position.y = 2;
+		position = new Vector3(55,2,15);
 		createStaticCube(position, size, Dimension.RIGHT, Color.red);
 
-		for (z=15; z<25; z++) {
-			position.z = z;
+		position = new Vector3(55,2,15);
+		for (; position.z<25; position.z++) {
+			createStaticCube(position, size, Dimension.RIGHT, Color.red);
+		}
+
+		position = new Vector3(55,2,15);
+		for (; position.x>45; position.x--) {
+			createStaticCube(position, size, Dimension.RIGHT, Color.red);
+		}
+
+		position = new Vector3(45,2,15);
+		for (; position.z<25; position.z++) {
 			createStaticCube(position, size, Dimension.RIGHT, Color.red);
 		}
 
 
 		//dimension BACK
 
-		for (;x>40;x--) {
-			position.x = x;
+		position = new Vector3(55,2,25);
+		for (; position.x>35; position.x--) {
 			createStaticCube(position, size, Dimension.BACK, Color.red);
 		}
 
-		position.y--;
+		position = new Vector3(50,3,25);
+		createStaticCube(position, size, Dimension.BACK, Color.red);
+		position.y++;
+		createStaticCube(position, size, Dimension.BACK, Color.red);
+		position.y++;
+		createStaticCube(position, size, Dimension.BACK, Color.red);
+
+		position = new Vector3(36,1,25);
 		createStaticCube (position, size, Dimension.BACK, Color.red);
 		position.y--;
 		createStaticCube (position, size, Dimension.BACK, Color.red);
 
-		for (;x>40;x--) {
-			position.x = x;
+		position = new Vector3(36,0,25);
+		for (;position.x>20;position.x--) {
 			createStaticCube(position, size, Dimension.BACK, Color.red);
 		}
 
-		//
+		//create 'ladder' with a hole, going up
+		position = new Vector3(20,0,25);
+		for (; position.x>10; position.x--, position.y++) {
+			for (position.z=23; position.z<=27; position.z++) {
+				if ( (position.x==14 || position.x==15) && ( position.z>23 && position.z<27 )) {
+					continue;
+				}
+				createStaticCube(position, size, Dimension.BACK, Color.red);
+			}
+		}
 
+		//create platform connecting the ladders
+		position.y = 10;
+		for (position.x=8;position.x<=10;position.x++) {
+			for (position.z=23; position.z<=27; position.z++) {
+				createStaticCube(position, size, Dimension.BACK, Color.red);
+			}
+		}
+
+		//create 'ladder' going down
+		position = new Vector3(10,9,22);
+		for (; position.y>0; position.y--, position.z--) {
+			for (position.x=8; position.x<=12; position.x++) {
+				createStaticCube(position, size, Dimension.LEFT, Color.red);
+			}
+		}
+	
+		position = new Vector3(10,0,14);
+		for (; position.z>0; position.z--) {
+			createStaticCube(position, size, Dimension.LEFT, Color.red);
+		}
+		
+		
+		/*
 		//Debug.Log("-----" + listOfList.Count);
 		List<int> zeroOrOne = new List<int>();// pithanotita 5/2 gia ton elaxisto aritmo ton exthron se mia grami 1:0
 		zeroOrOne.Add(1);
@@ -126,8 +205,9 @@ public class SceneInit : MonoBehaviour {
 			}
 		}
 		/*Debug.Log("-----" + numOfEnemy);*/
-		//
+
 	}
+
 
 	/*
 	 * Function that creates a static cube in the scene
@@ -221,9 +301,19 @@ public class SceneInit : MonoBehaviour {
 		cube.transform.position = new Vector3(position.x, position.y, position.z);
 		cube.transform.localScale = scale;
 		cube.tag = "MovableCube";
+		cube.AddComponent<Cube>();
 
 
 	}
+
+	/**
+	 * Function that creates a coin in the given position
+	 * */
+	private void createCoin(Vector3 position) {
+		Transform  newCoin = Instantiate(coin, position,Quaternion.identity ) as Transform;
+		newCoin.tag = "Coin";
+	}
+
 
 	private void createText() {
 		GameObject Text = new GameObject();
