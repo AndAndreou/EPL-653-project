@@ -35,6 +35,7 @@ public class CameraFront : MonoBehaviour {
 			if (timer == 90) {
 				timer = 0;
 				wait = false;
+				isUp = true;
 				//transform.Translate(new Vector3(-4.0f, -3.0f, -2.0f));
 				//Debug.Log("Works Fine?");
 				return;
@@ -45,6 +46,88 @@ public class CameraFront : MonoBehaviour {
 			}
 		}
 		
+		if (isUp) {
+			//transform.Translate(new Vector3(4.0f, 3.0f, 2.0f));
+			//wait = true;
+			//repository.setRaise(false);
+			float timestamp2 = Time.deltaTime;
+			//float angle = (Time.deltaTime - timestamp) / 0.1f * 45.0f;
+			//startRotX = startRotX + Mathf.Abs (angle);
+			
+			//Debug.Log("WWW" + startRotX + " " + startRotY + " " + startRotZ);
+			//Debug.Log("WWW" + transform.localEulerAngles);
+			//Debug.Log(" " + startRotX + " " + isUp + " " + repository.isRaised());
+			if(repository.getCurrentDimension() == Dimension.FRONT) {
+				transform.RotateAround (player.position,new Vector3(-1.0f,1.0f,0.0f), 45 * Time.deltaTime * 2.0f);
+				transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
+				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0.0f);
+				
+				//if(Mathf.Approximately(Mathf.Round(transform.eulerAngles.y), 0.0f)){
+				if(transform.eulerAngles.y > 0.0f && transform.eulerAngles.y < 315.0f) {
+					transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+					transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+					transform.position = new Vector3 (player.position.x, player.position.y, Mathf.Round (player.position.z) - 100.0f);
+					Debug.Log("Is it? is it?");
+					isUp = false;
+					repository.setRaise(false);
+					//return;
+				} else {
+					return;
+				}
+			}
+			
+			if(repository.getCurrentDimension() == Dimension.RIGHT) {
+				transform.RotateAround (player.position,new Vector3(0.0f,1.0f,-1.0f), 45 * Time.deltaTime * 2.0f);
+				transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
+				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0.0f);
+				
+				//if(Mathf.Approximately(Mathf.Round(transform.eulerAngles.y), 270.0f)){
+				if(transform.eulerAngles.y > 270.0f) {
+					transform.eulerAngles = new Vector3(0.0f, 270.0f, 0.0f);
+					transform.localEulerAngles = new Vector3(0.0f, 270.0f, 0.0f);
+					transform.position = new Vector3 (Mathf.Round (player.position.x) + 100.0f, player.position.y, player.position.z);
+					isUp = false;
+					repository.setRaise(false);
+				} else {
+					return;
+				}
+			}
+			
+			if(repository.getCurrentDimension() == Dimension.BACK) {
+				transform.RotateAround (player.position,new Vector3(1.0f,1.0f,0.0f), 45 * Time.deltaTime * 2.0f);
+				transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
+				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0.0f);
+				
+				//if(Mathf.Approximately(Mathf.Round(transform.eulerAngles.y), 180.0f)){
+				if(transform.eulerAngles.y > 180.0f) {
+					transform.eulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
+					transform.localEulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
+					transform.position = new Vector3 (player.position.x, player.position.y, Mathf.Round (player.position.z) + 100.0f);
+					isUp = false;
+					repository.setRaise(false);
+				} else {
+					return;
+				}}
+			
+			if(repository.getCurrentDimension() == Dimension.LEFT) {
+				transform.RotateAround (player.position,new Vector3(0.0f,1.0f,1.0f), 45 * Time.deltaTime * 2.0f);
+				transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
+				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0.0f);
+				
+				//if(Mathf.Approximately(Mathf.Round(transform.eulerAngles.y), 90.0f)){
+				if(transform.eulerAngles.y > 90.0f) {
+					transform.eulerAngles = new Vector3(0.0f, 90.0f, 0.0f);
+					transform.localEulerAngles = new Vector3(0.0f, 90.0f, 0.0f);
+					transform.position = new Vector3 (Mathf.Round (player.position.x) - 100.0f, player.position.y, player.position.z);
+					isUp = false;
+					repository.setRaise(false);
+				} else {
+					return;
+				}
+			}
+		}
+		//
+		//Debug.Log ("isRunning " + repository.isRaised() + " " + isUp);
 		if (!repository.isRotating() && !repository.isRaised() && transform.position.y >= 0.0f) {
 			if (repository.getCurrentDimension() == Dimension.FRONT) {
 				transform.position = new Vector3 (player.position.x, player.position.y, Mathf.Round (player.position.z) - 100.0f);
@@ -103,7 +186,7 @@ public class CameraFront : MonoBehaviour {
 					repository.setRotate(false);
 					startRot = 0.0f;
 				}
-				//Debug.Log("aaa" + transform.eulerAngles);
+				
 			} else {
 				float angle = (Time.deltaTime - timestamp) / 0.1f * -90.0f;
 				startRot = startRot - Mathf.Abs (angle);
@@ -123,54 +206,55 @@ public class CameraFront : MonoBehaviour {
 			//wait = true;
 			//repository.setRaise(false);
 			float timestamp2 = Time.deltaTime;
-			float angleX = (Time.deltaTime - timestamp) / 0.1f * 45.0f;
-			float angleY = (Time.deltaTime - timestamp) / 0.1f * 45.0f;
-			float angleZ = (Time.deltaTime - timestamp) / 0.1f * 45.0f;
-			startRotX = startRotX + Mathf.Abs (angleX);
-			startRotY = startRotY + Mathf.Abs (angleY);
-			startRotZ = startRotZ + Mathf.Abs (angleZ);
+			float angle = (Time.deltaTime - timestamp) / 0.1f * 45.0f;
+			startRotX = startRotX + Mathf.Abs (angle);
 			
-			Debug.Log(startRotX + " " + startRotY + " " + startRotZ);
-			Debug.Log(transform.eulerAngles);
+			//Debug.Log("EEE" + startRotX + " " + startRotY + " " + startRotZ);
+			Debug.Log("EEE" + transform.localEulerAngles + "----"+ transform.eulerAngles);
+			//Debug.Log("EEE" + startRotX + " " + isUp + " " + repository.isRaised());
 			
 			if(repository.getCurrentDimension() == Dimension.FRONT) {
-				if(startRotX < 45.0f){
-					transform.RotateAround(player.position, new Vector3 (1.0f, 0.0f, 0.0f), -angleX);
-					transform.RotateAround(player.position, new Vector3 (0.0f, 1.0f, 0.0f), angleY);
-					transform.RotateAround(player.position, new Vector3 (0.0f, 0.0f, 1.0f), 0);
+				transform.RotateAround (player.position,new Vector3(1.0f,-1.0f,0.0f), 45 * timestamp2 * 2.0f);
+				transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
+				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0.0f);
+				
+				//if(Mathf.Approximately(Mathf.Round(transform.eulerAngles.y), 315.0f)){
+				if(transform.eulerAngles.y < 315.0f) {
+					wait = true;
 				}
 			}
 			
 			if(repository.getCurrentDimension() == Dimension.RIGHT) {
-				if(startRotX < 45.0f){
-					transform.RotateAround(player.position, new Vector3 (1.0f, 0.0f, 0.0f), 0);
-					transform.RotateAround(player.position, new Vector3 (0.0f, 1.0f, 0.0f), angleY);
-					transform.RotateAround(player.position, new Vector3 (0.0f, 0.0f, 1.0f), -angleZ);
+				transform.RotateAround (player.position,new Vector3(0.0f,-1.0f,1.0f), 45 * timestamp2 * 2.0f);
+				transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
+				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0.0f);
+				
+				//if(Mathf.Approximately(Mathf.Round(transform.eulerAngles.y), 225.0f)){
+				if(transform.eulerAngles.y < 225.0f) {
+					wait = true;
 				}
 			}
 			
 			if(repository.getCurrentDimension() == Dimension.BACK) {
-				if(startRotX < 45.0f){
-					transform.RotateAround(player.position, new Vector3 (1.0f, 0.0f, 0.0f), angleX);
-					transform.RotateAround(player.position, new Vector3 (0.0f, 1.0f, 0.0f), angleY);
-					transform.RotateAround(player.position, new Vector3 (0.0f, 0.0f, 1.0f), 0);
+				transform.RotateAround (player.position,new Vector3(-1.0f,-1.0f,0.0f), 45 * timestamp2 * 2.0f);
+				transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
+				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0.0f);
+				
+				//if(Mathf.Approximately(Mathf.Round(transform.eulerAngles.y), 135.0f)){
+				if(transform.eulerAngles.y < 135.0f) {
+					wait = true;
 				}
 			}
 			
 			if(repository.getCurrentDimension() == Dimension.LEFT) {
-				if(startRotX < 45.0f){
-					transform.RotateAround(player.position, new Vector3 (1.0f, 0.0f, 0.0f), 0);
-					transform.RotateAround(player.position, new Vector3 (0.0f, 1.0f, 0.0f), angleY);
-					transform.RotateAround(player.position, new Vector3 (0.0f, 0.0f, 1.0f), angleZ);
+				transform.RotateAround (player.position,new Vector3(0.0f,-1.0f,-1.0f), 45 * timestamp2 * 2.0f);
+				transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
+				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0.0f);
+				
+				//if(Mathf.Approximately(Mathf.Round(transform.eulerAngles.y), 45.0f)){
+				if(transform.eulerAngles.y < 45.0f) {
+					wait = true;
 				}
-			}
-			
-			if(startRotX >= 45.0f){
-				repository.setRaise(false);
-				startRotX = 0.0f;
-				startRotY = 0.0f;
-				startRotZ = 0.0f;
-				wait = true;
 			}
 		}
 	}

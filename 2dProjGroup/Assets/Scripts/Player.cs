@@ -25,6 +25,9 @@ public class Player : MonoBehaviour {
 	}
 	
 	void Update () {
+		if (repository.isRaised ()) {
+			return;
+		}
 		rigidBody.isKinematic = false;
 		if (!repository.isRotating() && !repository.isRaised() && transform.position.y >= 0.0f) {
 			if ( repository.getCurrentDimension() == Dimension.FRONT ) {
@@ -124,14 +127,14 @@ public class Player : MonoBehaviour {
 		
 		if (jump && transform.position.y >= 0.0f && Input.GetKeyDown (KeyCode.UpArrow)) {
 			rigidBody.AddForce(Vector3.up * 300.0f);
-			jump = false;
+			jump = true;
 		}
 		
 		if (rigidBody.velocity.y != 0.0f) {
+			jump = false;
+		} else {
 			jump = true;
-		}// else {
-		//	jump = true;
-		//}
+		}
 		
 		if (repository.getPlayerLife() <= 0.0f) {
 			Destroy(this);
