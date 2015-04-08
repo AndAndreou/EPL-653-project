@@ -168,6 +168,7 @@ public class SceneInit : MonoBehaviour {
 		}
 		
 		
+		//
 		/*
 		//Debug.Log("-----" + listOfList.Count);
 		List<int> zeroOrOne = new List<int>();// pithanotita 5/2 gia ton elaxisto aritmo ton exthron se mia grami 1:0
@@ -205,6 +206,7 @@ public class SceneInit : MonoBehaviour {
 			}
 		}
 		/*Debug.Log("-----" + numOfEnemy);*/
+		//
 
 	}
 
