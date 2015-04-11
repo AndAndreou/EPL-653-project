@@ -14,14 +14,28 @@ public class Enemy : MonoBehaviour {
 	private string lookAt; //metavliti p krato p vlepi o enemy left or right
 	private bool isJump=false;
 	private Animator animator;
+	private Renderer renderer;
+	private Rigidbody rigidBody;
+
 	
 
 	// Use this for initialization
 	void Start () {
+		//
+		//player = GameObject.FindGameObjectWithTag(("Player"));
+		renderer = this.GetComponent<Renderer> ();
+		rigidBody = GetComponent<Rigidbody> ();
+		//camera = GameObject.FindGameObjectWithTag(("MainCamera"));
+		//
 		int lookLeft;
 		GameR = GameRepository.getInstance();
 		target = GameObject.FindGameObjectWithTag("Player");
 		damage = Random.Range (10.0f, 80.0f);
+		//
+		//this.GetComponent<BoxCollider>().size = new Vector3(0.01f,0.41f,0.2f);
+		//this.transform.localScale = new Vector3(1.0f,3.0f,0.0f);
+		//this.GetComponent<BoxCollider>().size=0.01f;
+		//
 		animator = GetComponent<Animator> ();
 		//Color c = new Color ((damage/100.0f),0.0f,0.0f,1.0f);
 		//GetComponent<SpriteRenderer>().color = c;
@@ -41,144 +55,176 @@ public class Enemy : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		//vison ray
-		bool isVisionRayHit = false;
-		RaycastHit visionRayHit ;
-		Vector3 startPosVisionRay= new Vector3 (transform.position.x,transform.position.y + 0.6f,transform.position.z); //exi sxesi me to ipsos tou enemy to 1.0f
-		Vector3 visionRayDirection = target.transform.position - transform.position;
-		if (((visionRayDirection.x < 0) && (lookAt=="right") && (Mathf.Abs(visionRayDirection.z)<=1)) || ((visionRayDirection.z < 0)&& (lookAt=="right") && (Mathf.Abs(visionRayDirection.x)<=1)) ) {
-
-			isVisionRayHit = Physics.Raycast (startPosVisionRay, visionRayDirection, out visionRayHit, vision / 2);
-
+		// pote tha fenete kai pote o ekthors 
+		if (GameR.isRaised() || GameR.isRotating() ) {
+			renderer.enabled = true;
+			return;
+		}
+		
+		if ((GameR.getCurrentDimension() == Dimension.FRONT) || (GameR.getCurrentDimension() == Dimension.BACK)) { //dimension cube = 0
+			if (target.transform.position.z == this.transform.position.z) {
+				//Debug.Log("Z - Z");
+				renderer.enabled = true;
+			}
+			else {
+				//renderer.enabled = true; //prosorino gia na kano kapious elexous
+				renderer.enabled = false;
+				//Debug.Log("Z !- Z");
+			}
 		} 
-		else if ((Mathf.Abs(visionRayDirection.z)<=1) || (Mathf.Abs(visionRayDirection.x)<=1))  {
-
-			isVisionRayHit = Physics.Raycast (startPosVisionRay, visionRayDirection, out visionRayHit, vision);
+		else  {
+			if (target.transform.position.x == this.transform.position.x) {
+				renderer.enabled = true;
+				//Debug.Log("X - X");
+			}
+			else {
+				//renderer.enabled = true; //prosorino gia na kano kapious elexous
+				renderer.enabled = false;
+				//Debug.Log("X !- X");
+			}
 		}
 
-		string tagVisonRayHit="";
+		//
+		if (renderer.enabled==true){ // mono an o ekthos in oratos kani tous elexous
+			//vison ray
+			bool isVisionRayHit = false;
+			RaycastHit visionRayHit ;
+			Vector3 startPosVisionRay= new Vector3 (transform.position.x,transform.position.y + 0.6f,transform.position.z); //exi sxesi me to ipsos tou enemy to 1.0f
+			Vector3 visionRayDirection = target.transform.position - transform.position;
+			if (((visionRayDirection.x < 0) && (lookAt=="right") && (Mathf.Abs(visionRayDirection.z)<=1)) || ((visionRayDirection.z < 0)&& (lookAt=="right") && (Mathf.Abs(visionRayDirection.x)<=1)) ) {
 
-		if (isVisionRayHit) {
-			tagVisonRayHit = visionRayHit.transform.tag;  
+				isVisionRayHit = Physics.Raycast (startPosVisionRay, visionRayDirection, out visionRayHit, vision / 2);
 
-		}
-		//Debug.DrawLine (startPosVisionRay, visionRayHit.transform.position, Color.green);
-		/*Debug.Log(isVisionRayHit);
-		Debug.Log(tagVisonRayHit);*/
+			} 
+			else if ((Mathf.Abs(visionRayDirection.z)<=1) || (Mathf.Abs(visionRayDirection.x)<=1))  {
 
-		if ( ((isVisionRayHit) && (tagVisonRayHit != "Player")) || (!isVisionRayHit) ) {
-			animator.SetBool("enemyWalk", false);
-		}
+				isVisionRayHit = Physics.Raycast (startPosVisionRay, visionRayDirection, out visionRayHit, vision);
+			}
 
-		//if(GameR.getCurrentDimension() == dimension){  //elenxos an vriskonte stin idia diastasi
-			//if (Mathf.Abs(target.transform.position.y-transform.position.y)<=2){ //elenxos an vriskonte sto dio y
-			if ((isVisionRayHit) && (tagVisonRayHit == "Player")) {
-				animator.SetBool("enemyWalk", true);
-				if (dimension == Dimension.FRONT || dimension == Dimension.BACK) {
-					//if (Mathf.Abs(target.transform.position.z-transform.position.z)<=1){ //elenxos an vriskonte sto dio z
-					//	float distance=target.transform.position.x-transform.position.x;
-					//	if (Mathf.Abs(distance)<=vision){ // vriskete entos oratotitas
-					if (dimension == Dimension.FRONT) {
-						if (visionRayDirection.x < 0) { //elenxos an o pektis ine aristera
-							transform.position = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z); //kino ton ekthro aristera
-							if (lookAt == "right") { //kano rotate to sprite an alakso katefthinsi
-								transform.Rotate(new Vector3(0.0f,1.0f,0.0f),-180.0f);
+			string tagVisonRayHit="";
+
+			if (isVisionRayHit) {
+				tagVisonRayHit = visionRayHit.transform.tag;  
+
+			}
+			//Debug.DrawLine (startPosVisionRay, visionRayHit.transform.position, Color.green);
+			/*Debug.Log(isVisionRayHit);
+			Debug.Log(tagVisonRayHit);*/
+
+			if ( ((isVisionRayHit) && (tagVisonRayHit != "Player")) || (!isVisionRayHit) ) {
+				animator.SetBool("enemyWalk", false);
+			}
+
+			//if(GameR.getCurrentDimension() == dimension){  //elenxos an vriskonte stin idia diastasi
+				//if (Mathf.Abs(target.transform.position.y-transform.position.y)<=2){ //elenxos an vriskonte sto dio y
+				if ((isVisionRayHit) && (tagVisonRayHit == "Player")) {
+					animator.SetBool("enemyWalk", true);
+					if (dimension == Dimension.FRONT || dimension == Dimension.BACK) {
+						//if (Mathf.Abs(target.transform.position.z-transform.position.z)<=1){ //elenxos an vriskonte sto dio z
+						//	float distance=target.transform.position.x-transform.position.x;
+						//	if (Mathf.Abs(distance)<=vision){ // vriskete entos oratotitas
+						if (dimension == Dimension.FRONT) {
+							if (visionRayDirection.x < 0) { //elenxos an o pektis ine aristera
+								transform.position = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z); //kino ton ekthro aristera
+								if (lookAt == "right") { //kano rotate to sprite an alakso katefthinsi
+									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),-180.0f);
+								}
+								lookAt = "left";
+							} else { //elenxos an o pektis ine deksia
+								transform.position = new Vector3 (transform.position.x + speed, transform.position.y, transform.position.z); //kino ton ekthro deksia
+								if (lookAt == "left") {
+									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),180.0f);
+								}
+								lookAt = "right";
 							}
-							lookAt = "left";
-						} else { //elenxos an o pektis ine deksia
-							transform.position = new Vector3 (transform.position.x + speed, transform.position.y, transform.position.z); //kino ton ekthro deksia
-							if (lookAt == "left") {
-								transform.Rotate(new Vector3(0.0f,1.0f,0.0f),180.0f);
-							}
-							lookAt = "right";
-						}
-					} else {
-						if (visionRayDirection.x < 0) { //elenxos an o pektis ine aristera
-							transform.position = new Vector3 (transform.position.x + speed, transform.position.y, transform.position.z); //kino ton ekthro aristera
-							if (lookAt == "right") {
-								transform.Rotate(new Vector3(0.0f,1.0f,0.0f),-180.0f);
-							}
-							lookAt = "left";
 						} else {
-							transform.position = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z); //kino ton ekthro deksia
-							if (lookAt == "left") {
-								transform.Rotate(new Vector3(0.0f,1.0f,0.0f),180.0f);
+							if (visionRayDirection.x < 0) { //elenxos an o pektis ine aristera
+								transform.position = new Vector3 (transform.position.x + speed, transform.position.y, transform.position.z); //kino ton ekthro aristera
+								if (lookAt == "right") {
+									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),-180.0f);
+								}
+								lookAt = "left";
+							} else {
+								transform.position = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z); //kino ton ekthro deksia
+								if (lookAt == "left") {
+									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),180.0f);
+								}
+								lookAt = "right";
 							}
-							lookAt = "right";
+						}
+						/*}
+							}*/
+					} else { //dimension==3 || dimension==4
+						//if (Mathf.Abs(target.transform.position.x-transform.position.x)<=1){ //elenxos an vriskonte sto dio z
+						//	float distance=target.transform.position.z-transform.position.z;
+						//	if (Mathf.Abs(distance)<=vision){ // vriskete entos oratotitas
+						if (dimension == Dimension.RIGHT) {
+							if (visionRayDirection.z < 0) { //elenxos an o pektis ine aristera
+								transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z - speed); //kino ton ekthro aristera
+								if (lookAt == "right") {
+									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),-180.0f);
+								}
+								lookAt = "left";
+							} else { //elenxos an o pektis ine deksia
+								transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z + speed); //kino ton ekthro deksia
+								if (lookAt == "left") {
+									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),180.0f);
+								}
+								lookAt = "right";
+							}
+						} else {
+							if (visionRayDirection.z < 0) { //elenxos an o pektis ine aristera
+								transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z + speed); //kino ton ekthro aristera
+
+								if (lookAt == "right") {
+									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),-180.0f);
+								}
+								lookAt = "left";
+							} else {
+								transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z - speed); //kino ton ekthro deksia
+								if (lookAt == "left") {
+									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),180.0f);
+								}
+								lookAt = "right";
+							}
 						}
 					}
 					/*}
-						}*/
-				} else { //dimension==3 || dimension==4
-					//if (Mathf.Abs(target.transform.position.x-transform.position.x)<=1){ //elenxos an vriskonte sto dio z
-					//	float distance=target.transform.position.z-transform.position.z;
-					//	if (Mathf.Abs(distance)<=vision){ // vriskete entos oratotitas
-					if (dimension == Dimension.RIGHT) {
-						if (visionRayDirection.z < 0) { //elenxos an o pektis ine aristera
-							transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z - speed); //kino ton ekthro aristera
-							if (lookAt == "right") {
-								transform.Rotate(new Vector3(0.0f,1.0f,0.0f),-180.0f);
-							}
-							lookAt = "left";
-						} else { //elenxos an o pektis ine deksia
-							transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z + speed); //kino ton ekthro deksia
-							if (lookAt == "left") {
-								transform.Rotate(new Vector3(0.0f,1.0f,0.0f),180.0f);
-							}
-							lookAt = "right";
-						}
-					} else {
-						if (visionRayDirection.z < 0) { //elenxos an o pektis ine aristera
-							transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z + speed); //kino ton ekthro aristera
-
-							if (lookAt == "right") {
-								transform.Rotate(new Vector3(0.0f,1.0f,0.0f),-180.0f);
-							}
-							lookAt = "left";
-						} else {
-							transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z - speed); //kino ton ekthro deksia
-							if (lookAt == "left") {
-								transform.Rotate(new Vector3(0.0f,1.0f,0.0f),180.0f);
-							}
-							lookAt = "right";
 						}
 					}
-				}
-				/*}
-					}
-				}
-			}*/
-				//Debug.Log("Damage percentage: " + damage/100.0f);
+				}*/
+					//Debug.Log("Damage percentage: " + damage/100.0f);
 
-			//empodio
-			bool isRayHit = false;
-			RaycastHit RayHit ;
-			Vector3 startPosRay= new Vector3 (transform.position.x,transform.position.y - 0.6f,transform.position.z); //exi sxesi me to ipsos tou enemy to 1.0f
-			Vector3 RayDirection = target.transform.position - transform.position;
-			
-			isRayHit = Physics.Raycast (startPosRay, RayDirection, out RayHit, 1.5f);
-			
-			string tagRayHit="";
-			
-			if (isRayHit) {
-				tagRayHit = RayHit.transform.tag;  
-				//Debug.Log("-------------");
-			}
-			//Debug.DrawLine (startPosRay, RayHit.transform.position, Color.red);
-			//Debug.Log(isJump);
-			//Debug.Log(tagRayHit);
-			//
-			if ((!isJump) && ((tagRayHit == "StaticCube") || (tagRayHit == "MovableCube"))) {
-				GetComponent<Rigidbody>().AddForce(Vector3.up * jump);
-				isJump = true;
-			}
+				//empodio
+				bool isRayHit = false;
+				RaycastHit RayHit ;
+				Vector3 startPosRay= new Vector3 (transform.position.x,transform.position.y - 0.6f,transform.position.z); //exi sxesi me to ipsos tou enemy to 1.0f
+				Vector3 RayDirection = target.transform.position - transform.position;
+				
+				isRayHit = Physics.Raycast (startPosRay, RayDirection, out RayHit, 1.5f);
+				
+				string tagRayHit="";
+				
+				if (isRayHit) {
+					tagRayHit = RayHit.transform.tag;  
+					//Debug.Log("-------------");
+				}
+				//Debug.DrawLine (startPosRay, RayHit.transform.position, Color.red);
+				//Debug.Log(isJump);
+				//Debug.Log(tagRayHit);
+				//
+				if ((!isJump) && ((tagRayHit == "StaticCube") || (tagRayHit == "MovableCube"))) {
+					GetComponent<Rigidbody>().AddForce(Vector3.up * jump);
+					isJump = true;
+				}
 
-			
-			/*if (GetComponent<Rigidbody>().velocity.y != 0.0f) {
-				isJump = true;
-			} else {
-				isJump = false;
-			}*/
+				
+				/*if (GetComponent<Rigidbody>().velocity.y != 0.0f) {
+					isJump = true;
+				} else {
+					isJump = false;
+				}*/
+			}
 		}
 	}
 
@@ -207,8 +253,21 @@ public class Enemy : MonoBehaviour {
 					transform.Rotate(new Vector3(0.0f,-270.0f,0.0f));
 					dimension=Dimension.LEFT;
 				}
+				//this.transform.localScale = new Vector3(3.0f,3.0f,0.0f);
+				//this.GetComponent<BoxCollider>().size = new Vector3(0.37f,0.41f,0.2f);
+				//this.GetComponent<BoxCollider>().size.x=0.37f;
+				//this.GetComponent<BoxCollider>().size.y=0.41f;
+				findDimension=false;
+				//
+				if (dimension == Dimension.FRONT || dimension == Dimension.BACK) {
+					rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+				}
+				else if (dimension == Dimension.RIGHT || dimension == Dimension.LEFT) {
+					rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
+				}
+				//
 			}
-			findDimension=false;
+
 		}
 
 		// elexos gia jump tou enemy
@@ -219,7 +278,7 @@ public class Enemy : MonoBehaviour {
 			}*/
 		if ((other.gameObject.tag == "StaticCube") || (other.gameObject.tag == "MovableCube")) {
 
-			if (GetComponent<Rigidbody> ().velocity.y == 0.0f) {//provlima apo aristera pros deksia kapies fores den pida
+			if (GetComponent<Rigidbody> ().velocity.y == 0.0f) {//elexos gia na minpida ksana otan ine idi ston aera
 				//Debug.Log("*****************");
 				isJump = false;
 			}

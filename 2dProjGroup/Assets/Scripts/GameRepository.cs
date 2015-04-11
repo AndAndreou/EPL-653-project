@@ -27,7 +27,7 @@ public class GameRepository : MonoBehaviour {
 	public static GameRepository getInstance() {
 		if (instance == null) {
 			instance = new GameRepository();
-			instance.playerLife = 100.0f;
+			instance.playerLife = 100000.0f;
 			instance.currentDimension = Dimension.FRONT;
 			instance.rotate = false;
 			instance.raise = false;

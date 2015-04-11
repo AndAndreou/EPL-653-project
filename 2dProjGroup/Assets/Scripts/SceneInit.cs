@@ -10,11 +10,15 @@ public class SceneInit : MonoBehaviour {
 	public Transform coin;
 
 	private Dimension prevDim; //karata to proigoumeno dimension
+	private float prevY=0; //krata to  proigoumeno y
+	private float prevX=0;
+	private float prevZ=0;
 	private int count=-15;	//metra ta cube p mpikan stin idia diastasi
 	private int countOfList=0; //counter gia to poses listes exoume
-	List<Vector3> listPosEnemy = new List<Vector3>();
-	List<List<Vector3>> listOfList = new List<List<Vector3>>();
+	List<Vector3> listPosEnemy = new List<Vector3>();// listes apo pithana pos enemys
+	List<List<Vector3>> listOfList = new List<List<Vector3>>(); //lista p krata tis pio pano listes
 	private int numOfEnemy; //arithmos ton exthron
+	Renderer renderer;
 	//
 
 	// Use this for initialization
@@ -102,7 +106,7 @@ public class SceneInit : MonoBehaviour {
 
 		position = new Vector3(55,2,15);
 		for (; position.x>45; position.x--) {
-			createStaticCube(position, size, Dimension.RIGHT, Color.red);
+			createStaticCube(position, size, Dimension.FRONT, Color.red);
 		}
 
 		position = new Vector3(45,2,15);
@@ -142,7 +146,7 @@ public class SceneInit : MonoBehaviour {
 				if ( (position.x==14 || position.x==15) && ( position.z>23 && position.z<27 )) {
 					continue;
 				}
-				createStaticCube(position, size, Dimension.BACK, Color.red);
+				createStaticCube(position, size, Dimension.RIGHT, Color.red);
 			}
 		}
 
@@ -150,7 +154,7 @@ public class SceneInit : MonoBehaviour {
 		position.y = 10;
 		for (position.x=8;position.x<=10;position.x++) {
 			for (position.z=23; position.z<=27; position.z++) {
-				createStaticCube(position, size, Dimension.BACK, Color.red);
+				createStaticCube(position, size, Dimension.RIGHT, Color.red);
 			}
 		}
 
@@ -158,7 +162,7 @@ public class SceneInit : MonoBehaviour {
 		position = new Vector3(10,9,22);
 		for (; position.y>0; position.y--, position.z--) {
 			for (position.x=8; position.x<=12; position.x++) {
-				createStaticCube(position, size, Dimension.LEFT, Color.red);
+				createStaticCube(position, size, Dimension.FRONT, Color.red);
 			}
 		}
 	
@@ -169,7 +173,12 @@ public class SceneInit : MonoBehaviour {
 		
 		
 		//
-		/*
+		//Debug.Log(listOfList[0][0].x + "," + listOfList[0][0].z + "," + listOfList[0].Count);
+		if (/*(listOfList[0][0].x==0.0f)&&*/(listOfList[0][0].z==0.0f)&&(listOfList[0].Count>10)){//elexos an ime ontos sto proto diadromo ke an exi toulaxiston 7 cubes
+			//Debug.Log(listOfList[0][0].x + "," + listOfList[0][0].z + "," + listOfList[0].Count);
+			listOfList[0].RemoveRange(0,10); // stin arxi (tou stadiou) afinoume kapies thesis adies 
+			//Debug.Log(listOfList[0][0].x + "," + listOfList[0][0].z + "," + listOfList[0].Count);
+		}
 		//Debug.Log("-----" + listOfList.Count);
 		List<int> zeroOrOne = new List<int>();// pithanotita 5/2 gia ton elaxisto aritmo ton exthron se mia grami 1:0
 		zeroOrOne.Add(1);
@@ -181,10 +190,20 @@ public class SceneInit : MonoBehaviour {
 		zeroOrOne.Add(1);
 		//random dimiourgia exthron
 		for (int c=0 ; c<listOfList.Count ; c++){
-			numOfEnemy = Random.Range (Random.Range(0,zeroOrOne.Count), (Mathf.CeilToInt(listOfList[c].Count / 40.0f))); //tixeos arithmos exthron
+			if (listOfList[c].Count<=10)// gia ligotera apo 10 cubes epilego metaksi 0 kai 1
+			{
+				numOfEnemy = Random.Range (0, 2);// se ligoreto apo 10 cubes miono tin pithanotita na vgi ekthros
+			}
+			else if (listOfList[c].Count<=30)// gia ligotera apo 30 cubes epilego metaksi 0 i 1 me pithanotita na ine 1 5/7 kai ton arithmo to cubes/40
+			{
+				numOfEnemy = Random.Range (zeroOrOne[Random.Range(0,zeroOrOne.Count)], (Mathf.CeilToInt(listOfList[c].Count / 40.0f))+1); //tixeos arithmos exthron
+			}
+			else {// gia perisotera apo 30 cubes epilego metaksi 1 kai ton arithmo to cubes/40
+				numOfEnemy = Random.Range (1, (Mathf.CeilToInt(listOfList[c].Count / 40.0f))+1); //tixeos arithmos exthron
+			}
 			for (int i=0; i<numOfEnemy; i++) { //dimiourgia ekthron
 				if (listOfList[c].Count>0){
-					int p = Random.Range(0, ((listOfList[c].Count)-1));
+					int p = Random.Range(0, (listOfList[c].Count));
 					Transform  newEnemy = Instantiate(Enemy,listOfList[c][p],Quaternion.identity ) as Transform;
 					newEnemy.tag="Enemy";
 					if (p+2<=listOfList[c].Count-1){
@@ -223,14 +242,30 @@ public class SceneInit : MonoBehaviour {
 	private void createStaticCube(Vector3 position, Vector3 size, Dimension dimension, Color color) {
 		//
 		if ((prevDim != dimension)&&(count>=0)) { //se kathe alagi tou divension midenizete to count , to (count>=0) xrismopoite gia tin arxi, na min ginonte spawn enemy konta s stin arxi
-			listOfList.Add(new List<Vector3>());
-			countOfList++;
+
+			if (listOfList[countOfList].Count!=0){	//elexos an i proigoumeni lista p dimiourgisa den ine adia , an ine pla midenizo to count kai den dimiourgo kenourgia														
+				listOfList.Add(new List<Vector3>());
+				countOfList++;
+			}
+			count=0;
+		}
+		if (prevY!=position.y){ //to prevY xrisimopoiite gia na elekso an vriskome sto idio y me to proigoumeno kivo p dimiourgisa
+			count=0;
+		}
+		if ((dimension==prevDim)&&((dimension==Dimension.BACK) || (dimension==Dimension.FRONT))&& (prevZ!=position.z)){//an ime sti diastasi front i back kai alazi to z tote midenizete to count gt simeni dimiourgo platforma
+			count=0;
+		}
+		if ((dimension==prevDim)&&((dimension==Dimension.LEFT) || (dimension==Dimension.RIGHT))&& (prevX!=position.x)){
 			count=0;
 		}
 		prevDim = dimension;
+		prevY=position.y;
+		prevX=position.x;
+		prevZ=position.z;
+	
 		count++;
 		if (count >= 5) {
-			listOfList[countOfList].Add(new Vector3(position.x,position.y+3,position.z));
+			listOfList[countOfList].Add(new Vector3(position.x,position.y+2,position.z));
 		}
 		//
 		GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -249,7 +284,7 @@ public class SceneInit : MonoBehaviour {
 		cube.AddComponent<Cube>();
 		cube.tag = "StaticCube";
 
-		Renderer renderer = cube.GetComponent<Renderer> ();
+		 renderer = cube.GetComponent<Renderer> ();
 		//renderer.material = cubeMaterial;
 		renderer.material.color = new Color (10, 10, 10, 1.0f);
 
@@ -305,6 +340,22 @@ public class SceneInit : MonoBehaviour {
 		cube.tag = "MovableCube";
 		cube.AddComponent<Cube>();
 
+		renderer = cube.GetComponent<Renderer> ();
+		//renderer.material = cubeMaterial;
+		renderer.material.color = new Color (10, 10, 10, 1.0f);
+		
+		if (dimension==Dimension.FRONT){
+			cube.transform.Rotate(new Vector3(0.0f,0.0f,0.0f));
+		}
+		else if (dimension==Dimension.BACK){
+			cube.transform.Rotate(new Vector3(0.0f,-180.0f,0.0f)); //180
+		}
+		else if (dimension==Dimension.RIGHT){
+			cube.transform.Rotate(new Vector3(0.0f,-90.0f,0.0f)); //270
+		}
+		else if (dimension==Dimension.LEFT){
+			cube.transform.Rotate(new Vector3(0.0f,270.0f,0.0f)); //90
+		}
 
 	}
 
