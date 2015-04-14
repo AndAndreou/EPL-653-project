@@ -21,6 +21,9 @@ public class GameRepository : MonoBehaviour {
 	private bool rotate;
 	private bool raise;
 
+	//background specific variables
+	private float backgroundSpeed = 0.0f;
+
 	private GameRepository () { }
 
 
@@ -89,5 +92,13 @@ public class GameRepository : MonoBehaviour {
 	
 	public bool isRaised(){
 		return instance.raise;
+	}
+
+	public float getBackgroundSpeed(){
+		return instance.backgroundSpeed;
+	}
+
+	public void setBackgroundSpeed(float speed){
+		instance.backgroundSpeed = speed;
 	}
 }

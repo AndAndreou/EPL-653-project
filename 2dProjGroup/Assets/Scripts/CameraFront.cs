@@ -14,8 +14,10 @@ public class CameraFront : MonoBehaviour {
 	private bool wait;
 	private bool isUp;
 	private int timer;
+	private AudioSource sound;
 	
 	void Start () {
+		sound = gameObject.GetComponent<AudioSource>();
 		repository = GameRepository.getInstance();
 		repository.setCurrentDimension(Dimension.FRONT);
 		transform.position = new Vector3 (player.position.x, player.position.y, transform.position.z);
@@ -28,6 +30,8 @@ public class CameraFront : MonoBehaviour {
 		wait = false;
 		isUp = false;
 		timer = 0;
+
+		sound.Play()
 	}
 	
 	void Update () {

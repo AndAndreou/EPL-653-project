@@ -46,6 +46,7 @@ public class Player : MonoBehaviour {
 		
 		if (Input.GetKey (KeyCode.LeftArrow) && (!rotate)) {
 			animator.SetBool("walkBool", true);
+			repository.setBackgroundSpeed(-0.0002f);
 			if (repository.getCurrentDimension () == Dimension.FRONT) {
 				rigidBodyTransform.position = new Vector3 (rigidBodyTransform.position.x - 0.1f, rigidBodyTransform.position.y, rigidBodyTransform.position.z);
 			} else if (repository.getCurrentDimension () == Dimension.RIGHT) {
@@ -57,6 +58,7 @@ public class Player : MonoBehaviour {
 			}
 		} else if (Input.GetKey (KeyCode.RightArrow) && (!rotate)) {
 			animator.SetBool("walkBool", true);
+			repository.setBackgroundSpeed(0.0002f);
 			if (repository.getCurrentDimension () == Dimension.FRONT) {
 				rigidBodyTransform.position = new Vector3 (rigidBodyTransform.position.x + 0.1f, rigidBodyTransform.position.y, rigidBodyTransform.position.z);
 			} else if (repository.getCurrentDimension () == Dimension.RIGHT) {
@@ -67,6 +69,7 @@ public class Player : MonoBehaviour {
 				rigidBodyTransform.position = new Vector3 (rigidBodyTransform.position.x, rigidBodyTransform.position.y, rigidBodyTransform.position.z - 0.1f);
 			}
 		} else {
+			repository.setBackgroundSpeed(0.00f);
 			animator.SetBool("walkBool", false);
 		}
 
