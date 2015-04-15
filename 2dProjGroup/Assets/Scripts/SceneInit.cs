@@ -23,7 +23,7 @@ public class SceneInit : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
-		repository = GameRepository.getInstance();
+		repository = GameRepository.Instance;
 
 		listOfList.Add(new List<Vector3>());
 

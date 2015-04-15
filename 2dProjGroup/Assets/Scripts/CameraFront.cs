@@ -18,7 +18,7 @@ public class CameraFront : MonoBehaviour {
 	
 	void Start () {
 		sound = gameObject.GetComponent<AudioSource>();
-		repository = GameRepository.getInstance();
+		repository = GameRepository.Instance;
 		repository.setCurrentDimension(Dimension.FRONT);
 		transform.position = new Vector3 (player.position.x, player.position.y, transform.position.z);
 		timestamp = Time.deltaTime;

@@ -8,7 +8,7 @@ public class Background : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		offset = new Vector2 (0.0f, 0.0f);
-		repository = GameRepository.getInstance();
+		repository = GameRepository.Instance;
 		renderer = GetComponent<Renderer>();
 	}
 	

@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour {
 		//camera = GameObject.FindGameObjectWithTag(("MainCamera"));
 		//
 		int lookLeft;
-		GameR = GameRepository.getInstance();
+		GameR = GameRepository.Instance;
 		target = GameObject.FindGameObjectWithTag("Player");
 		damage = Random.Range (10.0f, 80.0f);
 		//

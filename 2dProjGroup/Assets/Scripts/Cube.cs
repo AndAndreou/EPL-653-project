@@ -9,7 +9,7 @@ public class Cube : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		repository = GameRepository.getInstance();
+		repository = GameRepository.Instance;
 		renderer = this.GetComponent<Renderer> ();
 		player = GameObject.FindGameObjectWithTag(("Player"));
 		camera = GameObject.FindGameObjectWithTag(("MainCamera"));

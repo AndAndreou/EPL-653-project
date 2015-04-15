@@ -9,34 +9,47 @@ using System.Collections;
  * It is based on the Singleton Design Pattern
  * 
  */
-public class GameRepository : MonoBehaviour {  
+public sealed class GameRepository : MonoBehaviour {  
 	//Singleton specific attributes
-	private static GameRepository instance = null;
+	private static readonly GameRepository instance = new GameRepository();
 
 	//common game variables
-	private Dimension currentDimension;
-	private float playerLife;
+	private Dimension currentDimension = Dimension.FRONT;
+	private float playerLife = 100000.0f;
 
 	//camera specific variables
-	private bool rotate;
-	private bool raise;
+	private bool rotate = false;
+	private bool raise = false;
 
 	//background specific variables
 	private float backgroundSpeed = 0.0f;
 
+	// Explicit static constructor to tell C# compiler
+	// not to mark type as beforefieldinit
+	static GameRepository()
+	{
+	}
+
 	private GameRepository () { }
 
-
-	public static GameRepository getInstance() {
-		if (instance == null) {
-			instance = new GameRepository();
-			instance.playerLife = 100000.0f;
-			instance.currentDimension = Dimension.FRONT;
-			instance.rotate = false;
-			instance.raise = false;
+	public static GameRepository Instance
+	{
+		get
+		{
+			return instance;
 		}
-		return instance;
 	}
+
+//	public static GameRepository getInstance() {
+//		if (instance == null) {
+//			instance = new GameRepository();
+//			instance.playerLife = 100000.0f;
+//			instance.currentDimension = Dimension.FRONT;
+//			instance.rotate = false;
+//			instance.raise = false;
+//		}
+//		return instance;
+//	}
 
 
 	//Game engine methods

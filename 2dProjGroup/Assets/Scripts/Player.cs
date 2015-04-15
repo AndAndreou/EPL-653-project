@@ -20,7 +20,7 @@ public class Player : MonoBehaviour {
 
 	void Start () {
 		rigidBodyTransform = GetComponent<Rigidbody> ().transform;
-		repository = GameRepository.getInstance();
+		repository = GameRepository.Instance;
 		rigidBody = GetComponent<Rigidbody> ();
 		animator = GetComponent<Animator> ();
 		timestamp = Time.deltaTime;
