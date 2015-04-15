@@ -85,7 +85,7 @@ public class Enemy : MonoBehaviour {
 		}
 
 		//
-		if (renderer.enabled==true){ // mono an o ekthos in oratos kani tous elexous
+		if ((renderer.enabled==true)&&(findDimension==false)){ // mono an o ekthos in oratos kani tous elexous
 			//vison ray
 			bool isVisionRayHit = false;
 			RaycastHit visionRayHit ;
@@ -226,6 +226,7 @@ public class Enemy : MonoBehaviour {
 				}*/
 			}
 		}
+		animator.SetBool("enemyWalk", false);
 	}
 
 	void OnCollisionEnter(Collision other){  
@@ -234,37 +235,50 @@ public class Enemy : MonoBehaviour {
 		}
 		if (findDimension){ //elexos gia na vro ti diastasi ke na kano to analogo rotation tou enemy elexo mono tin proti fora
 			if((other.gameObject.tag=="StaticCube") || (other.gameObject.tag=="MovableCube")){ 
-				
+				Debug.Log("-------");
 				if(other.transform.localEulerAngles.y==0){ //dimension cube = 0
+					//Debug.Log("test_front");
 					transform.Rotate(new Vector3(0.0f,0.0f,0.0f));
+					rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
 					dimension=Dimension.FRONT;
 				}
 				else if(other.transform.localEulerAngles.y==180){ //dimension cube = 1
+					//Debug.Log("test_back");
 					//Debug.Log("test");
 					transform.Rotate(new Vector3(0.0f,-180.0f,0.0f));
+					rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
 					//Debug.Log("test1");
 					dimension=Dimension.BACK;
 				}
 				else if(other.transform.localEulerAngles.y==270){ //dimension cube = 2
+					//Debug.Log("test_right");
+					//Debug.Log(other.transform.position);
+					//Debug.Log(other.transform.name);
 					transform.Rotate(new Vector3(0.0f,-90.0f,0.0f));
+					rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
 					dimension=Dimension.RIGHT;
 				}
 				else if(other.transform.localEulerAngles.y==90){ //dimension cube = 3
+					//Debug.Log("test_left");
 					transform.Rotate(new Vector3(0.0f,-270.0f,0.0f));
+					rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
 					dimension=Dimension.LEFT;
 				}
-				//this.transform.localScale = new Vector3(3.0f,3.0f,0.0f);
-				//this.GetComponent<BoxCollider>().size = new Vector3(0.37f,0.41f,0.2f);
+				//Debug.Log(other.transform.localEulerAngles.y);
+				this.transform.localScale = new Vector3(3.0f,3.0f,0.0f);
+				this.GetComponent<BoxCollider>().size = new Vector3(0.37f,0.41f,0.2f);
+				//transform.Rotate(Mathf.Round(transform.rotation.x),Mathf.Round(transform.rotation.y),Mathf.Round(transform.rotation.z));
+				//transform.position=new Vector3(Mathf.Round(transform.position.x),Mathf.Round(transform.position.y),Mathf.Round(transform.position.z));
 				//this.GetComponent<BoxCollider>().size.x=0.37f;
 				//this.GetComponent<BoxCollider>().size.y=0.41f;
 				findDimension=false;
 				//
-				if (dimension == Dimension.FRONT || dimension == Dimension.BACK) {
+				/*if (dimension == Dimension.FRONT || dimension == Dimension.BACK) {
 					rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
 				}
 				else if (dimension == Dimension.RIGHT || dimension == Dimension.LEFT) {
 					rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
-				}
+				}*/
 				//
 			}
 
