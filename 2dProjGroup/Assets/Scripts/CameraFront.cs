@@ -31,7 +31,7 @@ public class CameraFront : MonoBehaviour {
 		isUp = false;
 		timer = 0;
 
-		sound.Play()
+		sound.Play ();
 	}
 	
 	void Update () {
