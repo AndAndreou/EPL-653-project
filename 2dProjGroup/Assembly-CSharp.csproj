@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\EnergyBullet.cs" />
      <Compile Include="Assets\Scripts\GameRepository.cs" />
+     <Compile Include="Assets\Scripts\PauseScript.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\SceneInit.cs" />
      <Compile Include="Assets\aa.cs" />
