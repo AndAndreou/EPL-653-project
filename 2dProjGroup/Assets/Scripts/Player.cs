@@ -13,11 +13,11 @@ public class Player : MonoBehaviour {
 	private Dimension playerDimension;
 	private bool jump;
 	private Animator animator;
-
+	
 	//bullet
 	public Transform energyBullet;
 	private float bulletSpeed = 10.0f;
-
+	
 	void Start () {
 		rigidBodyTransform = GetComponent<Rigidbody> ().transform;
 		repository = GameRepository.Instance;
@@ -38,12 +38,12 @@ public class Player : MonoBehaviour {
 			return;
 		}
 		*/
-
+		
 		if (repository.isRaised ()) {
 			return;
 		}
 		rigidBody.isKinematic = false;
-
+		
 		/* Fix camera misposition */
 		if (!repository.isRotating() && !repository.isRaised() && transform.position.y >= 0.0f) {
 			if ( repository.getCurrentDimension() == Dimension.FRONT ) {
@@ -59,8 +59,8 @@ public class Player : MonoBehaviour {
 				transform.localEulerAngles  = new Vector3 (0.0f, 90.0f, 0.0f);
 			}
 		}
-
-
+		
+		
 		/* Walking & shooting */
 		bool isWalking = false; 
 		if (Input.GetKey (KeyCode.LeftArrow) && (!rotate)) {
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour {
 			animator.SetBool("walkBool", false);
 			animator.SetBool("shoot", false);
 		}
-
+		
 		if ((Input.GetKeyDown (KeyCode.Space)) && (isWalking) && (!rotate)) {
 			animator.SetBool ("shalk", true);
 			createBullet();
@@ -105,10 +105,10 @@ public class Player : MonoBehaviour {
 		if (Input.GetKeyUp (KeyCode.Space)) {
 			animator.SetBool ("shalk", false);
 		}
-
+		
 		reflectPlayer ();
-
-
+		
+		
 		/* Camera rotation */
 		if (Input.GetKeyDown (KeyCode.C) && (!rotate)) {
 			rigidBodyTransform.position = new Vector3 (Mathf.Round(rigidBodyTransform.position.x) , rigidBodyTransform.position.y, Mathf.Round(rigidBodyTransform.position.z));
@@ -161,7 +161,7 @@ public class Player : MonoBehaviour {
 				}
 			}
 		}
-
+		
 		/* Jumping */
 		if (jump && transform.position.y >= 0.0f && Input.GetKeyDown (KeyCode.UpArrow)) {
 			rigidBody.AddForce(Vector3.up * 300.0f);
@@ -177,10 +177,10 @@ public class Player : MonoBehaviour {
 		if (repository.getPlayerLife() <= 0.0f) {
 			Destroy(this);
 		}
-
+		
 	}
-
-
+	
+	
 	private void reflectPlayer() {
 		if(Input.GetKeyDown(KeyCode.LeftArrow) && (!rotate)) {
 			transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
@@ -191,8 +191,8 @@ public class Player : MonoBehaviour {
 			playerDirection = true;
 		}
 	}
-
-
+	
+	
 	void FixedUpdate () {
 		
 	}
@@ -213,18 +213,18 @@ public class Player : MonoBehaviour {
 				//rigidBody.velocity = Vector3.zero;
 			}
 		}
-
+		
 		if (other.gameObject.tag == "Coin") {
 			other.gameObject.SetActive(false);
 		}
 	}
-
+	
 	private void createBullet() {
 		Vector3 position = this.gameObject.transform.position;
 		float xShift = 0.0f;
 		float zShift = 0.0f;
 		float yShift = 0.2f;
-
+		
 		if (playerDirection) {
 			if (repository.getCurrentDimension () == Dimension.FRONT) {
 				xShift = 1.2f;
@@ -247,17 +247,9 @@ public class Player : MonoBehaviour {
 			}
 		}
 		Vector3 bulletPosition = new Vector3(position.x + xShift, position.y + yShift, position.z+zShift);
-
-		Debug.Log ("BULLET: " + bulletPosition.x + " " + bulletPosition.z);
-		Debug.Log ("PLAYER: " + position.x + " " + position.z);
-
-		playerDimension = repository.getCurrentDimension ();
+		
 		Transform newBullet = Instantiate (energyBullet, bulletPosition, Quaternion.identity) as Transform;
 		newBullet.tag = "EnergyBullet";
 	}
-
-	public Dimension getPlayerDimension() {
-		return playerDimension;
-	}
-
+	
 }

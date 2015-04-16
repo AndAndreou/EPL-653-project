@@ -71,7 +71,7 @@ public class CameraFront : MonoBehaviour {
 					transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
 					transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
 					transform.position = new Vector3 (player.position.x, player.position.y, Mathf.Round (player.position.z) - 100.0f);
-					Debug.Log("Is it? is it?");
+					//Debug.Log("Is it? is it?");
 					isUp = false;
 					repository.setRaise(false);
 					//return;
@@ -156,7 +156,7 @@ public class CameraFront : MonoBehaviour {
 				
 				repository.setCurrentDimension( (Dimension)(((int)repository.getCurrentDimension() + 1)%4));
 				
-				Debug.Log("Camera dimension: " + (int)repository.getCurrentDimension());
+				//Debug.Log("Camera dimension: " + (int)repository.getCurrentDimension());
 				
 				repository.setRotate(true);
 				direction = true;
@@ -166,7 +166,7 @@ public class CameraFront : MonoBehaviour {
 				
 				repository.setCurrentDimension( (Dimension)(((int)repository.getCurrentDimension() + 2 + 1)%4));
 				
-				Debug.Log("Camera dimension: " + (int)repository.getCurrentDimension());
+				//Debug.Log("Camera dimension: " + (int)repository.getCurrentDimension());
 				
 				repository.setRotate(true);
 				direction = false;
@@ -214,7 +214,7 @@ public class CameraFront : MonoBehaviour {
 			startRotX = startRotX + Mathf.Abs (angle);
 			
 			//Debug.Log("EEE" + startRotX + " " + startRotY + " " + startRotZ);
-			Debug.Log("EEE" + transform.localEulerAngles + "----"+ transform.eulerAngles);
+			//Debug.Log("EEE" + transform.localEulerAngles + "----"+ transform.eulerAngles);
 			//Debug.Log("EEE" + startRotX + " " + isUp + " " + repository.isRaised());
 			
 			if(repository.getCurrentDimension() == Dimension.FRONT) {
