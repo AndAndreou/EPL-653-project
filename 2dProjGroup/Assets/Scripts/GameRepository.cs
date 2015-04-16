@@ -20,6 +20,7 @@ public sealed class GameRepository : MonoBehaviour {
 	//camera specific variables
 	private bool rotate = false;
 	private bool raise = false;
+	private bool pause = false;
 
 	//background specific variables
 	private float backgroundSpeed = 0.0f;
@@ -113,5 +114,13 @@ public sealed class GameRepository : MonoBehaviour {
 
 	public void setBackgroundSpeed(float speed){
 		instance.backgroundSpeed = speed;
+	}
+
+	public void setPause(bool pauseInput){
+		instance.pause = pauseInput;
+	}
+	
+	public bool isPaused(){
+		return instance.pause;
 	}
 }

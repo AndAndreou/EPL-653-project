@@ -6,6 +6,7 @@ public class EnergyBullet : MonoBehaviour {
 	private Transform rigidBodyTransform;
 	private Rigidbody bulletRigidBody;
 	private Dimension bulletDimension;
+	private GameRepository repository;
 	
 	float xDif, zDif, yDif;
 	
@@ -14,7 +15,7 @@ public class EnergyBullet : MonoBehaviour {
 		Player playerScript;
 		Rigidbody playerRigidBody;
 		GameObject player;
-		GameRepository repository;
+
 		
 		repository = GameRepository.Instance;
 		
@@ -36,6 +37,11 @@ public class EnergyBullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (repository.isPaused()) {
+			bulletRigidBody.Sleep();
+			return;
+		}
+
 		if ( ( bulletRigidBody.position.x > 300 ) || (bulletRigidBody.position.x < -100) ||
 		    (bulletRigidBody.position.z > 300) || (bulletRigidBody.position.z < -300) ) {
 			Destroy(this.gameObject );

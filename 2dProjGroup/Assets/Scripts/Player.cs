@@ -33,11 +33,13 @@ public class Player : MonoBehaviour {
 	}
 	
 	void Update () {
-		/*
-		if (repository.isPaused()) {
+		if (repository.isPaused ()) {
+			rigidBody.isKinematic = true;
+			animator.SetBool ("walkBool", false);
 			return;
+		} else {
+			rigidBody.isKinematic = false;
 		}
-		*/
 		
 		if (repository.isRaised ()) {
 			return;

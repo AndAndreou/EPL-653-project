@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
 	private GameObject target; // metavliti p krata ton pekti mas
-	private GameRepository GameR; //GameRepository
+	private GameRepository repository; //GameRepository
 	private float vision= 6.0f; // apostasi oratotitas
 	private Dimension dimension ; //metavliti p krata se pia diastasi ine o enemy
 	private float speed=0.05f;
@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour {
 		//camera = GameObject.FindGameObjectWithTag(("MainCamera"));
 		//
 		int lookLeft;
-		GameR = GameRepository.Instance;
+		repository = GameRepository.Instance;
 		target = GameObject.FindGameObjectWithTag("Player");
 		damage = Random.Range (10.0f, 80.0f);
 		//
@@ -54,14 +54,18 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (repository.isPaused()) {
+			rigidBody.Sleep();
+			return;
+		}
 
 		// pote tha fenete kai pote o ekthors 
-		if (GameR.isRaised() || GameR.isRotating() ) {
+		if (repository.isRaised() || repository.isRotating() ) {
 			renderer.enabled = true;
 			return;
 		}
 		
-		if ((GameR.getCurrentDimension() == Dimension.FRONT) || (GameR.getCurrentDimension() == Dimension.BACK)) { //dimension cube = 0
+		if ((repository.getCurrentDimension() == Dimension.FRONT) || (repository.getCurrentDimension() == Dimension.BACK)) { //dimension cube = 0
 			if (target.transform.position.z == this.transform.position.z) {
 				//Debug.Log("Z - Z");
 				renderer.enabled = true;
@@ -230,8 +234,8 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision other){  
-		if ( (other.gameObject.tag == "Player") && (dimension==GameR.getCurrentDimension())) {
-			GameR.losePlayerLife(damage);
+		if ( (other.gameObject.tag == "Player") && (dimension==repository.getCurrentDimension())) {
+			repository.losePlayerLife(damage);
 		}
 		if (findDimension){ //elexos gia na vro ti diastasi ke na kano to analogo rotation tou enemy elexo mono tin proti fora
 			if((other.gameObject.tag=="StaticCube") || (other.gameObject.tag=="MovableCube")){ 

@@ -72,6 +72,9 @@ public class Cube : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (repository.isPaused()) {
+			return;
+		}
 
 		if (repository.isRaised() || repository.isRotating() ) {
 			renderer.enabled = true;

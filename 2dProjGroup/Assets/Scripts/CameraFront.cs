@@ -35,6 +35,10 @@ public class CameraFront : MonoBehaviour {
 	}
 	
 	void Update () {
+		if (repository.isPaused()) {
+			return;
+		}
+
 		if (wait) {
 			if (timer == 90) {
 				timer = 0;

@@ -17,6 +17,9 @@ public class Background : MonoBehaviour {
 		if (repository.getBackgroundSpeed () == 0.0f) {
 			renderer.material.mainTextureOffset = new Vector2 (offset.x, offset.y);
 		} else {
+			if (repository.isPaused()) {
+				return;
+			}
 			if (this.gameObject.tag == "Background 1") {
 				renderer.material.mainTextureOffset = new Vector2 (offset.x + repository.getBackgroundSpeed (), 0.0f);
 			}
