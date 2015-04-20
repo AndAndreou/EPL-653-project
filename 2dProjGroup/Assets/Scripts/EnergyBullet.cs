@@ -7,6 +7,7 @@ public class EnergyBullet : MonoBehaviour {
 	private Rigidbody bulletRigidBody;
 	private Dimension bulletDimension;
 	private GameRepository repository;
+	private float damage = 50.0f; //damage sferas 
 	
 	float xDif, zDif, yDif;
 	
@@ -77,6 +78,14 @@ public class EnergyBullet : MonoBehaviour {
 				rigidBodyTransform.position = new Vector3 (rigidBodyTransform.position.x, rigidBodyTransform.position.y, rigidBodyTransform.position.z - bulletSpeed);
 			}
 		}
+	}
+
+	void OnCollisionEnter(Collision other){ 
+		if ( (other.gameObject.tag == "Enemy") && (other.gameObject.GetComponent<Renderer>().enabled==true)) {
+			other.gameObject.GetComponent<Enemy>().loseEnemyLife(damage);
+			//Destroy(this.gameObject);
+		}
+		Destroy(this.gameObject);
 	}
 	
 }

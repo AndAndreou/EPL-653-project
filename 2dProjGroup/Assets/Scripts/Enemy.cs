@@ -7,8 +7,8 @@ public class Enemy : MonoBehaviour {
 	private float vision= 6.0f; // apostasi oratotitas
 	private Dimension dimension ; //metavliti p krata se pia diastasi ine o enemy
 	private float speed=0.05f;
-	private float life=100;
-	private float damage=30;
+	private float life=100.0f;
+	private float damage=30.0f;
 	private float jump=300.0f;
 	private bool findDimension= true;
 	private string lookAt; //metavliti p krato p vlepi o enemy left or right
@@ -16,6 +16,8 @@ public class Enemy : MonoBehaviour {
 	private Animator animator;
 	private Renderer renderer;
 	private Rigidbody rigidBody;
+
+	public Transform enemyBullet;
 
 	
 
@@ -47,7 +49,7 @@ public class Enemy : MonoBehaviour {
 			lookAt = "right";
 			transform.Rotate(new Vector3(0.0f,1.0f,0.0f),180.0f);
 		}
-
+		renderer.enabled = false; // false etsi oste na min fenete o enemy mexri na mpi sti sosti thesi p prepi
 		//spriteRenderer.sprite = sp1 ;
 		//dimension=0;// dokimastika
 	}
@@ -59,32 +61,39 @@ public class Enemy : MonoBehaviour {
 			return;
 		}
 
-		// pote tha fenete kai pote o ekthors 
-		if (repository.isRaised() || repository.isRotating() ) {
-			renderer.enabled = true;
-			return;
+		if (life<=0.0f){
+			Destroy(this.gameObject );
 		}
-		
-		if ((repository.getCurrentDimension() == Dimension.FRONT) || (repository.getCurrentDimension() == Dimension.BACK)) { //dimension cube = 0
-			if (target.transform.position.z == this.transform.position.z) {
-				//Debug.Log("Z - Z");
+
+
+		if (findDimension==false){ // monon otan o enemi topothetithi tin proti fora tha ginonte i pio kato elexi prin oxi
+			// pote tha fenete kai pote oxi ekthors 
+			if (repository.isRaised() || repository.isRotating() ) {
 				renderer.enabled = true;
+				return;
 			}
-			else {
-				//renderer.enabled = true; //prosorino gia na kano kapious elexous
-				renderer.enabled = false;
-				//Debug.Log("Z !- Z");
-			}
-		} 
-		else  {
-			if (target.transform.position.x == this.transform.position.x) {
-				renderer.enabled = true;
-				//Debug.Log("X - X");
-			}
-			else {
-				//renderer.enabled = true; //prosorino gia na kano kapious elexous
-				renderer.enabled = false;
-				//Debug.Log("X !- X");
+			
+			if ((repository.getCurrentDimension() == Dimension.FRONT) || (repository.getCurrentDimension() == Dimension.BACK)) { //dimension cube = 0
+				if (target.transform.position.z == this.transform.position.z) {
+					//Debug.Log("Z - Z");
+					renderer.enabled = true;
+				}
+				else {
+					//renderer.enabled = true; //prosorino gia na kano kapious elexous
+					renderer.enabled = false;
+					//Debug.Log("Z !- Z");
+				}
+			} 
+			else  {
+				if (target.transform.position.x == this.transform.position.x) {
+					renderer.enabled = true;
+					//Debug.Log("X - X");
+				}
+				else {
+					//renderer.enabled = true; //prosorino gia na kano kapious elexous
+					renderer.enabled = false;
+					//Debug.Log("X !- X");
+				}
 			}
 		}
 
@@ -228,18 +237,24 @@ public class Enemy : MonoBehaviour {
 				} else {
 					isJump = false;
 				}*/
+				//dimiourgia sferas
+				if (Input.GetKeyDown (KeyCode.V)){ //pirovolima enemy
+					Transform newEnemyBullet = Instantiate (enemyBullet, transform.position, Quaternion.identity) as Transform;
+					newEnemyBullet.tag = "enemyBullet";
+				}
 			}
 		}
 		animator.SetBool("enemyWalk", false);
 	}
 
 	void OnCollisionEnter(Collision other){  
+
 		if ( (other.gameObject.tag == "Player") && (dimension==repository.getCurrentDimension())) {
 			repository.losePlayerLife(damage);
 		}
 		if (findDimension){ //elexos gia na vro ti diastasi ke na kano to analogo rotation tou enemy elexo mono tin proti fora
 			if((other.gameObject.tag=="StaticCube") || (other.gameObject.tag=="MovableCube")){ 
-				Debug.Log("-------");
+				//Debug.Log("-------");
 				if(other.transform.localEulerAngles.y==0){ //dimension cube = 0
 					//Debug.Log("test_front");
 					transform.Rotate(new Vector3(0.0f,0.0f,0.0f));
@@ -271,6 +286,10 @@ public class Enemy : MonoBehaviour {
 				//Debug.Log(other.transform.localEulerAngles.y);
 				this.transform.localScale = new Vector3(3.0f,3.0f,0.0f);
 				this.GetComponent<BoxCollider>().size = new Vector3(0.37f,0.41f,0.2f);
+				Vector3 posi=other.gameObject.GetComponent<Transform>().transform.position; //epanatopotheto ton enemy sto kentro tou cube
+				posi.y+=1.2f;
+				this.transform.position = posi;
+				renderer.enabled = true;
 				//transform.Rotate(Mathf.Round(transform.rotation.x),Mathf.Round(transform.rotation.y),Mathf.Round(transform.rotation.z));
 				//transform.position=new Vector3(Mathf.Round(transform.position.x),Mathf.Round(transform.position.y),Mathf.Round(transform.position.z));
 				//this.GetComponent<BoxCollider>().size.x=0.37f;
@@ -303,11 +322,13 @@ public class Enemy : MonoBehaviour {
 		}
 		//}
 	}
-	
-	void OnTriggerEnter(Collider other){
-		
-		
+
+	public void loseEnemyLife(float lose) { //aferi zoi tou enemy
+		life -= lose;
 	}
+
+
+
 	
 	
 }
