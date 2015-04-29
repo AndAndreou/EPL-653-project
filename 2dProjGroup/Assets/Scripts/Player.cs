@@ -13,10 +13,11 @@ public class Player : MonoBehaviour {
 	private Dimension playerDimension;
 	private bool jump;
 	private Animator animator;
+	private float gravity;
 	
 	//bullet
 	public Transform energyBullet;
-	private float bulletSpeed = 10.0f;
+	private float bulletSpeed;
 	
 	void Start () {
 		rigidBodyTransform = GetComponent<Rigidbody> ().transform;
@@ -30,6 +31,8 @@ public class Player : MonoBehaviour {
 		jump = true;
 		playerDirection = false;
 		playerDimension = Dimension.FRONT;
+		bulletSpeed = 10.0f;
+		gravity = -9.81f;
 	}
 	
 	void Update () {
@@ -107,7 +110,13 @@ public class Player : MonoBehaviour {
 		if (Input.GetKeyUp (KeyCode.Space)) {
 			animator.SetBool ("shalk", false);
 		}
-		
+
+		if (Input.GetKeyUp (KeyCode.G)) {
+			gravity = -gravity;
+		}
+
+		Physics.gravity = new Vector3(0f, gravity, 0f);
+
 		reflectPlayer ();
 		
 		
@@ -192,6 +201,11 @@ public class Player : MonoBehaviour {
 			transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 			playerDirection = true;
 		}
+		if (gravity > 0) {
+			transform.localScale = new Vector3(transform.localScale.x, -Mathf.Abs(transform.localScale.y), transform.localScale.z);
+		} else {
+			transform.localScale = new Vector3(transform.localScale.x, Mathf.Abs(transform.localScale.y), transform.localScale.z);
+		}
 	}
 	
 	
@@ -253,5 +267,9 @@ public class Player : MonoBehaviour {
 		Transform newBullet = Instantiate (energyBullet, bulletPosition, Quaternion.identity) as Transform;
 		newBullet.tag = "EnergyBullet";
 	}
-	
+
+	public void ReverseGravity()
+	{
+		gravity = -gravity;
+	}
 }
