@@ -1,0 +1,583 @@
+fileFormatVersion: 2
+guid: a50f3339045873f459d0f84d7c1e900d
+timeCreated: 1430329889
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: powerpad_0
+    21300002: powerpad_1
+    21300004: powerpad_2
+    21300006: powerpad_3
+    21300008: powerpad_4
+    21300010: powerpad_5
+    21300012: powerpad_6
+    21300014: powerpad_7
+    21300016: powerpad_8
+    21300018: powerpad_9
+    21300020: powerpad_10
+    21300022: powerpad_11
+    21300024: powerpad_12
+    21300026: powerpad_13
+    21300028: powerpad_14
+    21300030: powerpad_15
+    21300032: powerpad_16
+    21300034: powerpad_17
+    21300036: powerpad_18
+    21300038: powerpad_19
+    21300040: powerpad_20
+    21300042: powerpad_21
+    21300044: powerpad_22
+    21300046: powerpad_23
+    21300048: powerpad_24
+    21300050: powerpad_25
+    21300052: powerpad_26
+    21300054: powerpad_27
+    21300056: powerpad_28
+    21300058: powerpad_29
+    21300060: powerpad_30
+    21300062: powerpad_31
+    21300064: powerpad_32
+    21300066: powerpad_33
+    21300068: powerpad_34
+    21300070: powerpad_35
+    21300072: powerpad_36
+    21300074: powerpad_37
+    21300076: powerpad_38
+    21300078: powerpad_39
+    21300080: powerpad_40
+    21300082: powerpad_41
+    21300084: powerpad_42
+    21300086: powerpad_43
+    21300088: powerpad_44
+    21300090: powerpad_45
+    21300092: powerpad_46
+    21300094: powerpad_47
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: powerpad_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 405
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_1
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 405
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_2
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 405
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_3
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 405
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_4
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 405
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_5
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 405
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_6
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 405
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_7
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 405
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 324
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_9
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 324
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_10
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 324
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_11
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 324
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_12
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 324
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_13
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 324
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_14
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 324
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_15
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 324
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 243
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_17
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 243
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_18
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 243
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_19
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 243
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_20
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 243
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_21
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 243
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_22
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 243
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_23
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 243
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 162
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_25
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 162
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_26
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 162
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_27
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 162
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_28
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 162
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_29
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 162
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_30
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 162
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_31
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 162
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 81
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_33
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 81
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_34
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 81
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_35
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 81
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_36
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 81
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_37
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 81
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_38
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 81
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_39
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 81
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_41
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 0
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_42
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 0
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_43
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 0
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_44
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 0
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_45
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 0
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_46
+      rect:
+        serializedVersion: 2
+        x: 486
+        y: 0
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: powerpad_47
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 0
+        width: 81
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -111,12 +111,6 @@ public class Player : MonoBehaviour {
 			animator.SetBool ("shalk", false);
 		}
 
-		if (Input.GetKeyUp (KeyCode.G)) {
-			gravity = -gravity;
-		}
-
-		Physics.gravity = new Vector3(0f, gravity, 0f);
-
 		reflectPlayer ();
 		
 		
@@ -145,6 +139,10 @@ public class Player : MonoBehaviour {
 			else if (repository.getCurrentDimension() == Dimension.RIGHT || repository.getCurrentDimension() == Dimension.LEFT) {
 				rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
 			}
+		}
+
+		if (Input.GetKeyDown (KeyCode.G) && (!rotate)) {
+			reverseGravity();
 		}
 		
 		if (rotate) {
@@ -229,12 +227,21 @@ public class Player : MonoBehaviour {
 				//rigidBody.velocity = Vector3.zero;
 			}
 		}
-		
+	}
+
+
+	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "Coin") {
+			other.gameObject.SetActive(false);
+		} else if (other.gameObject.tag == "Gravity") {
+			reverseGravity();
+			other.gameObject.SetActive(false);
+		} else if (other.gameObject.tag == "Health") {
+			//TODO add health
 			other.gameObject.SetActive(false);
 		}
 	}
-	
+
 	private void createBullet() {
 		Vector3 position = this.gameObject.transform.position;
 		float xShift = 0.0f;
@@ -268,8 +275,9 @@ public class Player : MonoBehaviour {
 		newBullet.tag = "EnergyBullet";
 	}
 
-	public void ReverseGravity()
+	public void reverseGravity()
 	{
 		gravity = -gravity;
+		Physics.gravity = new Vector3(0f, gravity, 0f);
 	}
 }

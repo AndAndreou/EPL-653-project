@@ -88,9 +88,11 @@ public class EnergyBullet : MonoBehaviour {
 	void OnCollisionEnter(Collision other){ 
 		if ( (other.gameObject.tag == "Enemy") && (other.gameObject.GetComponent<Renderer>().enabled==true)) {
 			other.gameObject.GetComponent<Enemy>().loseEnemyLife(damage);
-			//Destroy(this.gameObject);
 		}
-		Destroy(this.gameObject);
+
+		if ( (other.gameObject.tag != "Health") || (other.gameObject.tag != "Gravity") ) {
+			Destroy(this.gameObject);
+		}
 	}
 	
 }
