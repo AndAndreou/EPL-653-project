@@ -6,6 +6,15 @@ public class PauseScript : MonoBehaviour {
 	//refrence for the pause menu panel in the hierarchy
 	public GameObject pauseMenuPanel;
 	private GameObject pauseButton;
+	private GameObject audioOptions;
+	private GameObject soundsToggle;
+	private GameObject optionsToggle;
+	GameObject musicOnObj;
+	GameObject musicOffObj;
+	GameObject soundsOnObj;
+	GameObject soundsOffObj;
+	GameObject optionsOnObj;
+	GameObject optionsOffObj;
 	//animator reference
 	private Animator anim;
 	//variable for checking if the game is paused 
@@ -22,6 +31,22 @@ public class PauseScript : MonoBehaviour {
 		anim.enabled = false;
 
 		pauseButton = GameObject.FindGameObjectWithTag ("PauseButton");
+
+		audioOptions = GameObject.FindGameObjectWithTag ("AudioOptions");
+		musicOnObj = GameObject.FindGameObjectWithTag ("MusicOnObj");
+		musicOffObj = GameObject.FindGameObjectWithTag ("MusicOffObj");
+		soundsOnObj = GameObject.FindGameObjectWithTag ("SoundsOnObj");
+		soundsOffObj = GameObject.FindGameObjectWithTag ("SoundsOffObj");
+		optionsOnObj = GameObject.FindGameObjectWithTag ("OptionsOnObj");
+		optionsOffObj = GameObject.FindGameObjectWithTag ("OptionsOffObj");
+
+		audioOptions.SetActive (false);
+		musicOnObj.SetActive(false);
+		musicOffObj.SetActive(true);
+		soundsOnObj.SetActive(false);
+		soundsOffObj.SetActive(true);
+		optionsOnObj.SetActive(false);
+		optionsOffObj.SetActive(true);
 	}
 	
 	// Update is called once per frame
@@ -61,6 +86,44 @@ public class PauseScript : MonoBehaviour {
 		//Time.timeScale = 1;
 		pauseButton.SetActive (true);
 		Debug.Log ("Resumed");
+	}
+
+	public void onOptionsClick(bool on) {
+		if (on) {
+			audioOptions.SetActive (false);
+			optionsOnObj.SetActive(false);
+			optionsOffObj.SetActive(true);
+		} else {
+			audioOptions.SetActive (true);
+			optionsOnObj.SetActive(true);
+			optionsOffObj.SetActive(false);
+		}
+	}
+
+	public void toggleMusic(bool on) {
+		if (on) {
+			repository.setMusic(true);
+			musicOnObj.SetActive(false);
+			musicOffObj.SetActive(true);
+		} else {
+			repository.setMusic(false);
+			musicOnObj.SetActive(true);
+			musicOffObj.SetActive(false);
+		}
+	}
+
+	public void toggleSounds(bool on) {
+		if (on) {
+			repository.setSounds(true);
+			soundsOnObj.SetActive(false);
+			soundsOffObj.SetActive(true);
+			Debug.Log("Sounds on");
+		} else {
+			repository.setSounds(false);
+			soundsOnObj.SetActive(true);
+			soundsOffObj.SetActive(false);
+			Debug.Log("Sounds off");
+		}
 	}
 
 	public void exitGame(){

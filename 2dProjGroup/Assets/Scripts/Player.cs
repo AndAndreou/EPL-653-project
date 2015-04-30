@@ -31,6 +31,7 @@ public class Player : MonoBehaviour {
 		jump = true;
 		playerDirection = false;
 		playerDimension = Dimension.FRONT;
+
 		bulletSpeed = 10.0f;
 		gravity = -9.81f;
 	}

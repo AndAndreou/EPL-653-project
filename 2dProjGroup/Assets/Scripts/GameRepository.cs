@@ -21,6 +21,8 @@ public sealed class GameRepository : MonoBehaviour {
 	private bool rotate = false;
 	private bool raise = false;
 	private bool pause = false;
+	private bool sounds = true;
+	private bool music = true;
 
 	//background specific variables
 	private float backgroundSpeed = 0.0f;
@@ -122,5 +124,21 @@ public sealed class GameRepository : MonoBehaviour {
 	
 	public bool isPaused(){
 		return instance.pause;
+	}
+
+	public void setMusic(bool musicInput){
+		instance.music = musicInput;
+	}
+	
+	public bool isMusicOn(){
+		return instance.music;
+	}
+
+	public void setSounds(bool soundsInput){
+		instance.sounds = soundsInput;
+	}
+	
+	public bool isSoundsOn(){
+		return instance.sounds;
 	}
 }

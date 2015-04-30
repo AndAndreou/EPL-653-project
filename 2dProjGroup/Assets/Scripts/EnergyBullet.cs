@@ -36,9 +36,13 @@ public class EnergyBullet : MonoBehaviour {
 		float yRotate = (90 * (int)bulletDimension) % 180;
 		transform.Rotate(new Vector3(0.0f,yRotate,0.0f));
 
-		sound = gameObject.GetComponent<AudioSource>();
-		sound.volume = 0.2f;
-		sound.Play ();
+		Debug.Log ("SSOunds " + repository.isSoundsOn ());
+
+		sound = gameObject.GetComponent<AudioSource> ();
+		sound.volume = 0.5f;
+		if (repository.isSoundsOn ()) {
+			sound.Play();
+		}
 	}
 	
 	// Update is called once per frame

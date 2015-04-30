@@ -15,6 +15,7 @@ public class CameraFront : MonoBehaviour {
 	private bool isUp;
 	private int timer;
 	private AudioSource sound;
+	private int musicCounter;
 	
 	void Start () {
 		sound = gameObject.GetComponent<AudioSource>();
@@ -30,11 +31,18 @@ public class CameraFront : MonoBehaviour {
 		wait = false;
 		isUp = false;
 		timer = 0;
-
-		sound.Play ();
+		musicCounter = 0;
 	}
 	
 	void Update () {
+		if (repository.isMusicOn () && (musicCounter % 2 == 0)) {
+			sound.Play ();
+			musicCounter++;
+		} else if (!repository.isMusicOn () && (musicCounter % 2 == 1)) {
+			sound.Pause ();
+			musicCounter++;
+		}
+
 		if (repository.isPaused()) {
 			return;
 		}
