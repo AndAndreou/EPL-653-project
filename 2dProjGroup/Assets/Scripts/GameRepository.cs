@@ -16,6 +16,7 @@ public sealed class GameRepository : MonoBehaviour {
 	//common game variables
 	private Dimension currentDimension = Dimension.FRONT;
 	private float playerLife = 1000.0f;
+	private int playerLives = 3;
 
 	//camera specific variables
 	private bool rotate = false;
@@ -90,6 +91,8 @@ public sealed class GameRepository : MonoBehaviour {
 		instance.playerLife -= lose;
 		Image healthBar = GameObject.FindGameObjectWithTag ("HealthBar").GetComponent<Image>();
 		healthBar.fillAmount = instance.playerLife / 1000.0f;
+		Image deathBar = GameObject.FindGameObjectWithTag ("DeathBar").GetComponent<Image>();
+		deathBar.fillAmount = 1.0f - instance.playerLife / 1000.0f;
 	}
 
 	public void winPlayerLife(float win) {
