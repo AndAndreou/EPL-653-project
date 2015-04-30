@@ -66,7 +66,7 @@ public class Cube : MonoBehaviour {
 		
 		mesh.uv = uvs;
 		
-		renderer.material = Resources.Load<Material> ("cubeMaterial");
+		renderer.material = Resources.Load<Material> ("cubeMaterial2");
 		// Nicolas
 	}
 	

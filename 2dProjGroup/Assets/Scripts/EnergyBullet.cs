@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+
+using UnityEngine;
 using System.Collections;
 
 public class EnergyBullet : MonoBehaviour {
@@ -9,6 +11,7 @@ public class EnergyBullet : MonoBehaviour {
 	private GameRepository repository;
 	private float damage = 50.0f; //damage sferas
 	private AudioSource sound;
+	private float creationTime;
 	
 	float xDif, zDif, yDif;
 	
@@ -36,13 +39,17 @@ public class EnergyBullet : MonoBehaviour {
 		float yRotate = (90 * (int)bulletDimension) % 180;
 		transform.Rotate(new Vector3(0.0f,yRotate,0.0f));
 
-		Debug.Log ("SSOunds " + repository.isSoundsOn ());
+		//Debug.Log ("SSOunds " + repository.isSoundsOn ());
 
 		sound = gameObject.GetComponent<AudioSource> ();
 		sound.volume = 0.5f;
 		if (repository.isSoundsOn ()) {
 			sound.Play();
 		}
+
+		//get creation time
+		creationTime = Time.time;
+
 	}
 	
 	// Update is called once per frame
@@ -50,6 +57,10 @@ public class EnergyBullet : MonoBehaviour {
 		if (repository.isPaused()) {
 			bulletRigidBody.Sleep();
 			return;
+		}
+
+		if ( (Time.time - creationTime) > 0.7f) {
+			Destroy(this.gameObject);
 		}
 
 		if ( ( bulletRigidBody.position.x > 300 ) || (bulletRigidBody.position.x < -100) ||

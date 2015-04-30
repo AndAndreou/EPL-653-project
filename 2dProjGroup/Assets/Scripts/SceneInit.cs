@@ -5,9 +5,12 @@ using System.Collections.Generic;
 public class SceneInit : MonoBehaviour {
 	public Material cubeMaterial;
 	private GameRepository repository;
-	//
+
+	//Prefubs
 	public Transform Enemy;
-	public Transform coin;
+	public Transform powerUp_coin;
+	public Transform powerUp_health;
+	public Transform powerUp_gravity;
 
 	private Dimension prevDim; //karata to proigoumeno dimension
 	private float prevY=0; //krata to  proigoumeno y
@@ -51,10 +54,14 @@ public class SceneInit : MonoBehaviour {
 		position = new Vector3 (10,1,0);
 		createStaticCube (position, size, Dimension.FRONT, Color.red);
 
-		position = new Vector3 (30,1.5f,0);
+		position = new Vector3 (30,1f,0);
 		for (; position.x<40; position.x = position.x +2) {
-			createCoin (position);
+			createCoinPowerUp (position);
 		}
+
+		createHealthPowerUp (new Vector3 (4, 1f, 0));
+		createGravityPowerUp (new Vector3 (5, 1f, 0));
+		createCoinPowerUp (new Vector3 (6,1f,0));
 
 		position = new Vector3 (50,0,1);
 		for (; position.x<55; position.x++) {
@@ -362,9 +369,25 @@ public class SceneInit : MonoBehaviour {
 	/**
 	 * Function that creates a coin in the given position
 	 * */
-	private void createCoin(Vector3 position) {
-		Transform  newCoin = Instantiate(coin, position,Quaternion.identity ) as Transform;
+	private void createCoinPowerUp(Vector3 position) {
+		Transform  newCoin = Instantiate(powerUp_coin, position,Quaternion.identity ) as Transform;
 		newCoin.tag = "Coin";
+	}
+
+	/**
+	 * Function that creates a gravity power up in the given position
+	 * */
+	private void createGravityPowerUp(Vector3 position) {
+		Transform  newCoin = Instantiate(powerUp_gravity, position,Quaternion.identity ) as Transform;
+		newCoin.tag = "Gravity";
+	}
+
+	/**
+	 * Function that creates a health power up in the given position
+	 * */
+	private void createHealthPowerUp(Vector3 position) {
+		Transform  newCoin = Instantiate(powerUp_health, position,Quaternion.identity ) as Transform;
+		newCoin.tag = "Health";
 	}
 
 

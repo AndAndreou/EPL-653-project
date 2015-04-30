@@ -1,10 +1,15 @@
 fileFormatVersion: 2
 guid: b1bf0783f1b24bd44b786f1b4a52c7e3
-timeCreated: 1427010784
+timeCreated: 1430429568
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - cubeMaterial: {instanceID: 0}
+  - Enemy: {fileID: 448080, guid: f8086dfdf39734d418efae0a6363a3d9, type: 2}
+  - powerUp_coin: {fileID: 425936, guid: cbda6b60339c355448c00eb34ec3fb1d, type: 2}
+  - powerUp_health: {fileID: 400894, guid: 85166b0649a8d0b4c8c9cc242385e6bf, type: 2}
+  - powerUp_gravity: {fileID: 463452, guid: bd2e579eda815c64482fcdbdf011c018, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
