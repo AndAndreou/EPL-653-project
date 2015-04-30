@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 /*
  * This class is the repository of the scene.
  * 
@@ -15,7 +15,7 @@ public sealed class GameRepository : MonoBehaviour {
 
 	//common game variables
 	private Dimension currentDimension = Dimension.FRONT;
-	private float playerLife = 100000.0f;
+	private float playerLife = 1000.0f;
 
 	//camera specific variables
 	private bool rotate = false;
@@ -88,6 +88,8 @@ public sealed class GameRepository : MonoBehaviour {
 
 	public void losePlayerLife(float lose) {
 		instance.playerLife -= lose;
+		Image healthBar = GameObject.FindGameObjectWithTag ("HealthBar").GetComponent<Image>();
+		healthBar.fillAmount = instance.playerLife / 1000.0f;
 	}
 
 	public void winPlayerLife(float win) {
