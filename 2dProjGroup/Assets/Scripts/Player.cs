@@ -185,7 +185,7 @@ public class Player : MonoBehaviour {
 		}
 		
 		if (repository.getPlayerLife() <= 0.0f) {
-			Destroy(this);
+			Destroy(this.gameObject);
 		}
 		
 	}
