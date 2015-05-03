@@ -1,9 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Cube.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SceneInit.cs">
     <Files>
-      <File FileName="Assets\Scripts\Cube.cs" Line="64" Column="43" />
+      <File FileName="Assets\Scripts\PauseScript.cs" Line="132" Column="2" />
+      <File FileName="Assets\Scripts\Cube.cs" Line="68" Column="63" />
       <File FileName="Assets\Scripts\GameRepository.cs" Line="20" Column="2" />
+      <File FileName="Assets\Scripts\SceneInit.cs" Line="308" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

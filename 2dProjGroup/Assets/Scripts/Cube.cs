@@ -50,8 +50,7 @@ public class Cube : MonoBehaviour {
 		uvs[12] = new Vector2(0.0f, 1f / 3f);
 		uvs[14] = new Vector2(1f / 3f, 1f / 3f);
 		uvs[15] = new Vector2(0.0f, 2f / 3f);
-		uvs[13] = new Vector2(1f / 3f, 2f / 3f);                
-		
+		uvs[13] = new Vector2(1f / 3f, 2f / 3f);   
 		// Left
 		uvs[16] = new Vector2(1f / 3f, 1f / 3f);
 		uvs[18] = new Vector2(2f / 3f, 1f / 3f);
@@ -66,7 +65,7 @@ public class Cube : MonoBehaviour {
 		
 		mesh.uv = uvs;
 		
-		renderer.material = Resources.Load<Material> ("cubeMaterial2");
+		renderer.material = Resources.Load<Material> ("cubeMaterial4");
 		// Nicolas
 	}
 	

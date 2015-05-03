@@ -1,0 +1,1111 @@
+fileFormatVersion: 2
+guid: 887cb39658ef7a64a9053a0e5e02381f
+timeCreated: 1430659441
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: MegamanWeapon1-BF_0
+    21300002: MegamanWeapon1-BF_1
+    21300004: MegamanWeapon1-BF_2
+    21300006: MegamanWeapon1-BF_3
+    21300008: MegamanWeapon1-BF_4
+    21300010: MegamanWeapon1-BF_5
+    21300012: MegamanWeapon1-BF_6
+    21300014: MegamanWeapon1-BF_7
+    21300016: MegamanWeapon1-BF_8
+    21300018: MegamanWeapon1-BF_9
+    21300020: MegamanWeapon1-BF_10
+    21300022: MegamanWeapon1-BF_11
+    21300024: MegamanWeapon1-BF_12
+    21300026: MegamanWeapon1-BF_13
+    21300028: MegamanWeapon1-BF_14
+    21300030: MegamanWeapon1-BF_15
+    21300032: MegamanWeapon1-BF_16
+    21300034: MegamanWeapon1-BF_17
+    21300036: MegamanWeapon1-BF_18
+    21300038: MegamanWeapon1-BF_19
+    21300040: MegamanWeapon1-BF_20
+    21300042: MegamanWeapon1-BF_21
+    21300044: MegamanWeapon1-BF_22
+    21300046: MegamanWeapon1-BF_23
+    21300048: MegamanWeapon1-BF_24
+    21300050: MegamanWeapon1-BF_25
+    21300052: MegamanWeapon1-BF_26
+    21300054: MegamanWeapon1-BF_27
+    21300056: MegamanWeapon1-BF_28
+    21300058: MegamanWeapon1-BF_29
+    21300060: MegamanWeapon1-BF_30
+    21300062: MegamanWeapon1-BF_31
+    21300064: MegamanWeapon1-BF_32
+    21300066: MegamanWeapon1-BF_33
+    21300068: MegamanWeapon1-BF_34
+    21300070: MegamanWeapon1-BF_35
+    21300072: MegamanWeapon1-BF_36
+    21300074: MegamanWeapon1-BF_37
+    21300076: MegamanWeapon1-BF_38
+    21300078: MegamanWeapon1-BF_39
+    21300080: MegamanWeapon1-BF_40
+    21300082: MegamanWeapon1-BF_41
+    21300084: MegamanWeapon1-BF_42
+    21300086: MegamanWeapon1-BF_43
+    21300088: MegamanWeapon1-BF_44
+    21300090: MegamanWeapon1-BF_45
+    21300092: MegamanWeapon1-BF_46
+    21300094: MegamanWeapon1-BF_47
+    21300096: MegamanWeapon1-BF_48
+    21300098: MegamanWeapon1-BF_49
+    21300100: MegamanWeapon1-BF_50
+    21300102: MegamanWeapon1-BF_51
+    21300104: MegamanWeapon1-BF_52
+    21300106: MegamanWeapon1-BF_53
+    21300108: MegamanWeapon1-BF_54
+    21300110: MegamanWeapon1-BF_55
+    21300112: MegamanWeapon1-BF_56
+    21300114: MegamanWeapon1-BF_57
+    21300116: MegamanWeapon1-BF_58
+    21300118: MegamanWeapon1-BF_59
+    21300120: MegamanWeapon1-BF_60
+    21300122: MegamanWeapon1-BF_61
+    21300124: MegamanWeapon1-BF_62
+    21300126: MegamanWeapon1-BF_63
+    21300128: MegamanWeapon1-BF_64
+    21300130: MegamanWeapon1-BF_65
+    21300132: MegamanWeapon1-BF_66
+    21300134: MegamanWeapon1-BF_67
+    21300136: MegamanWeapon1-BF_68
+    21300138: MegamanWeapon1-BF_69
+    21300140: MegamanWeapon1-BF_70
+    21300142: MegamanWeapon1-BF_71
+    21300144: MegamanWeapon1-BF_72
+    21300146: MegamanWeapon1-BF_73
+    21300148: MegamanWeapon1-BF_74
+    21300150: MegamanWeapon1-BF_75
+    21300152: MegamanWeapon1-BF_76
+    21300154: MegamanWeapon1-BF_77
+    21300156: MegamanWeapon1-BF_78
+    21300158: MegamanWeapon1-BF_79
+    21300160: MegamanWeapon1-BF_80
+    21300162: MegamanWeapon1-BF_81
+    21300164: MegamanWeapon1-BF_82
+    21300166: MegamanWeapon1-BF_83
+    21300168: MegamanWeapon1-BF_84
+    21300170: MegamanWeapon1-BF_85
+    21300172: MegamanWeapon1-BF_86
+    21300174: MegamanWeapon1-BF_87
+    21300176: MegamanWeapon1-BF_88
+    21300178: MegamanWeapon1-BF_89
+    21300180: MegamanWeapon1-BF_90
+    21300182: MegamanWeapon1-BF_91
+    21300184: MegamanWeapon1-BF_92
+    21300186: MegamanWeapon1-BF_93
+    21300188: MegamanWeapon1-BF_94
+    21300190: MegamanWeapon1-BF_95
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: MegamanWeapon1-BF_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 150
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_1
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 150
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_2
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 150
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_3
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 158
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_4
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 157
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_5
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 118
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_6
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 118
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_7
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 118
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_8
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 129
+        width: 4
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_9
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 130
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_10
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 129
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_11
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 128
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_12
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 131
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_13
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 130
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_14
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 128
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_15
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_16
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 132
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_17
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_18
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 129
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_19
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_20
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_21
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_22
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_23
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_24
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 88
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_25
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 88
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_26
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 89
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_27
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 98
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_28
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 91
+        width: 28
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_29
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 92
+        width: 28
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_30
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 93
+        width: 28
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_31
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 93
+        width: 28
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_32
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 93
+        width: 28
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_33
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 97
+        width: 6
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_34
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 62
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_35
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 62
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_36
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 60
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_37
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 71
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_38
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 67
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_39
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 66
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_40
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 69
+        width: 16
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_41
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 68
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_42
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 68
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_43
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 68
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_44
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 68
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_45
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 68
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_46
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 68
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_47
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 68
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_48
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 68
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_49
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 68
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_50
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 68
+        width: 10
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_51
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 68
+        width: 10
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_52
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 68
+        width: 10
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_53
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 68
+        width: 9
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_54
+      rect:
+        serializedVersion: 2
+        x: 371
+        y: 68
+        width: 10
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_55
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 68
+        width: 10
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_56
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 68
+        width: 8
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_57
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 77
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_58
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 68
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_59
+      rect:
+        serializedVersion: 2
+        x: 417
+        y: 76
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_60
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 68
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_61
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 34
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_62
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 34
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_63
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 32
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_64
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 45
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_65
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 43
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_66
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 42
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_67
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 42
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_68
+      rect:
+        serializedVersion: 2
+        x: 159
+        y: 42
+        width: 14
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_69
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 43
+        width: 14
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_70
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 7
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_71
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 7
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_72
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 4
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_73
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 18
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_74
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 19
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_75
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 19
+        width: 6
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_76
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 19
+        width: 8
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_77
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 18
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_78
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 17
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_79
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 17
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_80
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 17
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_81
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 17
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_82
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 18
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_83
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 17
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_84
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 18
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_85
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 17
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_86
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 17
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_87
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 17
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_88
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 17
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_89
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 17
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_90
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 17
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_91
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 17
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_92
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 17
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_93
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 17
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_94
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 17
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: MegamanWeapon1-BF_95
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 17
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
