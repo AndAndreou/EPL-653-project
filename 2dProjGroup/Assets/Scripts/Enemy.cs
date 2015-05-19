@@ -4,20 +4,22 @@ using System.Collections;
 public class Enemy : MonoBehaviour {
 	private GameObject target; // metavliti p krata ton pekti mas
 	private GameRepository repository; //GameRepository
-	private float vision= 6.0f; // apostasi oratotitas
+	private float vision; // apostasi oratotitas
 	private Dimension dimension ; //metavliti p krata se pia diastasi ine o enemy
-	private float speed=0.05f;
-	private float life=100.0f;
-	private float damage=30.0f;
-	private float jump=300.0f;
+	private float speed;
+	private float life;
+	private float damage;
+	private float jump;
 	private bool findDimension= true;
 	private string lookAt; //metavliti p krato p vlepi o enemy left or right
 	private bool isJump=false;
 	private Animator animator;
 	private Renderer renderer;
 	private Rigidbody rigidBody;
+	private float ratefire;
 
 	public Transform enemyBullet;
+	private float creationTime;
 
 	
 
@@ -38,7 +40,16 @@ public class Enemy : MonoBehaviour {
 		//this.transform.localScale = new Vector3(1.0f,3.0f,0.0f);
 		//this.GetComponent<BoxCollider>().size=0.01f;
 		//
+
+		vision= 6.0f; // apostasi oratotitas
+		speed=0.05f;
+		life=100.0f;
+		damage=30.0f;
+		jump=300.0f;
+		ratefire=1.0f;
+
 		animator = GetComponent<Animator> ();
+
 		//Color c = new Color ((damage/100.0f),0.0f,0.0f,1.0f);
 		//GetComponent<SpriteRenderer>().color = c;
 		lookLeft = Random.Range (0, 10);
@@ -52,6 +63,9 @@ public class Enemy : MonoBehaviour {
 		renderer.enabled = false; // false etsi oste na min fenete o enemy mexri na mpi sti sosti thesi p prepi
 		//spriteRenderer.sprite = sp1 ;
 		//dimension=0;// dokimastika
+
+		//get creation time
+		creationTime = Time.time;
 	}
 	
 	// Update is called once per frame
@@ -151,7 +165,7 @@ public class Enemy : MonoBehaviour {
 								lookAt = "right";
 							}
 						} else {
-							if (visionRayDirection.x < 0) { //elenxos an o pektis ine aristera
+							if (visionRayDirection.x > 0) { //elenxos an o pektis ine aristera
 								transform.position = new Vector3 (transform.position.x + speed, transform.position.y, transform.position.z); //kino ton ekthro aristera
 								if (lookAt == "right") {
 									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),-180.0f);
@@ -177,27 +191,31 @@ public class Enemy : MonoBehaviour {
 								if (lookAt == "right") {
 									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),-180.0f);
 								}
+								//Debug.Log("test 1");
 								lookAt = "left";
 							} else { //elenxos an o pektis ine deksia
 								transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z + speed); //kino ton ekthro deksia
 								if (lookAt == "left") {
 									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),180.0f);
 								}
+								//Debug.Log("test 2");
 								lookAt = "right";
 							}
 						} else {
-							if (visionRayDirection.z < 0) { //elenxos an o pektis ine aristera
+							if (visionRayDirection.z > 0) { //elenxos an o pektis ine aristera
 								transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z + speed); //kino ton ekthro aristera
 
 								if (lookAt == "right") {
 									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),-180.0f);
 								}
+								//Debug.Log("test 3");
 								lookAt = "left";
 							} else {
 								transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z - speed); //kino ton ekthro deksia
 								if (lookAt == "left") {
 									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),180.0f);
 								}
+								//Debug.Log("test 4");
 								lookAt = "right";
 							}
 						}
@@ -238,9 +256,13 @@ public class Enemy : MonoBehaviour {
 					isJump = false;
 				}*/
 				//dimiourgia sferas
-				if (Input.GetKeyDown (KeyCode.V)){ //pirovolima enemy
-					Transform newEnemyBullet = Instantiate (enemyBullet, transform.position, Quaternion.identity) as Transform;
-					newEnemyBullet.tag = "enemyBullet";
+				//if (Input.GetKeyDown (KeyCode.V))
+				if ( (Time.time - creationTime) > ratefire) { //pirovolima enemy
+					if (Random.Range (0, 2)==1){ //pithanotita an tha pirovolisi i oxi
+						Transform newEnemyBullet = Instantiate (enemyBullet, transform.position, Quaternion.identity) as Transform;
+						newEnemyBullet.tag = "enemyBullet";
+					}
+					creationTime = Time.time;
 				}
 			}
 		}
@@ -254,9 +276,10 @@ public class Enemy : MonoBehaviour {
 		}
 		if (findDimension){ //elexos gia na vro ti diastasi ke na kano to analogo rotation tou enemy elexo mono tin proti fora
 			if((other.gameObject.tag=="StaticCube") || (other.gameObject.tag=="MovableCube")){ 
+				findDimension=false;
 				//Debug.Log("-------");
 				/*if(other.transform.localEulerAngles.y==0)*/
-				Debug.Log(other.gameObject.GetComponent<Cube>().getDimension());
+				//Debug.Log(other.gameObject.GetComponent<Cube>().getDimension());
 				if(other.gameObject.GetComponent<Cube>().getDimension()==Dimension.FRONT){ //dimension cube = 0
 					//Debug.Log("test_front");
 					transform.Rotate(new Vector3(0.0f,0.0f,0.0f));
@@ -272,7 +295,7 @@ public class Enemy : MonoBehaviour {
 					dimension=Dimension.BACK;
 				}
 				else if(other.gameObject.GetComponent<Cube>().getDimension()==Dimension.RIGHT){ //dimension cube = 2
-					Debug.Log("test_right");
+					//Debug.Log("test_right");
 					//Debug.Log(other.transform.position);
 					//Debug.Log(other.transform.name);
 					transform.Rotate(new Vector3(0.0f,-90.0f,0.0f));
@@ -296,7 +319,7 @@ public class Enemy : MonoBehaviour {
 				//transform.position=new Vector3(Mathf.Round(transform.position.x),Mathf.Round(transform.position.y),Mathf.Round(transform.position.z));
 				//this.GetComponent<BoxCollider>().size.x=0.37f;
 				//this.GetComponent<BoxCollider>().size.y=0.41f;
-				findDimension=false;
+
 				//
 				/*if (dimension == Dimension.FRONT || dimension == Dimension.BACK) {
 					rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
@@ -321,6 +344,10 @@ public class Enemy : MonoBehaviour {
 				//Debug.Log("*****************");
 				isJump = false;
 			}
+		}
+
+		if (findDimension == true) {
+			Destroy(this.gameObject );
 		}
 		//}
 	}
