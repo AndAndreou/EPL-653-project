@@ -11,6 +11,7 @@ public class SceneInit : MonoBehaviour {
 	public Transform powerUp_coin;
 	public Transform powerUp_health;
 	public Transform powerUp_gravity;
+	public Transform exitPortal;
 
 	private Dimension prevDim; //karata to proigoumeno dimension
 	private float prevY=0; //krata to  proigoumeno y
@@ -22,15 +23,18 @@ public class SceneInit : MonoBehaviour {
 	List<List<Vector3>> listOfList = new List<List<Vector3>>(); //lista p krata tis pio pano listes
 	private int numOfEnemy; //arithmos ton exthron
 	Renderer renderer;
+	private int totalEnemyNumber;
 	//
 
 	// Use this for initialization
 	void Start() {
 		repository = GameRepository.Instance;
+		totalEnemyNumber = 0;
 
 		listOfList.Add(new List<Vector3>());
 
 		int x=0, y=0, z=0;
+
 
 		//CREATING THE SCENE
 
@@ -54,14 +58,16 @@ public class SceneInit : MonoBehaviour {
 		position = new Vector3 (10,1,0);
 		createStaticCube (position, size, Dimension.FRONT, Color.red);
 
+		createExitPortal (new Vector3(10,1,3), Dimension.RIGHT);
+
 		position = new Vector3 (30,1f,0);
 		for (; position.x<40; position.x = position.x +2) {
-			createCoinPowerUp (position);
+			createCoinPowerUp (position, Dimension.FRONT);
 		}
 
-		createHealthPowerUp (new Vector3 (4, 1f, 0));
-		createGravityPowerUp (new Vector3 (5, 1f, 0));
-		createCoinPowerUp (new Vector3 (6,1f,0));
+		createHealthPowerUp (new Vector3 (4, 1f, 0), Dimension.FRONT);
+		createGravityPowerUp (new Vector3 (5, 1f, 0), Dimension.FRONT);
+		createCoinPowerUp (new Vector3 (6,1f,0), Dimension.FRONT);
 
 		position = new Vector3 (50,0,1);
 		for (; position.x<55; position.x++) {
@@ -230,9 +236,11 @@ public class SceneInit : MonoBehaviour {
 					}
 				}
 			}
+			/*Debug.Log("-----" + numOfEnemy);*/
+			totalEnemyNumber+=numOfEnemy;
+			Debug.Log("totalEnemyNumber:" + totalEnemyNumber);
 		}
-		/*Debug.Log("-----" + numOfEnemy);*/
-		//
+
 
 	}
 
@@ -291,25 +299,9 @@ public class SceneInit : MonoBehaviour {
 		cube.AddComponent<Cube>();
 		cube.tag = "StaticCube";
 
-		 renderer = cube.GetComponent<Renderer> ();
-		/*//renderer.material = cubeMaterial;
-		renderer.material.color = new Color (10, 10, 10, 1.0f);
-*/
+		renderer = cube.GetComponent<Renderer> ();
+
 		cube.GetComponent<Cube>().setDimension(dimension);
-		/*
-		if (dimension==Dimension.FRONT){
-			cube.transform.Rotate(new Vector3(0.0f,0.0f,0.0f));
-		}
-		else if (dimension==Dimension.BACK){
-			cube.transform.Rotate(new Vector3(0.0f,-180.0f,0.0f)); //180
-		}
-		else if (dimension==Dimension.RIGHT){
-			cube.transform.Rotate(new Vector3(0.0f,-90.0f,0.0f)); //270
-		}
-		else if (dimension==Dimension.LEFT){
-			cube.transform.Rotate(new Vector3(0.0f,270.0f,0.0f)); //90
-		}
-		*/
 	}
 
 
@@ -373,27 +365,55 @@ public class SceneInit : MonoBehaviour {
 	/**
 	 * Function that creates a coin in the given position
 	 * */
-	private void createCoinPowerUp(Vector3 position) {
+	private void createCoinPowerUp(Vector3 position, Dimension dimension) {
 		Transform  newCoin = Instantiate(powerUp_coin, position,Quaternion.identity ) as Transform;
 		newCoin.tag = "Coin";
+		newCoin.Rotate( dimensionToVector(dimension) );
 	}
 
 	/**
 	 * Function that creates a gravity power up in the given position
 	 * */
-	private void createGravityPowerUp(Vector3 position) {
-		Transform  newCoin = Instantiate(powerUp_gravity, position,Quaternion.identity ) as Transform;
-		newCoin.tag = "Gravity";
+	private void createGravityPowerUp(Vector3 position, Dimension dimension) {
+		Transform  newGravity = Instantiate(powerUp_gravity, position,Quaternion.identity ) as Transform;
+		newGravity.tag = "Gravity";
+		newGravity.Rotate( dimensionToVector(dimension) );
 	}
 
 	/**
 	 * Function that creates a health power up in the given position
 	 * */
-	private void createHealthPowerUp(Vector3 position) {
-		Transform  newCoin = Instantiate(powerUp_health, position,Quaternion.identity ) as Transform;
-		newCoin.tag = "Health";
+	private void createHealthPowerUp(Vector3 position, Dimension dimension) {
+		Transform  newHealth = Instantiate(powerUp_health, position,Quaternion.identity ) as Transform;
+		newHealth.tag = "Health";
+		newHealth.Rotate( dimensionToVector(dimension) );
 	}
 
+	/**
+	 * Function that creates an exit portal in the given position
+	 * */
+	private void createExitPortal(Vector3 position, Dimension dimension) {
+		Transform  newExitPortal = Instantiate(exitPortal, position,Quaternion.identity ) as Transform;
+		newExitPortal.tag = "ExitPortal";
+		newExitPortal.Rotate( dimensionToVector(dimension) );
+	}
+
+	/**
+	 * Converst the dimension to a vector that correpsonds to the rotation degrees
+	 * */
+	private Vector3 dimensionToVector(Dimension dimension) {
+		if (dimension == Dimension.FRONT) {
+			return new Vector3 (0.0f, 0.0f, 0.0f);
+		} else if (dimension == Dimension.BACK) {
+			return new Vector3 (0.0f, 180.0f, 0.0f);
+		} else if (dimension == Dimension.RIGHT) {
+			return new Vector3 (0.0f, 90.0f, 0.0f);
+		} else if (dimension == Dimension.LEFT) {
+			return new Vector3 (0.0f, 270.0f, 0.0f);
+		} else {
+			return new Vector3 (0.0f, 0.0f, 0.0f);
+		}
+	}
 
 	private void createText() {
 		GameObject Text = new GameObject();
