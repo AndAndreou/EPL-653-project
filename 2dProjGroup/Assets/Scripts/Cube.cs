@@ -6,6 +6,7 @@ public class Cube : MonoBehaviour {
 	private GameObject player;
 	private Renderer renderer;
 	private GameObject camera;
+	private Dimension cubeDimension;
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +14,7 @@ public class Cube : MonoBehaviour {
 		renderer = this.GetComponent<Renderer> ();
 		player = GameObject.FindGameObjectWithTag(("Player"));
 		camera = GameObject.FindGameObjectWithTag(("MainCamera"));
-
+		//cubeDimension = Dimension.BACK;
 		
 		// Nicolas
 		MeshFilter mf = GetComponent<MeshFilter>();
@@ -127,4 +128,11 @@ public class Cube : MonoBehaviour {
 
 	//setters and getters
 
+	public Dimension getDimension() {
+		return this.cubeDimension;
+	}
+
+	public void setDimension(Dimension cubeDimension) {
+		this.cubeDimension = cubeDimension;
+	}
 }

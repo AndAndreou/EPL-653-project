@@ -292,9 +292,11 @@ public class SceneInit : MonoBehaviour {
 		cube.tag = "StaticCube";
 
 		 renderer = cube.GetComponent<Renderer> ();
-		//renderer.material = cubeMaterial;
+		/*//renderer.material = cubeMaterial;
 		renderer.material.color = new Color (10, 10, 10, 1.0f);
-
+*/
+		cube.GetComponent<Cube>().setDimension(dimension);
+		/*
 		if (dimension==Dimension.FRONT){
 			cube.transform.Rotate(new Vector3(0.0f,0.0f,0.0f));
 		}
@@ -307,6 +309,7 @@ public class SceneInit : MonoBehaviour {
 		else if (dimension==Dimension.LEFT){
 			cube.transform.Rotate(new Vector3(0.0f,270.0f,0.0f)); //90
 		}
+		*/
 	}
 
 
@@ -348,9 +351,10 @@ public class SceneInit : MonoBehaviour {
 		cube.AddComponent<Cube>();
 
 		renderer = cube.GetComponent<Renderer> ();
-		//renderer.material = cubeMaterial;
-		renderer.material.color = new Color (10, 10, 10, 1.0f);
-		
+
+		cube.GetComponent<Cube>().setDimension(dimension);
+
+		/*
 		if (dimension==Dimension.FRONT){
 			cube.transform.Rotate(new Vector3(0.0f,0.0f,0.0f));
 		}
@@ -363,7 +367,7 @@ public class SceneInit : MonoBehaviour {
 		else if (dimension==Dimension.LEFT){
 			cube.transform.Rotate(new Vector3(0.0f,270.0f,0.0f)); //90
 		}
-
+		*/
 	}
 
 	/**

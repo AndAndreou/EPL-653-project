@@ -255,13 +255,15 @@ public class Enemy : MonoBehaviour {
 		if (findDimension){ //elexos gia na vro ti diastasi ke na kano to analogo rotation tou enemy elexo mono tin proti fora
 			if((other.gameObject.tag=="StaticCube") || (other.gameObject.tag=="MovableCube")){ 
 				//Debug.Log("-------");
-				if(other.transform.localEulerAngles.y==0){ //dimension cube = 0
+				/*if(other.transform.localEulerAngles.y==0)*/
+				Debug.Log(other.gameObject.GetComponent<Cube>().getDimension());
+				if(other.gameObject.GetComponent<Cube>().getDimension()==Dimension.FRONT){ //dimension cube = 0
 					//Debug.Log("test_front");
 					transform.Rotate(new Vector3(0.0f,0.0f,0.0f));
 					rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
 					dimension=Dimension.FRONT;
 				}
-				else if(other.transform.localEulerAngles.y==180){ //dimension cube = 1
+				else if(other.gameObject.GetComponent<Cube>().getDimension()==Dimension.BACK){ //dimension cube = 1
 					//Debug.Log("test_back");
 					//Debug.Log("test");
 					transform.Rotate(new Vector3(0.0f,-180.0f,0.0f));
@@ -269,15 +271,15 @@ public class Enemy : MonoBehaviour {
 					//Debug.Log("test1");
 					dimension=Dimension.BACK;
 				}
-				else if(other.transform.localEulerAngles.y==270){ //dimension cube = 2
-					//Debug.Log("test_right");
+				else if(other.gameObject.GetComponent<Cube>().getDimension()==Dimension.RIGHT){ //dimension cube = 2
+					Debug.Log("test_right");
 					//Debug.Log(other.transform.position);
 					//Debug.Log(other.transform.name);
 					transform.Rotate(new Vector3(0.0f,-90.0f,0.0f));
 					rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
 					dimension=Dimension.RIGHT;
 				}
-				else if(other.transform.localEulerAngles.y==90){ //dimension cube = 3
+				else if(other.gameObject.GetComponent<Cube>().getDimension()==Dimension.LEFT){ //dimension cube = 3
 					//Debug.Log("test_left");
 					transform.Rotate(new Vector3(0.0f,-270.0f,0.0f));
 					rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
