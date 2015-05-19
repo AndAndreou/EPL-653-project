@@ -1,11 +1,14 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SceneInit.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player.cs">
     <Files>
-      <File FileName="Assets\Scripts\PauseScript.cs" Line="132" Column="2" />
-      <File FileName="Assets\Scripts\Cube.cs" Line="68" Column="63" />
-      <File FileName="Assets\Scripts\GameRepository.cs" Line="20" Column="2" />
-      <File FileName="Assets\Scripts\SceneInit.cs" Line="308" Column="3" />
+      <File FileName="Assets\Scripts\Cube.cs" Line="67" Column="66" />
+      <File FileName="Assets\Scripts\GameRepository.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SceneInit.cs" Line="294" Column="27" />
+      <File FileName="Assets\Scripts\Player.cs" Line="2" Column="26" />
+      <File FileName="Assets\Scripts\Enemy.cs" Line="245" Column="5" />
+      <File FileName="Assets\Scripts\EnemyBullet.cs" Line="21" Column="16" />
+      <File FileName="Assets\Scripts\CameraFront.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

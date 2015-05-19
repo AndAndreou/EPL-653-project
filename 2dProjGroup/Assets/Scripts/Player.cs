@@ -187,7 +187,6 @@ public class Player : MonoBehaviour {
 		if (repository.getPlayerLife() <= 0.0f) {
 			Destroy(this.gameObject);
 		}
-		
 	}
 	
 	
@@ -214,32 +213,70 @@ public class Player : MonoBehaviour {
 	
 	void OnCollisionEnter(Collision other){
 		if (other.gameObject.tag == "StaticCube") {
-			Vector3 hit = other.contacts[0].normal;
+			Vector3 hit = other.contacts [0].normal;
 			
-			float angle = Vector3.Angle(hit, Vector3.up);
-			
-			if (Vector3.Dot(hit,Vector3.up) > 0) { // top
+			float angle = Vector3.Angle (hit, Vector3.up);
+			//Debug.Log(Vector3.Dot (hit, Vector3.up));
+			if (Vector3.Dot (hit, Vector3.up) > 0) { // top
 				//Debug.Log("Top" + hit);
-			}else if(Vector3.Dot(hit,Vector3.up) < 0){
+			} else if (Vector3.Dot (hit, Vector3.up) < 0) {
 				//Debug.Log ("Bottom" + hit);
-			}else if(Vector3.Dot(hit,Vector3.up) == 0){
+			} else if (Vector3.Dot (hit, Vector3.up) == 0) {
 				//Debug.Log ("Sides" + hit);
-				rigidBody.isKinematic = true;
+				//rigidBody.isKinematic = true;
 				//rigidBody.velocity = Vector3.zero;
+			}
+		}
+		if (other.gameObject.tag == "Enemy") {
+			Vector3 hit = other.contacts [0].normal;
+
+			float angle = Vector3.Angle (hit, Vector3.up);
+
+			if (Vector3.Dot (hit, Vector3.up) > 0) {
+
+			} else if (Vector3.Dot (hit, Vector3.up) < 0) {
+
+			} else if (Vector3.Dot (hit, Vector3.up) == 0) {
+				Vector3 norm; 
+				Vector3 push = new Vector3(0.0f, 0.0f, 0.0f);
+
+				norm = (transform.position - other.transform.position).normalized;
+				if(norm.x > 0) {
+					push = new Vector3(1.0f, 0.0f, 0.0f);
+					rigidBody.AddForce(transform.up * 45.0f);
+					rigidBody.AddForce(transform.right * 150.0f);
+				}
+				if(norm.x < 0) {
+					push = new Vector3(-1.0f, 0.0f, 0.0f);
+					rigidBody.AddForce(transform.up * 45.0f);
+					rigidBody.AddForce(-transform.right * 150.0f);
+				}
+				if(norm.z > 0) {
+					push = new Vector3(0.0f, 0.0f, 1.0f);
+				}
+				if(norm.z < 0) {
+					push = new Vector3(0.0f, 0.0f, -1.0f);
+				}
+				Debug.Log ("hit " + norm);
+
+
 			}
 		}
 	}
 
 
+
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "Coin") {
-			other.gameObject.SetActive(false);
+			other.gameObject.SetActive (false);
 		} else if (other.gameObject.tag == "Gravity") {
-			reverseGravity();
-			other.gameObject.SetActive(false);
+			reverseGravity ();
+			other.gameObject.SetActive (false);
 		} else if (other.gameObject.tag == "Health") {
 			//TODO add health
-			other.gameObject.SetActive(false);
+			other.gameObject.SetActive (false);
+		} else if (other.gameObject.tag == "ExitPortal") {
+			AutoFade.LoadLevel("Game", 2, 3, new Color(0.0f, 0f, 0.0F, 1f));//Color.black);
 		}
 	}
 
