@@ -186,9 +186,9 @@ public class SceneInit : MonoBehaviour {
 		
 
 		//Debug.Log(listOfList[0][0].x + "," + listOfList[0][0].z + "," + listOfList[0].Count);
-		if (/*(listOfList[0][0].x==0.0f)&&*/(listOfList[0][0].z==0.0f)&&(listOfList[0].Count>10)){//elexos an ime ontos sto proto diadromo ke an exi toulaxiston 7 cubes
+		if (/*(listOfList[0][0].x==0.0f)&&*/(listOfList[0][0].z==0.0f)&&(listOfList[0].Count>18)){//elexos an ime ontos sto proto diadromo ke an exi toulaxiston 7 cubes
 			//Debug.Log(listOfList[0][0].x + "," + listOfList[0][0].z + "," + listOfList[0].Count);
-			listOfList[0].RemoveRange(0,10); // stin arxi (tou stadiou) afinoume kapies thesis adies 
+			listOfList[0].RemoveRange(0,17); // stin arxi (tou stadiou) afinoume kapies thesis adies 
 			//Debug.Log(listOfList[0][0].x + "," + listOfList[0][0].z + "," + listOfList[0].Count);
 		}
 
@@ -239,9 +239,9 @@ public class SceneInit : MonoBehaviour {
 			}
 			/*Debug.Log("-----" + numOfEnemy);*/
 			totalEnemyNumber+=numOfEnemy;
-			Debug.Log("totalEnemyNumber:" + totalEnemyNumber);
-		}
 
+		}
+		Debug.Log("totalEnemyNumber:" + totalEnemyNumber);
 
 	}
 

@@ -24,7 +24,7 @@ public class EnemyBullet : MonoBehaviour {
 		bulletRigidBody = this.GetComponent<Rigidbody> ();
 
 		damage = 10.0f; //damage sferas 
-		bulletSpeed=5.5f;
+		bulletSpeed=6.0f;
 
 		//get creation time
 		creationTime = Time.time;
@@ -49,12 +49,12 @@ public class EnemyBullet : MonoBehaviour {
 	void OnCollisionEnter(Collision other){ 
 		if (other.gameObject.tag == "Player") {
 			GameRepository.losePlayerLife(damage);
+			Destroy(this.gameObject);
 		}
-		if (other.gameObject.tag!= "Enemy")
-		Destroy(this.gameObject);
+		/*if ((other.gameObject.tag=="StaticCube") || (other.gameObject.tag=="MovableCube"))
+			Destroy(this.gameObject);*/
+		if (other.gameObject.tag != "Enemy")
+			Destroy(this.gameObject);
 	}
 
-	void OnTriggerEnter(Collider other){
-
-	}
 }

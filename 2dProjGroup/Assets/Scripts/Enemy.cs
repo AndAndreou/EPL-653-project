@@ -275,7 +275,7 @@ public class Enemy : MonoBehaviour {
 			GameRepository.losePlayerLife(damage);
 		}
 		if (findDimension){ //elexos gia na vro ti diastasi ke na kano to analogo rotation tou enemy elexo mono tin proti fora
-			if((other.gameObject.tag=="StaticCube") || (other.gameObject.tag=="MovableCube")){ 
+			if((other.gameObject.tag=="StaticCube")/* || (other.gameObject.tag=="MovableCube")*/){ 
 				findDimension=false;
 				//Debug.Log("-------");
 				/*if(other.transform.localEulerAngles.y==0)*/
@@ -347,6 +347,7 @@ public class Enemy : MonoBehaviour {
 		}
 
 		if (findDimension == true) {
+			Debug.Log("******* totalEnemyNumber - 1 *******");
 			Destroy(this.gameObject );
 		}
 		//}
