@@ -6,7 +6,7 @@ public class EnemyBullet : MonoBehaviour {
 	private Rigidbody bulletRigidBody;
 	private float bulletSpeed;
 	private GameObject target;
-	private GameRepository repository;
+	//private GameRepository repository;
 	private float damage ; 
 	private Vector3 tarpos;
 	private Vector3 norm; 
@@ -16,7 +16,7 @@ public class EnemyBullet : MonoBehaviour {
 	void Start () {
 
 		target = GameObject.FindGameObjectWithTag("Player");
-		repository = GameRepository.Instance;
+		//repository = GameRepository.Instance;
 
 		tarpos=target.transform.position ;
 		norm = (tarpos - transform.position).normalized;
@@ -33,7 +33,7 @@ public class EnemyBullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (repository.isPaused()) {
+		if (GameRepository.isPaused()) {
 			bulletRigidBody.Sleep();
 			return;
 		}
@@ -48,7 +48,7 @@ public class EnemyBullet : MonoBehaviour {
 	
 	void OnCollisionEnter(Collision other){ 
 		if (other.gameObject.tag == "Player") {
-			repository.losePlayerLife(damage);
+			GameRepository.losePlayerLife(damage);
 		}
 		if (other.gameObject.tag!= "Enemy")
 		Destroy(this.gameObject);

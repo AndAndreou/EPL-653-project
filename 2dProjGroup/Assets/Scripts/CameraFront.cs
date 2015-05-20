@@ -5,12 +5,12 @@ public class CameraFront : MonoBehaviour {
 	public Transform player;
 	private Vector3 targetPosition;
 	private bool direction;
-	private float timestamp;
+	//private float timestamp;
 	private float startRot;
 	private float startRotX;
 	private float startRotY;
 	private float startRotZ;
-	private GameRepository repository;
+	//private GameRepository repository;
 	private bool wait;
 	private bool isUp;
 	private int timer;
@@ -19,10 +19,10 @@ public class CameraFront : MonoBehaviour {
 	
 	void Start () {
 		sound = gameObject.GetComponent<AudioSource>();
-		repository = GameRepository.Instance;
-		repository.setCurrentDimension(Dimension.FRONT);
+		//repository = GameRepository.Instance;
+		GameRepository.setCurrentDimension(Dimension.FRONT);
 		transform.position = new Vector3 (player.position.x, player.position.y, transform.position.z);
-		timestamp = Time.deltaTime;
+		//timestamp = Time.deltaTime;
 		startRot = 0.0f;
 		startRotX = 0.0f;
 		startRotY = 0.0f;
@@ -32,18 +32,19 @@ public class CameraFront : MonoBehaviour {
 		isUp = false;
 		timer = 0;
 		musicCounter = 0;
+		Debug.Log ("Started");
 	}
-	
+
 	void Update () {
-		if (repository.isMusicOn () && (musicCounter % 2 == 0)) {
+		if (GameRepository.isMusicOn () && (musicCounter % 2 == 0)) {
 			sound.Play ();
 			musicCounter++;
-		} else if (!repository.isMusicOn () && (musicCounter % 2 == 1)) {
+		} else if (!GameRepository.isMusicOn () && (musicCounter % 2 == 1)) {
 			sound.Pause ();
 			musicCounter++;
 		}
 
-		if (repository.isPaused()) {
+		if (GameRepository.isPaused()) {
 			return;
 		}
 
@@ -66,14 +67,14 @@ public class CameraFront : MonoBehaviour {
 			//transform.Translate(new Vector3(4.0f, 3.0f, 2.0f));
 			//wait = true;
 			//repository.setRaise(false);
-			float timestamp2 = Time.deltaTime;
+			//float timestamp2 = Time.deltaTime;
 			//float angle = (Time.deltaTime - timestamp) / 0.1f * 45.0f;
 			//startRotX = startRotX + Mathf.Abs (angle);
 			
 			//Debug.Log("WWW" + startRotX + " " + startRotY + " " + startRotZ);
 			//Debug.Log("WWW" + transform.localEulerAngles);
 			//Debug.Log(" " + startRotX + " " + isUp + " " + repository.isRaised());
-			if(repository.getCurrentDimension() == Dimension.FRONT) {
+			if(GameRepository.getCurrentDimension() == Dimension.FRONT) {
 				transform.RotateAround (player.position,new Vector3(-1.0f,1.0f,0.0f), 45 * Time.deltaTime * 2.0f);
 				transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
 				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0.0f);
@@ -85,14 +86,14 @@ public class CameraFront : MonoBehaviour {
 					transform.position = new Vector3 (player.position.x, player.position.y, Mathf.Round (player.position.z) - 100.0f);
 					//Debug.Log("Is it? is it?");
 					isUp = false;
-					repository.setRaise(false);
+					GameRepository.setRaise(false);
 					//return;
 				} else {
 					return;
 				}
 			}
 			
-			if(repository.getCurrentDimension() == Dimension.RIGHT) {
+			if(GameRepository.getCurrentDimension() == Dimension.RIGHT) {
 				transform.RotateAround (player.position,new Vector3(0.0f,1.0f,-1.0f), 45 * Time.deltaTime * 2.0f);
 				transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
 				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0.0f);
@@ -103,13 +104,13 @@ public class CameraFront : MonoBehaviour {
 					transform.localEulerAngles = new Vector3(0.0f, 270.0f, 0.0f);
 					transform.position = new Vector3 (Mathf.Round (player.position.x) + 100.0f, player.position.y, player.position.z);
 					isUp = false;
-					repository.setRaise(false);
+					GameRepository.setRaise(false);
 				} else {
 					return;
 				}
 			}
 			
-			if(repository.getCurrentDimension() == Dimension.BACK) {
+			if(GameRepository.getCurrentDimension() == Dimension.BACK) {
 				transform.RotateAround (player.position,new Vector3(1.0f,1.0f,0.0f), 45 * Time.deltaTime * 2.0f);
 				transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
 				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0.0f);
@@ -120,12 +121,12 @@ public class CameraFront : MonoBehaviour {
 					transform.localEulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
 					transform.position = new Vector3 (player.position.x, player.position.y, Mathf.Round (player.position.z) + 100.0f);
 					isUp = false;
-					repository.setRaise(false);
+					GameRepository.setRaise(false);
 				} else {
 					return;
 				}}
 			
-			if(repository.getCurrentDimension() == Dimension.LEFT) {
+			if(GameRepository.getCurrentDimension() == Dimension.LEFT) {
 				transform.RotateAround (player.position,new Vector3(0.0f,1.0f,1.0f), 45 * Time.deltaTime * 2.0f);
 				transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
 				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0.0f);
@@ -136,7 +137,7 @@ public class CameraFront : MonoBehaviour {
 					transform.localEulerAngles = new Vector3(0.0f, 90.0f, 0.0f);
 					transform.position = new Vector3 (Mathf.Round (player.position.x) - 100.0f, player.position.y, player.position.z);
 					isUp = false;
-					repository.setRaise(false);
+					GameRepository.setRaise(false);
 				} else {
 					return;
 				}
@@ -144,17 +145,17 @@ public class CameraFront : MonoBehaviour {
 		}
 		//
 		//Debug.Log ("isRunning " + repository.isRaised() + " " + isUp);
-		if (!repository.isRotating() && !repository.isRaised() && transform.position.y >= 0.0f) {
-			if (repository.getCurrentDimension() == Dimension.FRONT) {
+		if (!GameRepository.isRotating() && !GameRepository.isRaised() && transform.position.y >= 0.0f) {
+			if (GameRepository.getCurrentDimension() == Dimension.FRONT) {
 				transform.position = new Vector3 (player.position.x, player.position.y, Mathf.Round (player.position.z) - 100.0f);
 			}
-			if (repository.getCurrentDimension() == Dimension.BACK) {
+			if (GameRepository.getCurrentDimension() == Dimension.BACK) {
 				transform.position = new Vector3 (player.position.x, player.position.y, Mathf.Round (player.position.z) + 100.0f);
 			}
-			if (repository.getCurrentDimension() == Dimension.RIGHT) {
+			if (GameRepository.getCurrentDimension() == Dimension.RIGHT) {
 				transform.position = new Vector3 (Mathf.Round (player.position.x) + 100.0f, player.position.y, player.position.z);
 			}
-			if (repository.getCurrentDimension() == Dimension.LEFT) {
+			if (GameRepository.getCurrentDimension() == Dimension.LEFT) {
 				transform.position = new Vector3 (Mathf.Round (player.position.x) - 100.0f, player.position.y, player.position.z);
 			}
 		}
@@ -164,72 +165,72 @@ public class CameraFront : MonoBehaviour {
 		}
 		
 		if (transform.position.y >= 0.0f) {
-			if (Input.GetKeyDown (KeyCode.C) && (!repository.isRotating())) {
+			if (Input.GetKeyDown (KeyCode.C) && (!GameRepository.isRotating())) {
 				
-				repository.setCurrentDimension( (Dimension)(((int)repository.getCurrentDimension() + 1)%4));
+				GameRepository.setCurrentDimension( (Dimension)(((int)GameRepository.getCurrentDimension() + 1)%4));
 				
 				//Debug.Log("Camera dimension: " + (int)repository.getCurrentDimension());
 				
-				repository.setRotate(true);
+				GameRepository.setRotate(true);
 				direction = true;
 			}
 			
-			if (Input.GetKeyDown (KeyCode.Z) && (!repository.isRotating())) {
+			if (Input.GetKeyDown (KeyCode.Z) && (!GameRepository.isRotating())) {
 				
-				repository.setCurrentDimension( (Dimension)(((int)repository.getCurrentDimension() + 2 + 1)%4));
+				GameRepository.setCurrentDimension( (Dimension)(((int)GameRepository.getCurrentDimension() + 2 + 1)%4));
 				
 				//Debug.Log("Camera dimension: " + (int)repository.getCurrentDimension());
 				
-				repository.setRotate(true);
+				GameRepository.setRotate(true);
 				direction = false;
 			}
 			
 			if (Input.GetKey (KeyCode.X)) {
-				repository.setRaise(true);
+				GameRepository.setRaise(true);
 			}
 		}
 		
 		//float trAngles = transform.eulerAngles.y;
-		if (repository.isRotating()) {
+		if (GameRepository.isRotating()) {
 			if(direction){
-				float angle = (Time.deltaTime - timestamp) / 0.1f * 90.0f;
+				float angle = (Time.deltaTime - GameRepository.getTimeStamp()) / 0.1f * 90.0f;
 				startRot = startRot + Mathf.Abs (angle);
 				
 				if(startRot < 90.0f){
 					transform.RotateAround(player.position, new Vector3 (0.0f, 1.0f, 0.0f), angle);
 				}
 				if(startRot >= 90.0f){
-					repository.setRotate(false);
+					GameRepository.setRotate(false);
 					startRot = 0.0f;
 				}
 				
 			} else {
-				float angle = (Time.deltaTime - timestamp) / 0.1f * -90.0f;
+				float angle = (Time.deltaTime - GameRepository.getTimeStamp()) / 0.1f * -90.0f;
 				startRot = startRot - Mathf.Abs (angle);
 				
 				if(startRot > -90.0f){
 					transform.RotateAround(player.position, new Vector3 (0.0f, 1.0f, 0.0f), angle);
 				}
 				if(startRot <= -90.0f){
-					repository.setRotate(false);
+					GameRepository.setRotate(false);
 					startRot = 0.0f;
 				}
 			}
 		}
 		
-		if (repository.isRaised() && !repository.isRotating()) {
+		if (GameRepository.isRaised() && !GameRepository.isRotating()) {
 			//transform.Translate(new Vector3(4.0f, 3.0f, 2.0f));
 			//wait = true;
 			//repository.setRaise(false);
 			float timestamp2 = Time.deltaTime;
-			float angle = (Time.deltaTime - timestamp) / 0.1f * 45.0f;
+			float angle = (Time.deltaTime - GameRepository.getTimeStamp()) / 0.1f * 45.0f;
 			startRotX = startRotX + Mathf.Abs (angle);
 			
 			//Debug.Log("EEE" + startRotX + " " + startRotY + " " + startRotZ);
 			//Debug.Log("EEE" + transform.localEulerAngles + "----"+ transform.eulerAngles);
 			//Debug.Log("EEE" + startRotX + " " + isUp + " " + repository.isRaised());
 			
-			if(repository.getCurrentDimension() == Dimension.FRONT) {
+			if(GameRepository.getCurrentDimension() == Dimension.FRONT) {
 				transform.RotateAround (player.position,new Vector3(1.0f,-1.0f,0.0f), 45 * timestamp2 * 2.0f);
 				transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
 				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0.0f);
@@ -240,7 +241,7 @@ public class CameraFront : MonoBehaviour {
 				}
 			}
 			
-			if(repository.getCurrentDimension() == Dimension.RIGHT) {
+			if(GameRepository.getCurrentDimension() == Dimension.RIGHT) {
 				transform.RotateAround (player.position,new Vector3(0.0f,-1.0f,1.0f), 45 * timestamp2 * 2.0f);
 				transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
 				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0.0f);
@@ -251,7 +252,7 @@ public class CameraFront : MonoBehaviour {
 				}
 			}
 			
-			if(repository.getCurrentDimension() == Dimension.BACK) {
+			if(GameRepository.getCurrentDimension() == Dimension.BACK) {
 				transform.RotateAround (player.position,new Vector3(-1.0f,-1.0f,0.0f), 45 * timestamp2 * 2.0f);
 				transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
 				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0.0f);
@@ -262,7 +263,7 @@ public class CameraFront : MonoBehaviour {
 				}
 			}
 			
-			if(repository.getCurrentDimension() == Dimension.LEFT) {
+			if(GameRepository.getCurrentDimension() == Dimension.LEFT) {
 				transform.RotateAround (player.position,new Vector3(0.0f,-1.0f,-1.0f), 45 * timestamp2 * 2.0f);
 				transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
 				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0.0f);

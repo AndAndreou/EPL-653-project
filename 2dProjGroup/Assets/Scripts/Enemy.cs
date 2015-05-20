@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
 	private GameObject target; // metavliti p krata ton pekti mas
-	private GameRepository repository; //GameRepository
+	//private GameRepository repository; //GameRepository
 	private float vision; // apostasi oratotitas
 	private Dimension dimension ; //metavliti p krata se pia diastasi ine o enemy
 	private float speed;
@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour {
 		//camera = GameObject.FindGameObjectWithTag(("MainCamera"));
 		//
 		int lookLeft;
-		repository = GameRepository.Instance;
+		//repository = GameRepository.Instance;
 		target = GameObject.FindGameObjectWithTag("Player");
 		damage = Random.Range (10.0f, 80.0f);
 		//
@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (repository.isPaused()) {
+		if (GameRepository.isPaused()) {
 			rigidBody.Sleep();
 			return;
 		}
@@ -82,12 +82,12 @@ public class Enemy : MonoBehaviour {
 
 		if (findDimension==false){ // monon otan o enemi topothetithi tin proti fora tha ginonte i pio kato elexi prin oxi
 			// pote tha fenete kai pote oxi ekthors 
-			if (repository.isRaised() || repository.isRotating() ) {
+			if (GameRepository.isRaised() || GameRepository.isRotating() ) {
 				renderer.enabled = true;
 				return;
 			}
 			
-			if ((repository.getCurrentDimension() == Dimension.FRONT) || (repository.getCurrentDimension() == Dimension.BACK)) { //dimension cube = 0
+			if ((GameRepository.getCurrentDimension() == Dimension.FRONT) || (GameRepository.getCurrentDimension() == Dimension.BACK)) { //dimension cube = 0
 				if (target.transform.position.z == this.transform.position.z) {
 					//Debug.Log("Z - Z");
 					renderer.enabled = true;
@@ -271,8 +271,8 @@ public class Enemy : MonoBehaviour {
 
 	void OnCollisionEnter(Collision other){  
 
-		if ( (other.gameObject.tag == "Player") && (dimension==repository.getCurrentDimension())) {
-			repository.losePlayerLife(damage);
+		if ( (other.gameObject.tag == "Player") && (dimension==GameRepository.getCurrentDimension())) {
+			GameRepository.losePlayerLife(damage);
 		}
 		if (findDimension){ //elexos gia na vro ti diastasi ke na kano to analogo rotation tou enemy elexo mono tin proti fora
 			if((other.gameObject.tag=="StaticCube") || (other.gameObject.tag=="MovableCube")){ 

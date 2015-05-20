@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class SceneInit : MonoBehaviour {
 	public Material cubeMaterial;
-	private GameRepository repository;
 
 	//Prefubs
 	public Transform Enemy;
@@ -29,7 +28,6 @@ public class SceneInit : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
-		repository = GameRepository.Instance;
 		totalEnemyNumber = 0;
 
 		listOfList.Add(new List<Vector3>());

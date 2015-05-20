@@ -17,6 +17,7 @@ public sealed class GameRepository : MonoBehaviour {
 	private Dimension currentDimension = Dimension.FRONT;
 	private float playerLife = 1000.0f;
 	private int playerLives = 3;
+	private float timestamp = Time.deltaTime;
 
 	//camera specific variables
 	private bool rotate = false;
@@ -71,23 +72,27 @@ public sealed class GameRepository : MonoBehaviour {
 
 	//setters and getters
 
-	public Dimension getCurrentDimension() {
+	public static Dimension getCurrentDimension() {
 		return instance.currentDimension;
 	}
 
-	public void setCurrentDimension(Dimension dimension) {
+	public static void setCurrentDimension(Dimension dimension) {
 		instance.currentDimension = dimension;
 	}
 
-	public float getPlayerLife() {
+	public static float getPlayerLife() {
 		return instance.playerLife;
 	}
 
-	public void setPlayerLife(float plife) {
+	public static void setPlayerLife(float plife) {
 		instance.playerLife = plife;
+		Image healthBar = GameObject.FindGameObjectWithTag ("HealthBar").GetComponent<Image>();
+		healthBar.fillAmount = instance.playerLife / 1000.0f;
+		Image deathBar = GameObject.FindGameObjectWithTag ("DeathBar").GetComponent<Image>();
+		deathBar.fillAmount = 1.0f - instance.playerLife / 1000.0f;
 	}
 
-	public void losePlayerLife(float lose) {
+	public static void losePlayerLife(float lose) {
 		instance.playerLife -= lose;
 		Image healthBar = GameObject.FindGameObjectWithTag ("HealthBar").GetComponent<Image>();
 		healthBar.fillAmount = instance.playerLife / 1000.0f;
@@ -95,55 +100,59 @@ public sealed class GameRepository : MonoBehaviour {
 		deathBar.fillAmount = 1.0f - instance.playerLife / 1000.0f;
 	}
 
-	public void winPlayerLife(float win) {
+	public static void winPlayerLife(float win) {
 		instance.playerLife += win;
 	}
 
-	public void setRotate(bool rotateInput){
+	public static void setRotate(bool rotateInput){
 		instance.rotate = rotateInput;
 	}
 
-	public bool isRotating(){
+	public static bool isRotating(){
 		return instance.rotate;
 	}
 
-	public void setRaise(bool raiseInput){
+	public static void setRaise(bool raiseInput){
 		instance.raise = raiseInput;
 	}
 	
-	public bool isRaised(){
+	public static bool isRaised(){
 		return instance.raise;
 	}
 
-	public float getBackgroundSpeed(){
+	public static float getBackgroundSpeed(){
 		return instance.backgroundSpeed;
 	}
 
-	public void setBackgroundSpeed(float speed){
+	public static void setBackgroundSpeed(float speed){
 		instance.backgroundSpeed = speed;
 	}
 
-	public void setPause(bool pauseInput){
+	public static void setPause(bool pauseInput){
 		instance.pause = pauseInput;
 	}
 	
-	public bool isPaused(){
+	public static bool isPaused(){
 		return instance.pause;
 	}
 
-	public void setMusic(bool musicInput){
+	public static void setMusic(bool musicInput){
 		instance.music = musicInput;
 	}
 	
-	public bool isMusicOn(){
+	public static bool isMusicOn(){
 		return instance.music;
 	}
 
-	public void setSounds(bool soundsInput){
+	public static void setSounds(bool soundsInput){
 		instance.sounds = soundsInput;
 	}
 	
-	public bool isSoundsOn(){
+	public static bool isSoundsOn(){
 		return instance.sounds;
+	}
+	
+	public static float getTimeStamp(){
+		return instance.timestamp;
 	}
 }

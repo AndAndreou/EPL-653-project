@@ -8,7 +8,7 @@ public class EnergyBullet : MonoBehaviour {
 	private Transform rigidBodyTransform;
 	private Rigidbody bulletRigidBody;
 	private Dimension bulletDimension;
-	private GameRepository repository;
+	//private GameRepository repository;
 	private float damage = 50.0f; //damage sferas
 	private AudioSource sound;
 	private float creationTime;
@@ -22,10 +22,10 @@ public class EnergyBullet : MonoBehaviour {
 		GameObject player;
 
 		
-		repository = GameRepository.Instance;
+		//repository = GameRepository.Instance;
 		
 		bulletSpeed = 0.2f;
-		bulletDimension = repository.getCurrentDimension ();
+		bulletDimension = GameRepository.getCurrentDimension ();
 		bulletRigidBody = this.GetComponent<Rigidbody> ();
 		rigidBodyTransform = bulletRigidBody.transform;
 		
@@ -43,7 +43,7 @@ public class EnergyBullet : MonoBehaviour {
 
 		sound = gameObject.GetComponent<AudioSource> ();
 		sound.volume = 0.5f;
-		if (repository.isSoundsOn ()) {
+		if (GameRepository.isSoundsOn ()) {
 			sound.Play();
 		}
 
@@ -54,7 +54,7 @@ public class EnergyBullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (repository.isPaused()) {
+		if (GameRepository.isPaused()) {
 			bulletRigidBody.Sleep();
 			return;
 		}

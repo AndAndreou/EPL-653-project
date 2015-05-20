@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Cube : MonoBehaviour {
-	private GameRepository repository;
+	//private GameRepository repository;
 	private GameObject player;
 	private Renderer renderer;
 	private GameObject camera;
@@ -10,7 +10,7 @@ public class Cube : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		repository = GameRepository.Instance;
+		//repository = GameRepository.Instance;
 		renderer = this.GetComponent<Renderer> ();
 		player = GameObject.FindGameObjectWithTag(("Player"));
 		camera = GameObject.FindGameObjectWithTag(("MainCamera"));
@@ -72,16 +72,16 @@ public class Cube : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (repository.isPaused()) {
+		if (GameRepository.isPaused()) {
 			return;
 		}
 
-		if (repository.isRaised() || repository.isRotating() ) {
+		if (GameRepository.isRaised() || GameRepository.isRotating() ) {
 			renderer.enabled = true;
 			return;
 		}
 
-		if ((repository.getCurrentDimension() == Dimension.FRONT) || (repository.getCurrentDimension() == Dimension.BACK)) { //dimension cube = 0
+		if ((GameRepository.getCurrentDimension() == Dimension.FRONT) || (GameRepository.getCurrentDimension() == Dimension.BACK)) { //dimension cube = 0
 			if (player.transform.position.z == this.transform.position.z) {
 				//Debug.Log("Z - Z");
 				renderer.enabled = true;

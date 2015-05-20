@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PauseScript : MonoBehaviour {
-	private GameRepository repository;
+	//private GameRepository repository;
 	//refrence for the pause menu panel in the hierarchy
 	public GameObject pauseMenuPanel;
 	private GameObject pauseButton;
@@ -22,7 +22,7 @@ public class PauseScript : MonoBehaviour {
 	// Use this for initialization
 
 	void Start () {
-		repository = GameRepository.Instance;
+		//repository = GameRepository.Instance;
 		//unpause the game on start
 		//Time.timeScale = 1;
 		//get the animator component
@@ -63,7 +63,7 @@ public class PauseScript : MonoBehaviour {
 	
 	//function to pause the game
 	public void PauseGame(){
-		repository.setPause (true);
+		GameRepository.setPause (true);
 		//enable the animator component
 		anim.enabled = true;
 		//play the Slidein animation
@@ -77,7 +77,7 @@ public class PauseScript : MonoBehaviour {
 	}
 	//function to unpause the game
 	public void UnpauseGame(){
-		repository.setPause (false);
+		GameRepository.setPause (false);
 		//set the isPaused flag to false to indicate that the game is not paused
 		isPaused = false;
 		//play the SlideOut animation
@@ -102,11 +102,11 @@ public class PauseScript : MonoBehaviour {
 
 	public void toggleMusic(bool on) {
 		if (on) {
-			repository.setMusic(true);
+			GameRepository.setMusic(true);
 			musicOnObj.SetActive(false);
 			musicOffObj.SetActive(true);
 		} else {
-			repository.setMusic(false);
+			GameRepository.setMusic(false);
 			musicOnObj.SetActive(true);
 			musicOffObj.SetActive(false);
 		}
@@ -114,12 +114,12 @@ public class PauseScript : MonoBehaviour {
 
 	public void toggleSounds(bool on) {
 		if (on) {
-			repository.setSounds(true);
+			GameRepository.setSounds(true);
 			soundsOnObj.SetActive(false);
 			soundsOffObj.SetActive(true);
 			Debug.Log("Sounds on");
 		} else {
-			repository.setSounds(false);
+			GameRepository.setSounds(false);
 			soundsOnObj.SetActive(true);
 			soundsOffObj.SetActive(false);
 			Debug.Log("Sounds off");

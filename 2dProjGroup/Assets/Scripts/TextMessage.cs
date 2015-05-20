@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class TextMessage : MonoBehaviour {
-	private GameRepository repository;
+	//private GameRepository repository;
 	private GameObject player;
 	private Renderer renderer;
 	private GameObject camera;
@@ -11,7 +11,7 @@ public class TextMessage : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		repository = GameRepository.Instance;
+		//repository = GameRepository.Instance;
 		renderer = this.GetComponent<Renderer> ();
 		player = GameObject.FindGameObjectWithTag(("Player"));
 		camera = GameObject.FindGameObjectWithTag(("MainCamera"));
@@ -19,7 +19,7 @@ public class TextMessage : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (repository.isPaused()) {
+		if (GameRepository.isPaused()) {
 			return;
 		}
 		
@@ -28,8 +28,8 @@ public class TextMessage : MonoBehaviour {
 			return;
 		}*/
 
-		if (repository.getCurrentDimension () == this.textDimension) {
-			if ((repository.getCurrentDimension () == Dimension.FRONT) || (repository.getCurrentDimension () == Dimension.BACK)) { //dimension cube = 0
+		if (GameRepository.getCurrentDimension () == this.textDimension) {
+			if ((GameRepository.getCurrentDimension () == Dimension.FRONT) || (GameRepository.getCurrentDimension () == Dimension.BACK)) { //dimension cube = 0
 				if (player.transform.position.z == this.transform.position.z) {
 					renderer.enabled = true;
 				} else {
