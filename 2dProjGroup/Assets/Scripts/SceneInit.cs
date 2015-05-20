@@ -12,6 +12,7 @@ public class SceneInit : MonoBehaviour {
 	public Transform powerUp_health;
 	public Transform powerUp_gravity;
 	public Transform exitPortal;
+	public Transform text;
 
 	private Dimension prevDim; //karata to proigoumeno dimension
 	private float prevY=0; //krata to  proigoumeno y
@@ -34,8 +35,7 @@ public class SceneInit : MonoBehaviour {
 		listOfList.Add(new List<Vector3>());
 
 		int x=0, y=0, z=0;
-
-
+		
 		//CREATING THE SCENE
 
 		//dimension FRONT
@@ -45,18 +45,20 @@ public class SceneInit : MonoBehaviour {
 		Vector3 size = new Vector3(1,1,1);
 		Vector3 position = new Vector3(0,0,0);
 
+		createTextMessage (new Vector3(2, 4, 0), Dimension.FRONT, "This is the start");
+
 		position = new Vector3 (-5,0,0);
 		for (; position.y<4; position.y++) {
-			createStaticCube(position, size, Dimension.FRONT, Color.red);
+			createStaticCube(position, size, Dimension.FRONT);
 		}
 
 		position = new Vector3(-5,0,0);
 		for (; position.x<55; position.x++) {
-			createStaticCube(position, size, Dimension.FRONT, Color.red);
+			createStaticCube(position, size, Dimension.FRONT);
 		}
 
 		position = new Vector3 (10,1,0);
-		createStaticCube (position, size, Dimension.FRONT, Color.red);
+		createStaticCube (position, size, Dimension.FRONT);
 
 		createExitPortal (new Vector3(10,1,3), Dimension.RIGHT);
 
@@ -71,60 +73,60 @@ public class SceneInit : MonoBehaviour {
 
 		position = new Vector3 (50,0,1);
 		for (; position.x<55; position.x++) {
-			createStaticCube(position, size, Dimension.FRONT, Color.red);
+			createStaticCube(position, size, Dimension.FRONT);
 		}
 
 		position = new Vector3 (51,0,2);
 		for (; position.x<55; position.x++) {
-			createStaticCube(position, size, Dimension.FRONT, Color.red);
+			createStaticCube(position, size, Dimension.FRONT);
 		}
 
 		position = new Vector3 (52,0,3);
 		for (; position.x<55; position.x++) {
-			createStaticCube(position, size, Dimension.FRONT, Color.red);
+			createStaticCube(position, size, Dimension.FRONT);
 		}
 
 		position = new Vector3 (53,0,4);
 		for (; position.x<55; position.x++) {
-			createStaticCube(position, size, Dimension.FRONT, Color.red);
+			createStaticCube(position, size, Dimension.FRONT);
 		}
 
 		position = new Vector3 (54,0,5);
-		createStaticCube(position, size, Dimension.FRONT, Color.red);
+		createStaticCube(position, size, Dimension.FRONT);
 
 
 		//dimension RIGHT
 
 		position = new Vector3(55,0,0);
 		for (; position.z<=15; position.z++) {
-			createStaticCube(position, size, Dimension.RIGHT, Color.red);
+			createStaticCube(position, size, Dimension.RIGHT);
 		}
 
 		position = new Vector3(55,1,5);
-		createStaticCube (position, size, Dimension.RIGHT, Color.red);
+		createStaticCube (position, size, Dimension.RIGHT);
 
 		position = new Vector3(55,1,10);
-		createMovableCube(position, size, Dimension.RIGHT, Color.red);
+		createMovableCube(position, size, Dimension.RIGHT);
 
 		position = new Vector3(55,1,15);
-		createStaticCube(position, size, Dimension.RIGHT, Color.red);
+		createStaticCube(position, size, Dimension.RIGHT);
 
 		position = new Vector3(55,2,15);
-		createStaticCube(position, size, Dimension.RIGHT, Color.red);
+		createStaticCube(position, size, Dimension.RIGHT);
 
 		position = new Vector3(55,2,15);
 		for (; position.z<25; position.z++) {
-			createStaticCube(position, size, Dimension.RIGHT, Color.red);
+			createStaticCube(position, size, Dimension.RIGHT);
 		}
 
 		position = new Vector3(55,2,15);
 		for (; position.x>45; position.x--) {
-			createStaticCube(position, size, Dimension.FRONT, Color.red);
+			createStaticCube(position, size, Dimension.FRONT);
 		}
 
 		position = new Vector3(45,2,15);
 		for (; position.z<25; position.z++) {
-			createStaticCube(position, size, Dimension.RIGHT, Color.red);
+			createStaticCube(position, size, Dimension.RIGHT);
 		}
 
 
@@ -132,24 +134,24 @@ public class SceneInit : MonoBehaviour {
 
 		position = new Vector3(55,2,25);
 		for (; position.x>35; position.x--) {
-			createStaticCube(position, size, Dimension.BACK, Color.red);
+			createStaticCube(position, size, Dimension.BACK);
 		}
 
 		position = new Vector3(50,3,25);
-		createStaticCube(position, size, Dimension.BACK, Color.red);
+		createStaticCube(position, size, Dimension.BACK);
 		position.y++;
-		createStaticCube(position, size, Dimension.BACK, Color.red);
+		createStaticCube(position, size, Dimension.BACK);
 		position.y++;
-		createStaticCube(position, size, Dimension.BACK, Color.red);
+		createStaticCube(position, size, Dimension.BACK);
 
 		position = new Vector3(36,1,25);
-		createStaticCube (position, size, Dimension.BACK, Color.red);
+		createStaticCube (position, size, Dimension.BACK);
 		position.y--;
-		createStaticCube (position, size, Dimension.BACK, Color.red);
+		createStaticCube (position, size, Dimension.BACK);
 
 		position = new Vector3(36,0,25);
 		for (;position.x>20;position.x--) {
-			createStaticCube(position, size, Dimension.BACK, Color.red);
+			createStaticCube(position, size, Dimension.BACK);
 		}
 
 		//create 'ladder' with a hole, going up
@@ -159,7 +161,7 @@ public class SceneInit : MonoBehaviour {
 				if ( (position.x==14 || position.x==15) && ( position.z>23 && position.z<27 )) {
 					continue;
 				}
-				createStaticCube(position, size, Dimension.RIGHT, Color.red);
+				createStaticCube(position, size, Dimension.RIGHT);
 			}
 		}
 
@@ -167,7 +169,7 @@ public class SceneInit : MonoBehaviour {
 		position.y = 10;
 		for (position.x=8;position.x<=10;position.x++) {
 			for (position.z=23; position.z<=27; position.z++) {
-				createStaticCube(position, size, Dimension.RIGHT, Color.red);
+				createStaticCube(position, size, Dimension.RIGHT);
 			}
 		}
 
@@ -175,23 +177,23 @@ public class SceneInit : MonoBehaviour {
 		position = new Vector3(10,9,22);
 		for (; position.y>0; position.y--, position.z--) {
 			for (position.x=8; position.x<=12; position.x++) {
-				createStaticCube(position, size, Dimension.FRONT, Color.red);
+				createStaticCube(position, size, Dimension.FRONT);
 			}
 		}
 	
 		position = new Vector3(10,0,14);
 		for (; position.z>0; position.z--) {
-			createStaticCube(position, size, Dimension.LEFT, Color.red);
+			createStaticCube(position, size, Dimension.LEFT);
 		}
 		
-		
-		//
+
 		//Debug.Log(listOfList[0][0].x + "," + listOfList[0][0].z + "," + listOfList[0].Count);
 		if (/*(listOfList[0][0].x==0.0f)&&*/(listOfList[0][0].z==0.0f)&&(listOfList[0].Count>10)){//elexos an ime ontos sto proto diadromo ke an exi toulaxiston 7 cubes
 			//Debug.Log(listOfList[0][0].x + "," + listOfList[0][0].z + "," + listOfList[0].Count);
 			listOfList[0].RemoveRange(0,10); // stin arxi (tou stadiou) afinoume kapies thesis adies 
 			//Debug.Log(listOfList[0][0].x + "," + listOfList[0][0].z + "," + listOfList[0].Count);
 		}
+
 		//Debug.Log("-----" + listOfList.Count);
 		List<int> zeroOrOne = new List<int>();// pithanotita 5/2 gia ton elaxisto aritmo ton exthron se mia grami 1:0
 		zeroOrOne.Add(1);
@@ -201,6 +203,7 @@ public class SceneInit : MonoBehaviour {
 		zeroOrOne.Add(1);
 		zeroOrOne.Add(0);
 		zeroOrOne.Add(1);
+
 		//random dimiourgia exthron
 		for (int c=0 ; c<listOfList.Count ; c++){
 			if (listOfList[c].Count<=10)// gia ligotera apo 10 cubes epilego metaksi 0 kai 1
@@ -252,9 +255,8 @@ public class SceneInit : MonoBehaviour {
 	 * - Position: the position of the cube defeined as a vector
 	 * - Size: the size of the cube defined as a vector
 	 * - Dimension: the dimension of the cube
-	 * - Color: the color of the cube
 	 */
-	private void createStaticCube(Vector3 position, Vector3 size, Dimension dimension, Color color) {
+	private void createStaticCube(Vector3 position, Vector3 size, Dimension dimension) {
 		//
 		if ((prevDim != dimension)&&(count>=0)) { //se kathe alagi tou divension midenizete to count , to (count>=0) xrismopoite gia tin arxi, na min ginonte spawn enemy konta s stin arxi
 
@@ -282,7 +284,6 @@ public class SceneInit : MonoBehaviour {
 		if (count >= 5) {
 			listOfList[countOfList].Add(new Vector3(position.x,position.y+2,position.z));
 		}
-		//
 		GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
 
 		Vector3 scale = transform.localScale;
@@ -299,11 +300,10 @@ public class SceneInit : MonoBehaviour {
 		cube.AddComponent<Cube>();
 		cube.tag = "StaticCube";
 
-		renderer = cube.GetComponent<Renderer> ();
+		//renderer = cube.GetComponent<Renderer> ();
 
 		cube.GetComponent<Cube>().setDimension(dimension);
 	}
-
 
 	/*
 	 * Function that creates a static moveable in the scene
@@ -314,7 +314,7 @@ public class SceneInit : MonoBehaviour {
 	 * - Dimension: the dimension of the cube
 	 * - Color: the color of the cube
 	 */
-	private void createMovableCube(Vector3 position, Vector3 size, Dimension dimension, Color color) {
+	private void createMovableCube(Vector3 position, Vector3 size, Dimension dimension) {
 		GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
 		
 		Vector3 scale = transform.localScale;
@@ -326,9 +326,7 @@ public class SceneInit : MonoBehaviour {
 		rigidBody.isKinematic = false;
 		rigidBody.useGravity = true;
 
-		Renderer renderer = cube.GetComponent<Renderer> ();
-		//renderer.material = cubeMaterial;
-		renderer.material.color = new Color (1, 1, 20, 1.0f);
+		//Renderer renderer = cube.GetComponent<Renderer> ();
 
 		if (dimension == Dimension.FRONT || dimension == Dimension.BACK) {
 			rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
@@ -345,22 +343,8 @@ public class SceneInit : MonoBehaviour {
 		renderer = cube.GetComponent<Renderer> ();
 
 		cube.GetComponent<Cube>().setDimension(dimension);
-
-		/*
-		if (dimension==Dimension.FRONT){
-			cube.transform.Rotate(new Vector3(0.0f,0.0f,0.0f));
-		}
-		else if (dimension==Dimension.BACK){
-			cube.transform.Rotate(new Vector3(0.0f,-180.0f,0.0f)); //180
-		}
-		else if (dimension==Dimension.RIGHT){
-			cube.transform.Rotate(new Vector3(0.0f,-90.0f,0.0f)); //270
-		}
-		else if (dimension==Dimension.LEFT){
-			cube.transform.Rotate(new Vector3(0.0f,270.0f,0.0f)); //90
-		}
-		*/
 	}
+
 
 	/**
 	 * Function that creates a coin in the given position
@@ -371,6 +355,7 @@ public class SceneInit : MonoBehaviour {
 		newCoin.Rotate( dimensionToVector(dimension) );
 	}
 
+
 	/**
 	 * Function that creates a gravity power up in the given position
 	 * */
@@ -379,6 +364,7 @@ public class SceneInit : MonoBehaviour {
 		newGravity.tag = "Gravity";
 		newGravity.Rotate( dimensionToVector(dimension) );
 	}
+
 
 	/**
 	 * Function that creates a health power up in the given position
@@ -389,6 +375,7 @@ public class SceneInit : MonoBehaviour {
 		newHealth.Rotate( dimensionToVector(dimension) );
 	}
 
+
 	/**
 	 * Function that creates an exit portal in the given position
 	 * */
@@ -397,9 +384,25 @@ public class SceneInit : MonoBehaviour {
 		newExitPortal.tag = "ExitPortal";
 		newExitPortal.Rotate( dimensionToVector(dimension) );
 	}
+	
+	
+	/**
+	 * Function that creates an exit portal in the given position
+	 * */
+	private void createTextMessage(Vector3 position, Dimension dimension, string message) {
+		Transform  newTextMessage = Instantiate(text, position,Quaternion.identity ) as Transform;
+		newTextMessage.Rotate( dimensionToVector(dimension) );
+
+		TextMesh textMesh = newTextMessage.gameObject.GetComponent<TextMesh> ();
+		textMesh.text = message;
+
+		TextMessage textMessageObect = newTextMessage.gameObject.GetComponent<TextMessage>();
+		textMessageObect.setDimension (dimension);
+	}
+
 
 	/**
-	 * Converst the dimension to a vector that correpsonds to the rotation degrees
+	 * Convert the dimension to a vector that correpsonds to the rotation degrees
 	 * */
 	private Vector3 dimensionToVector(Dimension dimension) {
 		if (dimension == Dimension.FRONT) {
@@ -417,7 +420,6 @@ public class SceneInit : MonoBehaviour {
 
 	private void createText() {
 		GameObject Text = new GameObject();
-
 	}
 	
 	// Update is called once per frame
