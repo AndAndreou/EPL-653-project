@@ -276,7 +276,7 @@ public class Player : MonoBehaviour {
 			//TODO add health
 			other.gameObject.SetActive (false);
 		} else if (other.gameObject.tag == "ExitPortal") {
-			AutoFade.LoadLevel("2ndLevel", 2, 3, Color.black);
+			AutoFade.LoadLevel("IntroLevel", 2, 3, Color.black);
 			//Application.LoadLevel("2ndLevel");
 			//Application.LoadLevelAsync
 		}

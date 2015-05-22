@@ -8,25 +8,37 @@ public class Cube : MonoBehaviour {
 	private GameObject camera;
 	private Dimension cubeDimension;
 
+
 	// Use this for initialization
 	void Start () {
-		//repository = GameRepository.Instance;
+
 		renderer = this.GetComponent<Renderer> ();
 		player = GameObject.FindGameObjectWithTag(("Player"));
 		camera = GameObject.FindGameObjectWithTag(("MainCamera"));
-		//cubeDimension = Dimension.BACK;
-		
-		// Nicolas
-		MeshFilter mf = GetComponent<MeshFilter>();
+
+		MeshFilter meshFilter = GetComponent<MeshFilter>();
 		Mesh mesh = GetComponent<Mesh>();
-		if (mf != null)
-			mesh = mf.mesh;
+		if (meshFilter != null) {
+			mesh = meshFilter.mesh;
+		}
 		
 		if (mesh == null || mesh.uv.Length != 24) {
 			Debug.Log("Script needs to be attached to built-in cube");
 			return;
-		}
+		} 
 		
+		mesh.uv = setUVS(mesh);
+
+		if (this.tag == "StaticCube") {
+			renderer.material = Resources.Load<Material> ("cubeMaterial4");
+		}
+		else {
+			renderer.material = Resources.Load<Material> ("cubeMaterial");
+		}
+
+	}
+
+	private Vector2[] setUVS(Mesh mesh) {
 		Vector2[] uvs = mesh.uv;
 		
 		// Front
@@ -62,14 +74,11 @@ public class Cube : MonoBehaviour {
 		uvs[20] = new Vector2(2f / 3f, 1f / 3f);
 		uvs[22] = new Vector2(1.00f, 1f / 3f);
 		uvs[23] = new Vector2(2f / 3f, 2f / 3f);
-		uvs[21] = new Vector2(1.0f, 2f / 3f);    
-		
-		mesh.uv = uvs;
-		
-		renderer.material = Resources.Load<Material> ("cubeMaterial4");
-		// Nicolas
+		uvs[21] = new Vector2(1.0f, 2f / 3f);   
+
+		return uvs;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (GameRepository.isPaused()) {
@@ -81,27 +90,25 @@ public class Cube : MonoBehaviour {
 			return;
 		}
 
+		Vector3 playerPosition = new Vector3 (Mathf.RoundToInt (player.transform.position.x), 
+		                                      Mathf.RoundToInt (player.transform.position.y), 
+		                                      Mathf.RoundToInt (player.transform.position.z));
 		if ((GameRepository.getCurrentDimension() == Dimension.FRONT) || (GameRepository.getCurrentDimension() == Dimension.BACK)) { //dimension cube = 0
-			if (player.transform.position.z == this.transform.position.z) {
-				//Debug.Log("Z - Z");
+			if (playerPosition.z == this.transform.position.z) {
 				renderer.enabled = true;
 			}
 			else {
 				renderer.enabled = false;
-				//Debug.Log("Z !- Z");
 			}
 		} 
 		else  {
-			if (player.transform.position.x == this.transform.position.x) {
+			if (playerPosition.x == this.transform.position.x) {
 				renderer.enabled = true;
-				//Debug.Log("X - X");
 			}
 			else {
 				renderer.enabled = false;
-				//Debug.Log("X !- X");
 			}
 		}
-
 		/*
 		int x = Mathf.RoundToInt (player.transform.position.x);
 		int z = Mathf.RoundToInt(player.transform.position.z);
@@ -124,6 +131,8 @@ public class Cube : MonoBehaviour {
 		}*/
 
 	}
+
+
 
 
 	//setters and getters
