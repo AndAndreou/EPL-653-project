@@ -7,6 +7,7 @@ public class SceneInit : MonoBehaviour {
 
 	//Prefubs
 	public Transform Enemy;
+	public Transform Enemystrong;
 	public Transform powerUp_coin;
 	public Transform powerUp_health;
 	public Transform powerUp_gravity;
@@ -192,8 +193,12 @@ public class SceneInit : MonoBehaviour {
 			//Debug.Log(listOfList[0][0].x + "," + listOfList[0][0].z + "," + listOfList[0].Count);
 		}
 
+		//dimiourgia strong enemy gia testing
+		Transform  newEnemy3 = Instantiate(Enemystrong,new Vector3(15.0f,2.0f,0.0f),Quaternion.identity ) as Transform;
+		newEnemy3.tag="Enemy";
+		//
 		//Debug.Log("-----" + listOfList.Count);
-		List<int> zeroOrOne = new List<int>();// pithanotita 5/2 gia ton elaxisto aritmo ton exthron se mia grami 1:0
+		List<int> zeroOrOne = new List<int>();// pithanotita 5/7 gia ton elaxisto aritmo ton exthron se mia grami 1:0
 		zeroOrOne.Add(1);
 		zeroOrOne.Add(1);
 		zeroOrOne.Add(0);
@@ -218,8 +223,16 @@ public class SceneInit : MonoBehaviour {
 			for (int i=0; i<numOfEnemy; i++) { //dimiourgia ekthron
 				if (listOfList[c].Count>0){
 					int p = Random.Range(0, (listOfList[c].Count));
-					Transform  newEnemy = Instantiate(Enemy,listOfList[c][p],Quaternion.identity ) as Transform;
-					newEnemy.tag="Enemy";
+					//random dimiourgia easy or strong enemy
+					if(zeroOrOne[Random.Range(0,zeroOrOne.Count)]==1){
+						Transform  newEnemy = Instantiate(Enemy,listOfList[c][p],Quaternion.identity ) as Transform;
+						newEnemy.tag="Enemy";
+					}
+					else{
+						Transform  newEnemy2 = Instantiate(Enemystrong,listOfList[c][p],Quaternion.identity ) as Transform;
+						newEnemy2.tag="Enemy";
+					}
+
 					if (p+2<=listOfList[c].Count-1){
 						listOfList[c].RemoveAt(p+2);
 					}

@@ -4,23 +4,35 @@ using System.Collections;
 public class Enemy : MonoBehaviour {
 	private GameObject target; // metavliti p krata ton pekti mas
 	//private GameRepository repository; //GameRepository
-	private float vision; // apostasi oratotitas
+	public float vision; // apostasi oratotitas
 	private Dimension dimension ; //metavliti p krata se pia diastasi ine o enemy
-	private float speed;
-	private float life;
+	public float speed;
+	public float life;
 	private float damage;
-	private float jump;
+	private float jump=300.0f;
 	private bool findDimension= true;
 	private string lookAt; //metavliti p krato p vlepi o enemy left or right
 	private bool isJump=false;
 	private Animator animator;
 	private Renderer renderer;
 	private Rigidbody rigidBody;
-	private float ratefire;
+	public float ratefire;
+	public float mindam;
+	public float maxdam;
+	//public RuntimeAnimatorController enemyeasy;
+	//public RuntimeAnimatorController enemystrong;
 
 	public Transform enemyBullet;
 	private float creationTime;
 
+	//
+	public float[] scale = new float[3]; //scale[0]=x ,scale[1]=y , scale[2]=z 
+	//public float scaley;
+	//public float scalez;
+	public float[] col = new float[3];
+	//public float coly;
+	//public float colz;
+	public float rotanim;
 	
 
 	// Use this for initialization
@@ -34,22 +46,25 @@ public class Enemy : MonoBehaviour {
 		int lookLeft;
 		//repository = GameRepository.Instance;
 		target = GameObject.FindGameObjectWithTag("Player");
-		damage = Random.Range (10.0f, 80.0f);
+		damage = Random.Range (mindam, maxdam);
 		//
 		//this.GetComponent<BoxCollider>().size = new Vector3(0.01f,0.41f,0.2f);
 		//this.transform.localScale = new Vector3(1.0f,3.0f,0.0f);
 		//this.GetComponent<BoxCollider>().size=0.01f;
 		//
 
+		/*
 		vision= 6.0f; // apostasi oratotitas
 		speed=0.05f;
 		life=100.0f;
 		damage=30.0f;
 		jump=300.0f;
 		ratefire=1.0f;
-
+		*/
 		animator = GetComponent<Animator> ();
+		//animator.runtimeAnimatorController = enemystrong;
 
+		transform.Rotate(new Vector3(0.0f,1.0f,0.0f),rotanim);
 		//Color c = new Color ((damage/100.0f),0.0f,0.0f,1.0f);
 		//GetComponent<SpriteRenderer>().color = c;
 		lookLeft = Random.Range (0, 10);
@@ -309,8 +324,10 @@ public class Enemy : MonoBehaviour {
 					dimension=Dimension.LEFT;
 				}
 				//Debug.Log(other.transform.localEulerAngles.y);
-				this.transform.localScale = new Vector3(3.0f,3.0f,0.0f);
-				this.GetComponent<BoxCollider>().size = new Vector3(0.37f,0.41f,0.2f);
+				//this.transform.localScale = new Vector3(3.0f,3.0f,0.0f);
+				this.transform.localScale = new Vector3(scale[0],scale[1],scale[2]);
+				//this.GetComponent<BoxCollider>().size = new Vector3(0.37f,0.41f,0.2f);
+				this.GetComponent<BoxCollider>().size = new Vector3(col[0],col[1],col[2]);
 				Vector3 posi=other.gameObject.GetComponent<Transform>().transform.position; //epanatopotheto ton enemy sto kentro tou cube
 				posi.y+=1.2f;
 				this.transform.position = posi;

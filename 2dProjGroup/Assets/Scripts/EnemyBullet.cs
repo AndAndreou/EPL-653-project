@@ -7,7 +7,7 @@ public class EnemyBullet : MonoBehaviour {
 	private float bulletSpeed;
 	private GameObject target;
 	//private GameRepository repository;
-	private float damage ; 
+	public float damage ; //damage sferas 
 	private Vector3 tarpos;
 	private Vector3 norm; 
 	private float creationTime;
@@ -23,7 +23,7 @@ public class EnemyBullet : MonoBehaviour {
 
 		bulletRigidBody = this.GetComponent<Rigidbody> ();
 
-		damage = 10.0f; //damage sferas 
+		 
 		bulletSpeed=6.0f;
 
 		//get creation time
