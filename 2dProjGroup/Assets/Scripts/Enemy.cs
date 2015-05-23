@@ -35,6 +35,10 @@ public class Enemy : MonoBehaviour {
 	public float rotanim;
 	private float epsilon = 0.4f; //timi gia dimiourgia orion stin oratotita
 	//private int isRaisedORisRotating=0;
+	//metavlites gia floor testing
+	private int floorray ;
+	private int floorOnx ;
+	private int floorExists=1;
 	
 
 	// Use this for initialization
@@ -95,8 +99,8 @@ public class Enemy : MonoBehaviour {
 
 		if ((life<=0.0f) || (this.transform.position.y<=0)){
 			Destroy(this.gameObject );
+			return;
 		}
-
 
 		if (findDimension==false){ // monon otan o enemy topothetithi tin proti fora tha ginonte i pio kato elexi prin oxi
 			// pote tha fenete kai pote oxi ekthors 
@@ -104,20 +108,20 @@ public class Enemy : MonoBehaviour {
 				renderer.enabled = true;
 				return;
 			}
-			
-			if ((GameRepository.getCurrentDimension() == Dimension.FRONT) || (GameRepository.getCurrentDimension() == Dimension.BACK)) { //dimension cube = 0
-				if (Mathf.Abs((Mathf.Abs(target.transform.position.z) - Mathf.Abs(this.transform.position.z)))<epsilon) {
+			else if (((GameRepository.getCurrentDimension() == Dimension.FRONT) || (GameRepository.getCurrentDimension() == Dimension.BACK)) && ((dimension == Dimension.FRONT) || (dimension == Dimension.BACK))) { //dimension cube = 0
+				//Debug.Log("------");
+				if (Mathf.Abs(target.transform.position.z - this.transform.position.z)<epsilon) {
 					//Debug.Log("Z - Z");
 					renderer.enabled = true;
 				}
-				else {
+				else  {
 					//renderer.enabled = true; //prosorino gia na kano kapious elexous
 					renderer.enabled = false;
 					//Debug.Log("Z !- Z");
 				}
 			} 
-			else  {
-				if (Mathf.Abs((Mathf.Abs(target.transform.position.x) - Mathf.Abs(this.transform.position.x)))<epsilon) {
+			else if (((GameRepository.getCurrentDimension() == Dimension.RIGHT) || (GameRepository.getCurrentDimension() == Dimension.LEFT)) && ((dimension == Dimension.RIGHT) || (dimension == Dimension.LEFT))) {
+				if (Mathf.Abs(target.transform.position.x - this.transform.position.x)<epsilon) {
 					renderer.enabled = true;
 					//Debug.Log("X - X");
 				}
@@ -126,6 +130,9 @@ public class Enemy : MonoBehaviour {
 					renderer.enabled = false;
 					//Debug.Log("X !- X");
 				}
+			}
+			else {
+				renderer.enabled = false;
 			}
 		}
 
@@ -165,18 +172,25 @@ public class Enemy : MonoBehaviour {
 				if ((isVisionRayHit) && (tagVisonRayHit == "Player")) {
 					animator.SetBool("enemyWalk", true);
 					if (dimension == Dimension.FRONT || dimension == Dimension.BACK) {
+						floorOnx=1;
 						//if (Mathf.Abs(target.transform.position.z-transform.position.z)<=1){ //elenxos an vriskonte sto dio z
 						//	float distance=target.transform.position.x-transform.position.x;
 						//	if (Mathf.Abs(distance)<=vision){ // vriskete entos oratotitas
 						if (dimension == Dimension.FRONT) {
 							if (visionRayDirection.x < 0) { //elenxos an o pektis ine aristera
-								transform.position = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z); //kino ton ekthro aristera
+								floorray=0;
+								if (floorExists==1){
+							   		transform.position = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z); //kino ton ekthro aristera
+								}
 								if (lookAt == "right") { //kano rotate to sprite an alakso katefthinsi
 									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),-180.0f);
 								}
 								lookAt = "left";
 							} else { //elenxos an o pektis ine deksia
-								transform.position = new Vector3 (transform.position.x + speed, transform.position.y, transform.position.z); //kino ton ekthro deksia
+								floorray=1;
+								if (floorExists==1){
+									transform.position = new Vector3 (transform.position.x + speed, transform.position.y, transform.position.z); //kino ton ekthro deksia
+								}
 								if (lookAt == "left") {
 									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),180.0f);
 								}
@@ -184,13 +198,19 @@ public class Enemy : MonoBehaviour {
 							}
 						} else {
 							if (visionRayDirection.x > 0) { //elenxos an o pektis ine aristera
-								transform.position = new Vector3 (transform.position.x + speed, transform.position.y, transform.position.z); //kino ton ekthro aristera
+								floorray=1;
+								if (floorExists==1){
+									transform.position = new Vector3 (transform.position.x + speed, transform.position.y, transform.position.z); //kino ton ekthro aristera
+								}
 								if (lookAt == "right") {
 									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),-180.0f);
 								}
 								lookAt = "left";
 							} else {
-								transform.position = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z); //kino ton ekthro deksia
+								floorray=0;
+								if (floorExists==1){
+									transform.position = new Vector3 (transform.position.x - speed, transform.position.y, transform.position.z); //kino ton ekthro deksia
+								}
 								if (lookAt == "left") {
 									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),180.0f);
 								}
@@ -200,19 +220,26 @@ public class Enemy : MonoBehaviour {
 						/*}
 							}*/
 					} else { //dimension==3 || dimension==4
+						floorOnx=0;
 						//if (Mathf.Abs(target.transform.position.x-transform.position.x)<=1){ //elenxos an vriskonte sto dio z
 						//	float distance=target.transform.position.z-transform.position.z;
 						//	if (Mathf.Abs(distance)<=vision){ // vriskete entos oratotitas
 						if (dimension == Dimension.RIGHT) {
 							if (visionRayDirection.z < 0) { //elenxos an o pektis ine aristera
-								transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z - speed); //kino ton ekthro aristera
+								floorray=0;
+								if (floorExists==1){
+									transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z - speed); //kino ton ekthro aristera
+								}
 								if (lookAt == "right") {
 									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),-180.0f);
 								}
 								//Debug.Log("test 1");
 								lookAt = "left";
 							} else { //elenxos an o pektis ine deksia
-								transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z + speed); //kino ton ekthro deksia
+								floorray=1;
+								if (floorExists==1){
+									transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z + speed); //kino ton ekthro deksia
+								}
 								if (lookAt == "left") {
 									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),180.0f);
 								}
@@ -221,15 +248,20 @@ public class Enemy : MonoBehaviour {
 							}
 						} else {
 							if (visionRayDirection.z > 0) { //elenxos an o pektis ine aristera
-								transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z + speed); //kino ton ekthro aristera
-
+								floorray=1;
+								if (floorExists==1){
+									transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z + speed); //kino ton ekthro aristera
+								}
 								if (lookAt == "right") {
 									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),-180.0f);
 								}
 								//Debug.Log("test 3");
 								lookAt = "left";
 							} else {
-								transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z - speed); //kino ton ekthro deksia
+								floorray=0;
+								if (floorExists==1){
+									transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z - speed); //kino ton ekthro deksia
+								}
 								if (lookAt == "left") {
 									transform.Rotate(new Vector3(0.0f,1.0f,0.0f),180.0f);
 								}
@@ -267,7 +299,60 @@ public class Enemy : MonoBehaviour {
 					isJump = true;
 				}
 
+
+				//elexos an iparxi edafos mprosta
+				float floorRayDireectionX;
+				float floorRayDireectionZ;
+				bool isFloorRayHit = false;
+				RaycastHit floorRayHit ;
+				Vector3 startPosFloorRay= new Vector3 (transform.position.x,transform.position.y + 0.6f,transform.position.z); //exi sxesi me to ipsos tou enemy to 1.0f
+
+				if (floorray==1){
+					floorRayDireectionX=(transform.position.x+1.0f);
+					floorRayDireectionZ=(transform.position.z+1.0f);
+				}
+				else{
+					floorRayDireectionX=(transform.position.x-1.0f);
+					floorRayDireectionZ=(transform.position.z-1.0f);
+				}
+
+				Vector3 floorRayDirection;
+				if (floorOnx==1){
+					 floorRayDirection = new Vector3 (floorRayDireectionX,transform.position.y - 1.0f,transform.position.z);
+				}
+				else{
+					 floorRayDirection = new Vector3 (transform.position.x,transform.position.y - 1.0f,floorRayDireectionZ);
+				}
+				Debug.Log("////////////////////");
+				Debug.Log(floorRayDirection);
+				isFloorRayHit = Physics.Raycast (startPosFloorRay, floorRayDirection, out floorRayHit, 20.0f);
 				
+				string tagFloorRayHit="";
+				
+				if (isFloorRayHit) {
+					tagFloorRayHit = floorRayHit.transform.tag;  
+					//Debug.Log("-------------");
+				}
+				Debug.DrawLine (startPosFloorRay, floorRayDirection, Color.green);
+				//Debug.DrawLine (startPosRay, RayHit.transform.position, Color.red);
+				//Debug.Log(isJump);
+				//Debug.Log(tagRayHit);
+				//
+				if ((tagFloorRayHit == "StaticCube") || (tagFloorRayHit == "MovableCube") || (tagFloorRayHit == "Enemy")) {
+					floorExists=1;
+					Debug.Log("************");
+					Debug.Log(tagFloorRayHit);
+					//Debug.Log("testray");
+				}
+				else{
+					floorExists=0;
+					animator.SetBool("enemyWalk", false);
+					Debug.Log("++++++++++++++");
+					Debug.Log(tagFloorRayHit);
+					Debug.Log("testray");
+				}
+
+				//
 				/*if (GetComponent<Rigidbody>().velocity.y != 0.0f) {
 					isJump = true;
 				} else {
@@ -284,7 +369,7 @@ public class Enemy : MonoBehaviour {
 				}
 			}
 		}
-		animator.SetBool("enemyWalk", false);
+		//animator.SetBool("enemyWalk", false);
 	}
 
 	void OnCollisionEnter(Collision other){  
@@ -298,6 +383,12 @@ public class Enemy : MonoBehaviour {
 				//Debug.Log("-------");
 				/*if(other.transform.localEulerAngles.y==0)*/
 				//Debug.Log(other.gameObject.GetComponent<Cube>().getDimension());
+				if (rigidBody == null){ //apofigi enemy se lathos simia
+					Debug.Log("******* totalEnemyNumber_by_rigidBody.constraints  - 1 *******");
+					Destroy(this.gameObject );
+					return;
+				}
+
 				if(other.gameObject.GetComponent<Cube>().getDimension()==Dimension.FRONT){ //dimension cube = 0
 					//Debug.Log("test_front");
 					transform.Rotate(new Vector3(0.0f,0.0f,0.0f));
@@ -368,8 +459,9 @@ public class Enemy : MonoBehaviour {
 		}
 
 		if (findDimension == true) {
-			Debug.Log("******* totalEnemyNumber - 1 *******");
+			Debug.Log("******* totalEnemyNumber_by_findDimension - 1 *******");
 			Destroy(this.gameObject );
+			return;
 		}
 		//}
 	}
