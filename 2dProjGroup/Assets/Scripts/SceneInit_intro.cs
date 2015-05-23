@@ -7,6 +7,7 @@ public class SceneInit_intro : MonoBehaviour {
 	
 	//Prefubs
 	public Transform Enemy;
+	public Transform Enemystrong;
 	public Transform powerUp_coin;
 	public Transform powerUp_health;
 	public Transform powerUp_gravity;
@@ -46,20 +47,20 @@ public class SceneInit_intro : MonoBehaviour {
 		//proto epipedo
 		position = new Vector3 (-5,0,0);
 		for (position.x = -12; position.x<=25; position.x++) {
-				createStaticCube(position, size, Dimension.FRONT);
+				createStaticCube(position, size, Dimension.FRONT,1);
 		}
 
 		//dimiourgia epipedou meta to keno
 		for (position.x = -17, position.y=0; position.x>-30; position.x--) {
-			createStaticCube(position, size, Dimension.FRONT);
+			createStaticCube(position, size, Dimension.FRONT,1);
 		}
 
 		//dimiourgise tixo gia to telos tou epipedou
 		for (position.x=-30, position.y=0; position.y<6; position.y++) {
-			createStaticCube(position, size, Dimension.FRONT);
+			createStaticCube(position, size, Dimension.FRONT,1);
 		}
 		for (position.x=-30, position.y=5; position.x<-27; position.x++) {
-			createStaticCube(position, size, Dimension.FRONT);
+			createStaticCube(position, size, Dimension.FRONT,1);
 		}
 
 		//movalbe kivos
@@ -67,24 +68,24 @@ public class SceneInit_intro : MonoBehaviour {
 
 		//dimiourgia epipedou anevasmeno kata 2
 		for (position.x=21, position.y=2; position.x<35; position.x++) {
-			createStaticCube(position, size, Dimension.FRONT);
+			createStaticCube(position, size, Dimension.FRONT,1);
 		}
 
 		
 		//dimiourgia enallaktikou dromou sto -3  kai 3
 		for (position.x=24, position.y=2, position.z=-3;position.z<=3;position.z++) {
 			if (position.z == 0) continue;
-			createStaticCube (position,size, Dimension.RIGHT);
+			createStaticCube (position,size, Dimension.RIGHT,1);
 		}
 		for (position.x=24, position.y=2; position.x<=33; position.x++) {
 			position.z = -3;
-			createStaticCube(position, size, Dimension.FRONT);
+			createStaticCube(position, size, Dimension.FRONT,1);
 			position.z = 3;
-			createStaticCube(position, size, Dimension.FRONT);
+			createStaticCube(position, size, Dimension.FRONT,1);
 		}
 		for (position.x=33, position.y=2, position.z=-2;position.z<=2;position.z++) {
 			if (position.z == 0) continue;
-			createStaticCube (position,size, Dimension.RIGHT);
+			createStaticCube (position,size, Dimension.RIGHT,1);
 		}
 
 
@@ -92,7 +93,7 @@ public class SceneInit_intro : MonoBehaviour {
 		int Xposition = 32;
 		for (position.y=3, position.z=0;position.y<=6;position.y++) {
 			for (position.x=28;position.x<=Xposition;position.x++) {
-				createStaticCube(position, size, Dimension.FRONT);
+				createStaticCube(position, size, Dimension.FRONT,1);
 			}
 			Xposition--;
 		}
@@ -100,26 +101,26 @@ public class SceneInit_intro : MonoBehaviour {
 		//dimourgia dapedou meta ti skala
 		for (position.x=28, position.y=7, position.z=0; position.x>5; position.x--) {
 			for (position.z=-1;position.z<=1;position.z++) {
-				createStaticCube(position, size, Dimension.FRONT);
+				createStaticCube(position, size, Dimension.FRONT,1);
 			}
 		}
 
 		//dimiourgia tavaniou
 		for (position.x=28, position.y=13, position.z=0; position.x>13; position.x--) {
 			for (position.z=-1;position.z<=1;position.z++) {
-				createStaticCube(position, size, Dimension.FRONT);
+				createStaticCube(position, size, Dimension.FRONT,1);
 			}
 		}
 
 		for (position.x = 20, position.y=8,position.z=0; position.y<=10;position.y++) {
-			createStaticCube(position, size, Dimension.FRONT);
+			createStaticCube(position, size, Dimension.FRONT,1);
 		}
 
 		//gravity
 		createGravityPowerUp (new Vector3 (21,8,0), Dimension.FRONT);
 		
 		for (position.x=16, position.y=12,position.z=0; position.y>=10;position.y--) {
-			createStaticCube(position, size, Dimension.FRONT);
+			createStaticCube(position, size, Dimension.FRONT,1);
 		}
 
 		//gravity
@@ -132,12 +133,12 @@ public class SceneInit_intro : MonoBehaviour {
 		int temp = 0;
 		for (position.x=6, position.y=7, position.z=2; temp<4; position.z++, temp++) {
 			for (position.x=6+temp;position.x<=(12-temp); position.x++) {
-				createStaticCube(position, size, Dimension.LEFT);
+				createStaticCube(position, size, Dimension.LEFT,1);
 			}
 		}
 
 		for (position.x=9, position.y=7, position.z=2; position.z<25; position.z++) {
-			createStaticCube(position, size, Dimension.LEFT);
+			createStaticCube(position, size, Dimension.LEFT,1);
 		}
 
 		//text messages
@@ -164,8 +165,19 @@ public class SceneInit_intro : MonoBehaviour {
 			//Debug.Log(listOfList[0][0].x + "," + listOfList[0][0].z + "," + listOfList[0].Count);
 		}
 
+		//Debug.Log(listOfList[0][0].x + "," + listOfList[0][0].z + "," + listOfList[0].Count);
+		if (/*(listOfList[0][0].x==0.0f)&&*/(listOfList[0][0].z==0.0f)&&(listOfList[0].Count>18)){//elexos an ime ontos sto proto diadromo ke an exi toulaxiston 7 cubes
+			//Debug.Log(listOfList[0][0].x + "," + listOfList[0][0].z + "," + listOfList[0].Count);
+			listOfList[0].RemoveRange(0,17); // stin arxi (tou stadiou) afinoume kapies thesis adies 
+			//Debug.Log(listOfList[0][0].x + "," + listOfList[0][0].z + "," + listOfList[0].Count);
+		}
+		
+		//dimiourgia strong enemy gia testing
+		Transform  newEnemy3 = Instantiate(Enemystrong,new Vector3(15.0f,2.0f,0.0f),Quaternion.identity ) as Transform;
+		newEnemy3.tag="Enemy";
+		//
 		//Debug.Log("-----" + listOfList.Count);
-		List<int> zeroOrOne = new List<int>();// pithanotita 5/2 gia ton elaxisto aritmo ton exthron se mia grami 1:0
+		List<int> zeroOrOne = new List<int>();// pithanotita 5/7 gia ton elaxisto aritmo ton exthron se mia grami 1:0
 		zeroOrOne.Add(1);
 		zeroOrOne.Add(1);
 		zeroOrOne.Add(0);
@@ -190,8 +202,16 @@ public class SceneInit_intro : MonoBehaviour {
 			for (int i=0; i<numOfEnemy; i++) { //dimiourgia ekthron
 				if (listOfList[c].Count>0){
 					int p = Random.Range(0, (listOfList[c].Count));
-					Transform  newEnemy = Instantiate(Enemy,listOfList[c][p],Quaternion.identity ) as Transform;
-					newEnemy.tag="Enemy";
+					//random dimiourgia easy or strong enemy
+					if(zeroOrOne[Random.Range(0,zeroOrOne.Count)]==1){
+						Transform  newEnemy = Instantiate(Enemy,listOfList[c][p],Quaternion.identity ) as Transform;
+						newEnemy.tag="Enemy";
+					}
+					else{
+						Transform  newEnemy2 = Instantiate(Enemystrong,listOfList[c][p],Quaternion.identity ) as Transform;
+						newEnemy2.tag="Enemy";
+					}
+					
 					if (p+2<=listOfList[c].Count-1){
 						listOfList[c].RemoveAt(p+2);
 					}
@@ -211,9 +231,9 @@ public class SceneInit_intro : MonoBehaviour {
 			}
 			/*Debug.Log("-----" + numOfEnemy);*/
 			totalEnemyNumber+=numOfEnemy;
-			Debug.Log("totalEnemyNumber:" + totalEnemyNumber);
+			
 		}
-		
+		Debug.Log("totalEnemyNumber:" + totalEnemyNumber);
 		
 	}
 	
@@ -226,7 +246,7 @@ public class SceneInit_intro : MonoBehaviour {
 	 * - Size: the size of the cube defined as a vector
 	 * - Dimension: the dimension of the cube
 	 */
-	private void createStaticCube(Vector3 position, Vector3 size, Dimension dimension) {
+	private void createStaticCube(Vector3 position, Vector3 size, Dimension dimension, int setenemy) { //setenemy otan ine 1 tote ine ipopsifia thesi gia enemy
 		//
 		if ((prevDim != dimension)&&(count>=0)) { //se kathe alagi tou divension midenizete to count , to (count>=0) xrismopoite gia tin arxi, na min ginonte spawn enemy konta s stin arxi
 			
@@ -251,7 +271,7 @@ public class SceneInit_intro : MonoBehaviour {
 		prevZ=position.z;
 		
 		count++;
-		if (count >= 5) {
+		if ((count >= 5) && (setenemy==1)) {
 			listOfList[countOfList].Add(new Vector3(position.x,position.y+2,position.z));
 		}
 		GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);

@@ -33,6 +33,8 @@ public class Enemy : MonoBehaviour {
 	//public float coly;
 	//public float colz;
 	public float rotanim;
+	private float epsilon = 0.4f; //timi gia dimiourgia orion stin oratotita
+	//private int isRaisedORisRotating=0;
 	
 
 	// Use this for initialization
@@ -79,6 +81,7 @@ public class Enemy : MonoBehaviour {
 		//spriteRenderer.sprite = sp1 ;
 		//dimension=0;// dokimastika
 
+		renderer.enabled=false;
 		//get creation time
 		creationTime = Time.time;
 	}
@@ -90,12 +93,12 @@ public class Enemy : MonoBehaviour {
 			return;
 		}
 
-		if (life<=0.0f){
+		if ((life<=0.0f) || (this.transform.position.y<=0)){
 			Destroy(this.gameObject );
 		}
 
 
-		if (findDimension==false){ // monon otan o enemi topothetithi tin proti fora tha ginonte i pio kato elexi prin oxi
+		if (findDimension==false){ // monon otan o enemy topothetithi tin proti fora tha ginonte i pio kato elexi prin oxi
 			// pote tha fenete kai pote oxi ekthors 
 			if (GameRepository.isRaised() || GameRepository.isRotating() ) {
 				renderer.enabled = true;
@@ -103,7 +106,7 @@ public class Enemy : MonoBehaviour {
 			}
 			
 			if ((GameRepository.getCurrentDimension() == Dimension.FRONT) || (GameRepository.getCurrentDimension() == Dimension.BACK)) { //dimension cube = 0
-				if (target.transform.position.z == this.transform.position.z) {
+				if (Mathf.Abs((Mathf.Abs(target.transform.position.z) - Mathf.Abs(this.transform.position.z)))<epsilon) {
 					//Debug.Log("Z - Z");
 					renderer.enabled = true;
 				}
@@ -114,7 +117,7 @@ public class Enemy : MonoBehaviour {
 				}
 			} 
 			else  {
-				if (target.transform.position.x == this.transform.position.x) {
+				if (Mathf.Abs((Mathf.Abs(target.transform.position.x) - Mathf.Abs(this.transform.position.x)))<epsilon) {
 					renderer.enabled = true;
 					//Debug.Log("X - X");
 				}
@@ -325,10 +328,11 @@ public class Enemy : MonoBehaviour {
 				}
 				//Debug.Log(other.transform.localEulerAngles.y);
 				//this.transform.localScale = new Vector3(3.0f,3.0f,0.0f);
+				Vector3 posi=other.gameObject.GetComponent<Transform>().transform.position; //epanatopotheto ton enemy sto kentro tou cube
 				this.transform.localScale = new Vector3(scale[0],scale[1],scale[2]);
 				//this.GetComponent<BoxCollider>().size = new Vector3(0.37f,0.41f,0.2f);
 				this.GetComponent<BoxCollider>().size = new Vector3(col[0],col[1],col[2]);
-				Vector3 posi=other.gameObject.GetComponent<Transform>().transform.position; //epanatopotheto ton enemy sto kentro tou cube
+
 				posi.y+=1.2f;
 				this.transform.position = posi;
 				renderer.enabled = true;
