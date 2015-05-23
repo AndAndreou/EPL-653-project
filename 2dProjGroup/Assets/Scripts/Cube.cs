@@ -33,7 +33,9 @@ public class Cube : MonoBehaviour {
 			renderer.material = Resources.Load<Material> ("cubeMaterial_purple");
 		}
 		else {
+			this.gameObject.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Continuous;
 			renderer.material = Resources.Load<Material> ("cubeMaterial4");
+
 		}
 
 	}
