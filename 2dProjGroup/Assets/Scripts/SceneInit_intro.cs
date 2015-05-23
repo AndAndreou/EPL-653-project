@@ -97,21 +97,63 @@ public class SceneInit_intro : MonoBehaviour {
 			Xposition--;
 		}
 
-		//dimourgia epipedou meta ti skala
-		for (position.x=28, position.y=7; position.x>14; position.x--) {
+		//dimourgia dapedou meta ti skala
+		for (position.x=28, position.y=7, position.z=0; position.x>5; position.x--) {
+			for (position.z=-1;position.z<=1;position.z++) {
+				createStaticCube(position, size, Dimension.FRONT);
+			}
+		}
+
+		//dimiourgia tavaniou
+		for (position.x=28, position.y=13, position.z=0; position.x>13; position.x--) {
+			for (position.z=-1;position.z<=1;position.z++) {
+				createStaticCube(position, size, Dimension.FRONT);
+			}
+		}
+
+		for (position.x = 20, position.y=8,position.z=0; position.y<=10;position.y++) {
 			createStaticCube(position, size, Dimension.FRONT);
 		}
 
-
+		//gravity
+		createGravityPowerUp (new Vector3 (21,8,0), Dimension.FRONT);
 		
+		for (position.x=16, position.y=12,position.z=0; position.y>=10;position.y--) {
+			createStaticCube(position, size, Dimension.FRONT);
+		}
+
+		//gravity
+		createGravityPowerUp (new Vector3 (17,12,0), Dimension.FRONT);
+
+
+		//allagi diastasis: LEFT
+
+		//dimiourgia dapedou
+		int temp = 0;
+		for (position.x=6, position.y=7, position.z=2; temp<4; position.z++, temp++) {
+			for (position.x=6+temp;position.x<=(12-temp); position.x++) {
+				createStaticCube(position, size, Dimension.LEFT);
+			}
+		}
+
+		for (position.x=9, position.y=7, position.z=2; position.z<25; position.z++) {
+			createStaticCube(position, size, Dimension.LEFT);
+		}
+
+		//text messages
 		createTextMessage (new Vector3(-29, 4, 0), Dimension.FRONT, "Dead-end. Go back!",20f);
 		createTextMessage (new Vector3(-13, 5, 0), Dimension.FRONT, "Press Up Arrow\nto jump!",20f);
 
 		createTextMessage (new Vector3(10, 4, 0), Dimension.FRONT, "This cube is movable",20f);
-		createTextMessage (new Vector3(20, 5, 0), Dimension.FRONT, "Press X", 2.5f);
-		createTextMessage (new Vector3(22.5f, 5, 0), Dimension.FRONT, "Press C,Z to rotate!", 2.5f);
+		createTextMessage (new Vector3(18.5f, 5, 0), Dimension.FRONT, "Press C,Z for dimensional rotation", 6f);
+		createTextMessage (new Vector3(18.5f, 6, 0), Dimension.FRONT, "Dead-end again. Try pressing X!", 6f);
 
-		createTextMessage (new Vector3(22f, 11, 0), Dimension.FRONT, "You can fire by pressing space!", 20f);
+		createTextMessage (new Vector3(22, 11, 0), Dimension.FRONT, "The red power up reverses gravity rules!", 20f);
+
+		createTextMessage (new Vector3(3, 11, 0), Dimension.FRONT, "Well, use what you have learned now :)", 20f);
+
+
+		createTextMessage (new Vector3(9, 11, 5), Dimension.LEFT, "You can fire by pressing space!", 20f);
 
 
 
@@ -336,9 +378,9 @@ public class SceneInit_intro : MonoBehaviour {
 		} else if (dimension == Dimension.BACK) {
 			return new Vector3 (0.0f, 180.0f, 0.0f);
 		} else if (dimension == Dimension.RIGHT) {
-			return new Vector3 (0.0f, 90.0f, 0.0f);
-		} else if (dimension == Dimension.LEFT) {
 			return new Vector3 (0.0f, 270.0f, 0.0f);
+		} else if (dimension == Dimension.LEFT) {
+			return new Vector3 (0.0f, 90.0f, 0.0f);
 		} else {
 			return new Vector3 (0.0f, 0.0f, 0.0f);
 		}

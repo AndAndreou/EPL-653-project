@@ -22,12 +22,17 @@ public class TextMessage : MonoBehaviour {
 		if (GameRepository.isPaused()) {
 			return;
 		}
+		
+		//fixing player position
+		Vector3 playerPosition = new Vector3 (Mathf.RoundToInt (player.transform.position.x), 
+		                                      Mathf.RoundToInt (player.transform.position.y), 
+		                                      Mathf.RoundToInt (player.transform.position.z));
 
 		//appearing when the player approaches
 		if (renderer.enabled == true) {
 			float distanceFromPlayer = Vector3.Distance(player.transform.position, this.transform.position);
 
-			if (distanceFromPlayer>appearanceDistance) {
+			if ( (distanceFromPlayer>appearanceDistance) || (playerPosition.y > (this.transform.position.y+1) ) ) {
 				distanceFromPlayer = 20;
 			}
 
@@ -40,11 +45,6 @@ public class TextMessage : MonoBehaviour {
 			textColor.a = newTransparencyValue;
 			this.gameObject.GetComponent<TextMesh>().color = textColor;
 		}
-
-
-		Vector3 playerPosition = new Vector3 (Mathf.RoundToInt (player.transform.position.x), 
-		                                      Mathf.RoundToInt (player.transform.position.y), 
-		                                      Mathf.RoundToInt (player.transform.position.z));
 
 		if (GameRepository.getCurrentDimension () == this.textDimension) {
 			if ((GameRepository.getCurrentDimension () == Dimension.FRONT) || (GameRepository.getCurrentDimension () == Dimension.BACK)) { //dimension cube = 0
