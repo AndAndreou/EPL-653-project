@@ -5,6 +5,7 @@ public class ExitPortal : MonoBehaviour {
 	private GameObject player;
 	private Renderer renderer;
 	private GameObject camera;
+	private string portalTarget;
 	
 	// Use this for initialization
 	void Start () {
@@ -23,9 +24,12 @@ public class ExitPortal : MonoBehaviour {
 			renderer.enabled = true;
 			return;
 		}
-		
+
+		Vector3 playerPosition = new Vector3 (Mathf.RoundToInt (player.transform.position.x), 
+		                                      Mathf.RoundToInt (player.transform.position.y), 
+		                                      Mathf.RoundToInt (player.transform.position.z));
 		if ((GameRepository.getCurrentDimension() == Dimension.FRONT) || (GameRepository.getCurrentDimension() == Dimension.BACK)) { //dimension cube = 0
-			if (player.transform.position.z == this.transform.position.z) {
+			if (playerPosition.z == this.transform.position.z) {
 				renderer.enabled = true;
 			}
 			else {
@@ -33,7 +37,7 @@ public class ExitPortal : MonoBehaviour {
 			}
 		} 
 		else  {
-			if (player.transform.position.x == this.transform.position.x) {
+			if (playerPosition.x == this.transform.position.x) {
 				renderer.enabled = true;
 			}
 			else {
@@ -41,4 +45,20 @@ public class ExitPortal : MonoBehaviour {
 			}
 		}
 	}
+
+	void OnTriggerEnter(Collider other) {
+		if (other.gameObject.tag == "Player") {
+			AutoFade.LoadLevel(this.portalTarget, 2, 3, Color.black);
+		}
+	}
+
+	//setters and getters
+	public string getPortalTarget() {
+		return this.portalTarget;
+	}
+
+	public void setPortalTarget(string portalTargetName) {
+		this.portalTarget = portalTargetName;
+	}
+
 }

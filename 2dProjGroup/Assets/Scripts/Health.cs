@@ -25,9 +25,12 @@ public class Health : MonoBehaviour {
 			renderer.enabled = true;
 			return;
 		}
-		
+
+		Vector3 playerPosition = new Vector3 (Mathf.RoundToInt (player.transform.position.x), 
+		                                      Mathf.RoundToInt (player.transform.position.y), 
+		                                      Mathf.RoundToInt (player.transform.position.z));
 		if ((GameRepository.getCurrentDimension() == Dimension.FRONT) || (GameRepository.getCurrentDimension() == Dimension.BACK)) { //dimension cube = 0
-			if (player.transform.position.z == this.transform.position.z) {
+			if (playerPosition.z == this.transform.position.z) {
 				renderer.enabled = true;
 			}
 			else {
@@ -35,7 +38,7 @@ public class Health : MonoBehaviour {
 			}
 		} 
 		else  {
-			if (player.transform.position.x == this.transform.position.x) {
+			if (playerPosition.x == this.transform.position.x) {
 				renderer.enabled = true;
 			}
 			else {
