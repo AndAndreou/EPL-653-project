@@ -30,10 +30,10 @@ public class Cube : MonoBehaviour {
 		mesh.uv = setUVS(mesh);
 
 		if (this.tag == "StaticCube") {
-			renderer.material = Resources.Load<Material> ("cubeMaterial4");
+			renderer.material = Resources.Load<Material> ("cubeMaterial_purple");
 		}
 		else {
-			renderer.material = Resources.Load<Material> ("cubeMaterial");
+			renderer.material = Resources.Load<Material> ("cubeMaterial4");
 		}
 
 	}

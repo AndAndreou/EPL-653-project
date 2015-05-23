@@ -42,35 +42,76 @@ public class SceneInit_intro : MonoBehaviour {
 		
 		Vector3 size = new Vector3(1,1,1);
 		Vector3 position = new Vector3(0,0,0);
-		
+
+		//proto epipedo
 		position = new Vector3 (-5,0,0);
-		for (position.x = -12; position.x<20; position.x++) {
+		for (position.x = -12; position.x<=25; position.x++) {
 				createStaticCube(position, size, Dimension.FRONT);
 		}
 
+		//dimiourgia epipedou meta to keno
 		for (position.x = -17, position.y=0; position.x>-30; position.x--) {
 			createStaticCube(position, size, Dimension.FRONT);
 		}
 
+		//dimiourgise tixo gia to telos tou epipedou
 		for (position.x=-30, position.y=0; position.y<6; position.y++) {
 			createStaticCube(position, size, Dimension.FRONT);
 		}
-
 		for (position.x=-30, position.y=5; position.x<-27; position.x++) {
 			createStaticCube(position, size, Dimension.FRONT);
 		}
 
-		createTextMessage (new Vector3(-29, 4, 0), Dimension.FRONT, "Dead-end. Go back!");
-		createTextMessage (new Vector3(-13, 5, 0), Dimension.FRONT, "Press Up Arrow\nto jump!");
+		//movalbe kivos
+		createMovableCube (new Vector3(18, 1, 0), size, Dimension.FRONT);
 
-
-		createMovableCube (new Vector3(12, 1, 0), size, Dimension.FRONT);
-		createTextMessage (new Vector3(12, 4, 0), Dimension.FRONT, "This cube is movable?");
-
-		for (position.x=-30, position.y=5; position.x<-27; position.x++) {
+		//dimiourgia epipedou anevasmeno kata 2
+		for (position.x=21, position.y=2; position.x<35; position.x++) {
 			createStaticCube(position, size, Dimension.FRONT);
 		}
 
+		
+		//dimiourgia enallaktikou dromou sto -3  kai 3
+		for (position.x=24, position.y=2, position.z=-3;position.z<=3;position.z++) {
+			if (position.z == 0) continue;
+			createStaticCube (position,size, Dimension.RIGHT);
+		}
+		for (position.x=24, position.y=2; position.x<=33; position.x++) {
+			position.z = -3;
+			createStaticCube(position, size, Dimension.FRONT);
+			position.z = 3;
+			createStaticCube(position, size, Dimension.FRONT);
+		}
+		for (position.x=33, position.y=2, position.z=-2;position.z<=2;position.z++) {
+			if (position.z == 0) continue;
+			createStaticCube (position,size, Dimension.RIGHT);
+		}
+
+
+		//dimiourgia gematis skalas
+		int Xposition = 32;
+		for (position.y=3, position.z=0;position.y<=6;position.y++) {
+			for (position.x=28;position.x<=Xposition;position.x++) {
+				createStaticCube(position, size, Dimension.FRONT);
+			}
+			Xposition--;
+		}
+
+		//dimourgia epipedou meta ti skala
+		for (position.x=28, position.y=7; position.x>14; position.x--) {
+			createStaticCube(position, size, Dimension.FRONT);
+		}
+
+
+		
+		createTextMessage (new Vector3(-29, 4, 0), Dimension.FRONT, "Dead-end. Go back!",20f);
+		createTextMessage (new Vector3(-13, 5, 0), Dimension.FRONT, "Press Up Arrow\nto jump!",20f);
+
+		createTextMessage (new Vector3(10, 4, 0), Dimension.FRONT, "This cube is movable",20f);
+		createTextMessage (new Vector3(20, 5, 0), Dimension.FRONT, "Press X", 2.5f);
+		createTextMessage (new Vector3(22.5f, 5, 0), Dimension.FRONT, "Press C,Z to rotate!", 2.5f);
+
+		createTextMessage (new Vector3(22f, 11, 0), Dimension.FRONT, "You can fire by pressing space!", 20f);
 
 
 
@@ -80,7 +121,7 @@ public class SceneInit_intro : MonoBehaviour {
 			listOfList[0].RemoveRange(0,10); // stin arxi (tou stadiou) afinoume kapies thesis adies 
 			//Debug.Log(listOfList[0][0].x + "," + listOfList[0][0].z + "," + listOfList[0].Count);
 		}
-		
+
 		//Debug.Log("-----" + listOfList.Count);
 		List<int> zeroOrOne = new List<int>();// pithanotita 5/2 gia ton elaxisto aritmo ton exthron se mia grami 1:0
 		zeroOrOne.Add(1);
@@ -271,22 +312,20 @@ public class SceneInit_intro : MonoBehaviour {
 		newExitPortal.tag = "ExitPortal";
 		newExitPortal.Rotate( dimensionToVector(dimension) );
 	}
-	
-	
+
 	/**
 	 * Function that creates an exit portal in the given position
 	 * */
-	private void createTextMessage(Vector3 position, Dimension dimension, string message) {
+	private void createTextMessage(Vector3 position, Dimension dimension, string message, float appearanceDistance) {
 		Transform  newTextMessage = Instantiate(text, position,Quaternion.identity ) as Transform;
 		newTextMessage.Rotate( dimensionToVector(dimension) );
 		
 		TextMesh textMesh = newTextMessage.gameObject.GetComponent<TextMesh> ();
 		textMesh.text = message;
-		
-		TextMessage textMessageObect = newTextMessage.gameObject.GetComponent<TextMessage>();
-		textMessageObect.setDimension (dimension);
+
+		newTextMessage.gameObject.GetComponent<TextMessage> ().setDimension (dimension);
+		newTextMessage.gameObject.GetComponent<TextMessage> ().setAppearanceDistance (appearanceDistance);
 	}
-	
 	
 	/**
 	 * Convert the dimension to a vector that correpsonds to the rotation degrees

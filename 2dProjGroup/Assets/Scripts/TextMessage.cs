@@ -8,6 +8,7 @@ public class TextMessage : MonoBehaviour {
 	private GameObject camera;
 
 	private Dimension textDimension;
+	private float appearanceDistance;
 	
 	// Use this for initialization
 	void Start () {
@@ -26,6 +27,10 @@ public class TextMessage : MonoBehaviour {
 		if (renderer.enabled == true) {
 			float distanceFromPlayer = Vector3.Distance(player.transform.position, this.transform.position);
 
+			if (distanceFromPlayer>appearanceDistance) {
+				distanceFromPlayer = 20;
+			}
+
 			float newTransparencyValue = 0.9f - (distanceFromPlayer/10);
 			if (newTransparencyValue < 0) {
 				newTransparencyValue = 0;
@@ -35,6 +40,7 @@ public class TextMessage : MonoBehaviour {
 			textColor.a = newTransparencyValue;
 			this.gameObject.GetComponent<TextMesh>().color = textColor;
 		}
+
 
 		Vector3 playerPosition = new Vector3 (Mathf.RoundToInt (player.transform.position.x), 
 		                                      Mathf.RoundToInt (player.transform.position.y), 
@@ -68,5 +74,14 @@ public class TextMessage : MonoBehaviour {
 	
 	public void setDimension(Dimension cubeDimension) {
 		this.textDimension = cubeDimension;
+	}
+
+	
+	public float getAppearanceDistance() {
+		return this.appearanceDistance;
+	}
+	
+	public void setAppearanceDistance(float appearanceDistance) {
+		this.appearanceDistance = appearanceDistance;
 	}
 }

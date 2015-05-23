@@ -113,33 +113,25 @@ public class Player : MonoBehaviour {
 		}
 
 		reflectPlayer ();
-		
+
+		if (GameRepository.getCurrentDimension() == Dimension.FRONT || GameRepository.getCurrentDimension() == Dimension.BACK) {
+			rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+		}
+		else if (GameRepository.getCurrentDimension() == Dimension.RIGHT || GameRepository.getCurrentDimension() == Dimension.LEFT) {
+			rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
+		}
 		
 		/* Camera rotation */
 		if (Input.GetKeyDown (KeyCode.C) && (!rotate)) {
 			rigidBodyTransform.position = new Vector3 (Mathf.Round(rigidBodyTransform.position.x) , rigidBodyTransform.position.y, Mathf.Round(rigidBodyTransform.position.z));
 			rotate = true;
 			cameraDirection = true;
-			
-			if (GameRepository.getCurrentDimension() == Dimension.FRONT || GameRepository.getCurrentDimension() == Dimension.BACK) {
-				rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
-			}
-			else if (GameRepository.getCurrentDimension() == Dimension.RIGHT || GameRepository.getCurrentDimension() == Dimension.LEFT) {
-				rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
-			}
 		}
 		
 		if (Input.GetKeyDown (KeyCode.Z) && (!rotate)) {
 			rigidBodyTransform.position = new Vector3 (Mathf.Round(rigidBodyTransform.position.x) , rigidBodyTransform.position.y, Mathf.Round(rigidBodyTransform.position.z));
 			rotate = true;
 			cameraDirection = false;
-			
-			if (GameRepository.getCurrentDimension() == Dimension.FRONT || GameRepository.getCurrentDimension() == Dimension.BACK) {
-				rigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
-			}
-			else if (GameRepository.getCurrentDimension() == Dimension.RIGHT || GameRepository.getCurrentDimension() == Dimension.LEFT) {
-				rigidBody.constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezeRotation;
-			}
 		}
 
 		if (Input.GetKeyDown (KeyCode.G) && (!rotate)) {
