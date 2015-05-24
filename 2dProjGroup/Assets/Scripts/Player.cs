@@ -23,6 +23,7 @@ public class Player : MonoBehaviour {
 	private float bulletSpeed;
 	
 	void Start () {
+		GetComponent<Renderer> ().enabled = false;
 		rigidBodyTransform = GetComponent<Rigidbody> ().transform;
 		//repository = GameRepository.Instance;
 		rigidBody = GetComponent<Rigidbody> ();
@@ -60,12 +61,18 @@ public class Player : MonoBehaviour {
 			playerColor.a =  newTransparencyValue;
 			this.gameObject.GetComponent<SpriteRenderer> ().material.color = playerColor;
 			if(transform.position.y < -3.0f){
+				GameRepository.setGameOverScreen(true);
+				GameRepository.setPauseScreen(false);
+				GameRepository.setPause(true);
 				//Destroy(this.gameObject);
 				//gameover
 			}
 		}
 		
 		if (GameRepository.isRaised ()) {
+			if (isGravity) {
+				reverseGravity();
+			}
 			return;
 		}
 		rigidBody.isKinematic = false;
@@ -93,7 +100,7 @@ public class Player : MonoBehaviour {
 		
 		/* Walking & shooting */
 		bool isWalking = false; 
-		if (Input.GetKey (KeyCode.LeftArrow) && (!rotate) && !Input.GetKey (KeyCode.RightArrow)) {
+		if (Input.GetKey (KeyCode.LeftArrow) && (!rotate)){// && !Input.GetKeyDown(KeyCode.RightArrow) && !Input.GetKey(KeyCode.RightArrow)) {
 			animator.SetBool ("walkBool", true);
 			GameRepository.setBackgroundSpeed (-0.0002f);
 			if (GameRepository.getCurrentDimension () == Dimension.FRONT) {
@@ -106,7 +113,7 @@ public class Player : MonoBehaviour {
 				rigidBodyTransform.position = new Vector3 (rigidBodyTransform.position.x, rigidBodyTransform.position.y, rigidBodyTransform.position.z + 0.1f);
 			}
 			isWalking = true;
-		} else if (Input.GetKey (KeyCode.RightArrow) && (!rotate)  && !Input.GetKey (KeyCode.LeftArrow)) {
+		} else if (Input.GetKey (KeyCode.RightArrow) && (!rotate)){// && !Input.GetKeyDown(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.LeftArrow)) {
 			animator.SetBool ("walkBool", true);
 			GameRepository.setBackgroundSpeed (0.0002f);
 			if (GameRepository.getCurrentDimension () == Dimension.FRONT) {
@@ -220,11 +227,11 @@ public class Player : MonoBehaviour {
 	
 	
 	private void reflectPlayer() {
-		if(Input.GetKeyDown(KeyCode.LeftArrow) && (!rotate) && !Input.GetKey (KeyCode.RightArrow)) {
+		if(Input.GetKeyDown(KeyCode.LeftArrow) && (!rotate)){// && !Input.GetKeyDown (KeyCode.RightArrow) && !Input.GetKey (KeyCode.RightArrow)) {
 			transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 			playerDirection = false;
 		}
-		else if (Input.GetKeyDown(KeyCode.RightArrow) && (!rotate) && !Input.GetKey (KeyCode.LeftArrow)) {
+		else if (Input.GetKeyDown(KeyCode.RightArrow) && (!rotate)){// && !Input.GetKeyDown (KeyCode.LeftArrow) && !Input.GetKey (KeyCode.LeftArrow)) {
 			transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 			playerDirection = true;
 		}
@@ -322,6 +329,7 @@ public class Player : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "Coin") {
+			GameRepository.setScore(10.0f);
 			other.gameObject.SetActive (false);
 		} else if (other.gameObject.tag == "Gravity") {
 			if(isGravity) {

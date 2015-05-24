@@ -12,6 +12,7 @@ public class EnergyBullet : MonoBehaviour {
 	private float damage = 50.0f; //damage sferas
 	private AudioSource sound;
 	private float creationTime;
+	private int bulletLife;
 	
 	float xDif, zDif, yDif;
 	
@@ -49,6 +50,7 @@ public class EnergyBullet : MonoBehaviour {
 
 		//get creation time
 		creationTime = Time.time;
+		bulletLife = 0;
 
 	}
 	
@@ -59,10 +61,10 @@ public class EnergyBullet : MonoBehaviour {
 			return;
 		}
 
-		if ( (Time.time - creationTime) > 0.7f) {
+		if ( bulletLife > 30) {
 			Destroy(this.gameObject);
 		}
-
+		bulletLife++;
 		if ( ( bulletRigidBody.position.x > 300 ) || (bulletRigidBody.position.x < -100) ||
 		    (bulletRigidBody.position.z > 300) || (bulletRigidBody.position.z < -300) ) {
 			Destroy(this.gameObject );

@@ -6,7 +6,10 @@ public class PauseScript : MonoBehaviour {
 	//private GameRepository repository;
 	//refrence for the pause menu panel in the hierarchy
 	public GameObject pauseMenuPanel;
+	private GameObject scoreText;
 	private GameObject pauseButton;
+	private GameObject pauseText;
+	private GameObject logoImage;
 	private GameObject healthBar;
 	private GameObject deathBar;
 	private GameObject audioOptions;
@@ -19,6 +22,7 @@ public class PauseScript : MonoBehaviour {
 	private GameObject optionsOnObj;
 	private GameObject optionsOffObj;
 	private Image backgroundImage;
+	private SceneInit_intro firstScecne;
 	//animator reference
 	private Animator anim;
 	//variable for checking if the game is paused 
@@ -27,6 +31,9 @@ public class PauseScript : MonoBehaviour {
 	// Use this for initialization
 
 	void Start () {
+		scoreText = GameObject.FindGameObjectWithTag ("ScoreText");
+		pauseText = GameObject.FindGameObjectWithTag ("PauseText");
+		logoImage = GameObject.FindGameObjectWithTag ("Logo");
 		healthBar = GameObject.FindGameObjectWithTag ("HealthBar");
 		deathBar = GameObject.FindGameObjectWithTag ("DeathBar");
 		audioOptions = GameObject.FindGameObjectWithTag ("AudioOptions");
@@ -36,6 +43,7 @@ public class PauseScript : MonoBehaviour {
 		soundsOffObj = GameObject.FindGameObjectWithTag ("SoundsOffObj");
 		optionsOnObj = GameObject.FindGameObjectWithTag ("OptionsOnObj");
 		optionsOffObj = GameObject.FindGameObjectWithTag ("OptionsOffObj");
+		firstScecne = GameObject.Find("SceneInit").GetComponent<SceneInit_intro> ();
 		//repository = GameRepository.Instance;
 		//unpause the game on start
 		//Time.timeScale = 1;
@@ -55,6 +63,14 @@ public class PauseScript : MonoBehaviour {
 			pauseMenuPanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(0.0f, 25.0f);
 
 			backgroundImage.sprite = Resources.Load<Sprite>("images/background");
+			//backgroundImage.color = new Color(30f, 50f, 50f);
+			backgroundImage.CrossFadeColor(new Color(30f, 50f, 50f, 180f), 2.0f, false, true);
+			//backgroundImage.CrossFadeAlpha(0.8f, 1.0f, false);
+			Debug.Log ("Pauses Start");
+			logoImage.SetActive(true);
+			pauseText.SetActive(false);
+			scoreText.SetActive(false);
+			//PauseGame ();
 		}
 
 		audioOptions.SetActive (false);
@@ -64,55 +80,67 @@ public class PauseScript : MonoBehaviour {
 		soundsOffObj.SetActive(true);
 		optionsOnObj.SetActive(false);
 		optionsOffObj.SetActive(true);
+		
 
-		PauseGame ();
 	}
 	
 	// Update is called once per frame
 	public void Update () {
-		//pause the game on escape key press and when the game is not already paused
-		if(Input.GetKeyUp(KeyCode.P) && !isPaused){
+		if(Input.GetKeyUp(KeyCode.P) && !GameRepository.isPaused() && GameRepository.isPauseScreen ()){
 			PauseGame();
-		}
-		//unpause the game if its paused and the escape key is pressed
-		else if(Input.GetKeyUp(KeyCode.P) && isPaused){
+		} else if(Input.GetKeyUp(KeyCode.P) && GameRepository.isPaused() && GameRepository.isPauseScreen ()){
 			UnpauseGame();
 		}
 	}
 	
 	//function to pause the game
 	public void PauseGame(){
-		if (GameRepository.isPauseScreen ()) {
-			backgroundImage.sprite = Resources.Load<Sprite>("images/backgroundTransparent");
-			GameRepository.setPause (true);
-			//play the Slidein animation
-			anim.Play ("pauseAnimDown");
-			//set the isPaused flag to true to indicate that the game is paused
-			isPaused = true;
-			//freeze the timescale
-			//Time.timeScale = 0;
-		} if (GameRepository.isMainScreen ()) {
-			GameRepository.setPause (true);
-			//enable the animator component
-			anim.enabled = false;
-			//play the Slidein animation
+		if (GameRepository.isGameOverScreen ()) {
+			logoImage.SetActive(false);
+			pauseText.SetActive(true);
 
-			//anim.Play ("pauseAnimDown");
-			//set the isPaused flag to true to indicate that the game is paused
+			pauseText.GetComponent<Text>().text = "Game Over";
+		}
+		if (GameRepository.isPauseScreen ()) {
+			logoImage.SetActive(false);
+			pauseText.SetActive(true);
+			backgroundImage.sprite = Resources.Load<Sprite>("images/backgroundTransparent");
+			//backgroundImage.color = new Color(0f, 150f, 0f);
+			//backgroundImage.CrossFadeAlpha(1.0f, 2.0f, false);
+			backgroundImage.CrossFadeColor(new Color(0f, 150f, 0f, 255f), 2.0f, false, true);
+			GameRepository.setPause (true);
+			anim.Play ("pauseAnimDown");
 			isPaused = true;
-			//freeze the timescale
-			//Time.timeScale = 0;
+			Debug.Log ("Pauses Pause");
+			//backgroundImage.CrossFadeColor (new Color (0f, 150f, 0f, 255f), 2.0f, false, true);
+		}
+		if (GameRepository.isMainScreen ()) {
+			GameRepository.setPause (true);
+			anim.enabled = true;
+			Debug.Log ("Pauses Main");
 		}
 		pauseButton.SetActive (false);
 		deathBar.SetActive (false);
 		healthBar.SetActive (false);
+		scoreText.SetActive (false);
 	}
 	//function to unpause the game
 	public void UnpauseGame(){
 		if (GameRepository.isMainScreen ()) {
-			GameRepository.setPauseScreen(true);
-			GameRepository.setMainScreen(false);
+			firstScecne.createScene ();
+			GameRepository.setPauseScreen (true);
+			GameRepository.setMainScreen (false);
 			anim.enabled = true;
+			//backgroundImage.color = new Color(30f, 50f, 50f);
+			//backgroundImage.CrossFadeColor (new Color (30f, 50f, 50f, 30f), 2.0f, false, true);
+			backgroundImage.CrossFadeColor(new Color(30f, 50f, 50f, 30f), 2.0f, false, true);
+			//backgroundImage.CrossFadeAlpha(0.1f, 2.0f, false);
+		} else if (GameRepository.isPauseScreen ()) {
+
+			//backgroundImage.color = new Color(30f, 50f, 50f);
+			//backgroundImage.CrossFadeColor (new Color (0f, 150f, 0f, 30f), 2.0f, false, true);
+			backgroundImage.CrossFadeColor(new Color(0f, 150f, 0f, 30f), 2.0f, false, true);
+			//backgroundImage.CrossFadeAlpha(0.1f, 2.0f, false);
 		}
 		GameRepository.setPause (false);
 		//set the isPaused flag to false to indicate that the game is not paused
@@ -124,6 +152,9 @@ public class PauseScript : MonoBehaviour {
 		pauseButton.SetActive (true);
 		deathBar.SetActive (true);
 		healthBar.SetActive (true);
+		scoreText.SetActive (true);
+
+		//backgroundImage.CrossFadeAlpha(0.1f, 2.0f, false);
 	}
 
 	public void onOptionsClick(bool on) {

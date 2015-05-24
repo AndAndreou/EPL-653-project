@@ -16,6 +16,7 @@ public sealed class GameRepository : MonoBehaviour {
 	//common game variables
 	private Dimension currentDimension = Dimension.FRONT;
 	private float playerLife = 1000.0f;
+	private float score = 0;
 	private int playerLives = 3;
 	private float timestamp = Time.deltaTime;
 
@@ -181,5 +182,15 @@ public sealed class GameRepository : MonoBehaviour {
 	
 	public static bool isGameOverScreen(){
 		return instance.gameOverScreen;
+	}
+
+	public static void setScore(float score) {
+		instance.score = instance.score + score;
+		Text scoreText = GameObject.FindGameObjectWithTag ("ScoreText").GetComponent<Text> ();
+		scoreText.text = "Score: " + instance.score;
+	}
+
+	public static float getScore() {
+		return instance.score;
 	}
 }

@@ -28,7 +28,7 @@ public class SceneInit : MonoBehaviour {
 	//
 
 	// Use this for initialization
-	void Start() {
+	public void createScene() {
 		totalEnemyNumber = 0;
 
 		listOfList.Add(new List<Vector3>());

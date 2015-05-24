@@ -6,6 +6,7 @@ public class SceneInit_intro : MonoBehaviour {
 	public Material cubeMaterial;
 	
 	//Prefubs
+	private GameObject Player;
 	public Transform Enemy;
 	public Transform Enemystrong;
 	public Transform powerUp_coin;
@@ -28,7 +29,10 @@ public class SceneInit_intro : MonoBehaviour {
 	//
 	
 	// Use this for initialization
-	void Start() {
+	public void createScene() {
+		Player = GameObject.FindGameObjectWithTag ("Player");
+		Player.GetComponent<Renderer> ().enabled = true;
+
 		totalEnemyNumber = 0;
 		
 		listOfList.Add(new List<Vector3>());

@@ -1,21 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PauseScript.cs">
     <Files>
-      <File FileName="2dProjGroup.sln" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SceneInit_intro.cs" Line="31" Column="16" />
-      <File FileName="Assets\Scripts\Player.cs" Line="227" Column="78" />
-      <File FileName="Assets\Scripts\WaterScript.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CameraFront.cs" Line="280" Column="1" />
-      <File FileName="Assets\Scripts\Cube.cs" Line="143" Column="1" />
-      <File FileName="Assets\Scripts\PauseScript.cs" Line="93" Column="25" />
-      <File FileName="Assets\Scripts\GameRepository.cs" Line="138" Column="23" />
-      <File FileName="Assets\Scripts\SceneInit.cs" Line="13" Column="35" />
-      <File FileName="Assets\Scripts\Enemy.cs" Line="143" Column="15" />
-      <File FileName="Assets\Scripts\EnemyBullet.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EnergyBullet.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\TextMessage.cs" Line="39" Column="64" />
-      <File FileName="Assets\Scripts\Background.cs" Line="20" Column="25" />
+      <File FileName="Assets\Scripts\SceneInit_intro.cs" Line="34" Column="51" />
+      <File FileName="Assets\Scripts\PauseScript.cs" Line="115" Column="55" />
+      <File FileName="Assets\Scripts\Player.cs" Line="67" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
