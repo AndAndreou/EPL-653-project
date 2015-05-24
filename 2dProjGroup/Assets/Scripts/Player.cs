@@ -14,6 +14,9 @@ public class Player : MonoBehaviour {
 	private bool jump;
 	private Animator animator;
 	private float gravity;
+	private bool isGravity;
+	private bool touchesCube;
+	private float startPos;
 	
 	//bullet
 	public Transform energyBullet;
@@ -34,6 +37,9 @@ public class Player : MonoBehaviour {
 		GameRepository.setPlayerLife (GameRepository.getPlayerLife ());
 		bulletSpeed = 10.0f;
 		gravity = -9.81f;
+		isGravity = false;
+		touchesCube = true;
+		startPos = 1.34f;
 	}
 	
 	void Update () {
@@ -44,11 +50,29 @@ public class Player : MonoBehaviour {
 		} else {
 			rigidBody.isKinematic = false;
 		}
+
+		if (transform.position.y < 1.0f) {
+			float distanceFromLoss = Vector3.Distance(new Vector3(0.0f, transform.position.y, 0.0f), new Vector3(0.0f, 1.0f, 0.0f));
+			Debug.Log ("Distance = " + distanceFromLoss);
+			Color playerColor = this.gameObject.GetComponent<SpriteRenderer> ().material.color;
+			float newTransparencyValue = 1.0f - (distanceFromLoss/3.0f);
+			Debug.Log("Transparency = " + newTransparencyValue);
+			playerColor.a =  newTransparencyValue;
+			this.gameObject.GetComponent<SpriteRenderer> ().material.color = playerColor;
+			if(transform.position.y < -3.0f){
+				//Destroy(this.gameObject);
+				//gameover
+			}
+		}
 		
 		if (GameRepository.isRaised ()) {
 			return;
 		}
 		rigidBody.isKinematic = false;
+
+		if (isGravity) {
+			reverseGravity();
+		}
 		
 		/* Fix camera misposition */
 		if (!GameRepository.isRotating() && !GameRepository.isRaised() && transform.position.y >= 0.0f) {
@@ -69,7 +93,7 @@ public class Player : MonoBehaviour {
 		
 		/* Walking & shooting */
 		bool isWalking = false; 
-		if (Input.GetKey (KeyCode.LeftArrow) && (!rotate)) {
+		if (Input.GetKey (KeyCode.LeftArrow) && (!rotate) && !Input.GetKey (KeyCode.RightArrow)) {
 			animator.SetBool ("walkBool", true);
 			GameRepository.setBackgroundSpeed (-0.0002f);
 			if (GameRepository.getCurrentDimension () == Dimension.FRONT) {
@@ -82,7 +106,7 @@ public class Player : MonoBehaviour {
 				rigidBodyTransform.position = new Vector3 (rigidBodyTransform.position.x, rigidBodyTransform.position.y, rigidBodyTransform.position.z + 0.1f);
 			}
 			isWalking = true;
-		} else if (Input.GetKey (KeyCode.RightArrow) && (!rotate)) {
+		} else if (Input.GetKey (KeyCode.RightArrow) && (!rotate)  && !Input.GetKey (KeyCode.LeftArrow)) {
 			animator.SetBool ("walkBool", true);
 			GameRepository.setBackgroundSpeed (0.0002f);
 			if (GameRepository.getCurrentDimension () == Dimension.FRONT) {
@@ -135,7 +159,12 @@ public class Player : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown (KeyCode.G) && (!rotate)) {
-			reverseGravity();
+			if(isGravity) {
+				isGravity = false;
+			} else {
+				isGravity = true;
+			}
+			//reverseGravity();
 		}
 		
 		if (rotate) {
@@ -163,14 +192,22 @@ public class Player : MonoBehaviour {
 				}
 			}
 		}
-		
+		//Debug.Log ("Gravity = " + Physics.gravity + " rigidBody.velocity.y = " + rigidBody.velocity.y);
 		/* Jumping */
-		if (jump && transform.position.y >= 0.0f && Input.GetKeyDown (KeyCode.UpArrow)) {
-			rigidBody.AddForce(Vector3.up * 300.0f);
+		if (jump && transform.position.y >= 0.0f && Input.GetKey (KeyCode.UpArrow)) {
+
+			if(!isGravity) {
+				rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0.0f, rigidBody.velocity.z);
+				rigidBody.AddForce(Vector3.up * 300.0f);
+			} else {Debug.Log ("Gravity = " + Physics.gravity + " rigidBody.velocity.y = " + rigidBody.velocity.y);
+				rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0.0f, rigidBody.velocity.z);
+				rigidBody.AddForce(Vector3.down * 300.0f);
+			}
 			jump = true;
+			touchesCube = false;
 		}
 		
-		if (rigidBody.velocity.y != 0.0f) {
+		if (!touchesCube) { //(rigidBody.velocity.y != 0.0f) {
 			jump = false;
 		} else {
 			jump = true;
@@ -183,15 +220,15 @@ public class Player : MonoBehaviour {
 	
 	
 	private void reflectPlayer() {
-		if(Input.GetKeyDown(KeyCode.LeftArrow) && (!rotate)) {
+		if(Input.GetKeyDown(KeyCode.LeftArrow) && (!rotate) && !Input.GetKey (KeyCode.RightArrow)) {
 			transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 			playerDirection = false;
 		}
-		else if (Input.GetKeyDown(KeyCode.RightArrow) && (!rotate)) {
+		else if (Input.GetKeyDown(KeyCode.RightArrow) && (!rotate) && !Input.GetKey (KeyCode.LeftArrow)) {
 			transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 			playerDirection = true;
 		}
-		if (gravity > 0) {
+		if (isGravity) {
 			transform.localScale = new Vector3(transform.localScale.x, -Mathf.Abs(transform.localScale.y), transform.localScale.z);
 		} else {
 			transform.localScale = new Vector3(transform.localScale.x, Mathf.Abs(transform.localScale.y), transform.localScale.z);
@@ -202,6 +239,7 @@ public class Player : MonoBehaviour {
 	void FixedUpdate () {
 		
 	}
+
 	
 	void OnCollisionEnter(Collision other){
 		if (other.gameObject.tag == "StaticCube") {
@@ -210,8 +248,32 @@ public class Player : MonoBehaviour {
 			float angle = Vector3.Angle (hit, Vector3.up);
 			//Debug.Log(Vector3.Dot (hit, Vector3.up));
 			if (Vector3.Dot (hit, Vector3.up) > 0) { // top
+				touchesCube = true;
+				//rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0.0f, rigidBody.velocity.z);
 				//Debug.Log("Top" + hit);
 			} else if (Vector3.Dot (hit, Vector3.up) < 0) {
+				touchesCube = true;
+				//rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0.0f, rigidBody.velocity.z);
+				//Debug.Log ("Bottom" + hit);
+			} else if (Vector3.Dot (hit, Vector3.up) == 0) {
+				touchesCube = true;
+				//Debug.Log ("Sides" + hit);
+				//rigidBody.isKinematic = true;
+				//rigidBody.velocity = Vector3.zero;
+			}
+		}
+		if (other.gameObject.tag == "MovableCube") {
+			Vector3 hit = other.contacts [0].normal;
+			
+			float angle = Vector3.Angle (hit, Vector3.up);
+			//Debug.Log(Vector3.Dot (hit, Vector3.up));
+			if (Vector3.Dot (hit, Vector3.up) > 0) { // top
+				touchesCube = true;
+				//rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0.0f, rigidBody.velocity.z);
+				//Debug.Log("Top" + hit);
+			} else if (Vector3.Dot (hit, Vector3.up) < 0) {
+				touchesCube = true;
+				//rigidBody.velocity = new Vector3(rigidBody.velocity.x, 0.0f, rigidBody.velocity.z);
 				//Debug.Log ("Bottom" + hit);
 			} else if (Vector3.Dot (hit, Vector3.up) == 0) {
 				//Debug.Log ("Sides" + hit);
@@ -249,7 +311,7 @@ public class Player : MonoBehaviour {
 				if(norm.z < 0) {
 					push = new Vector3(0.0f, 0.0f, -1.0f);
 				}
-				Debug.Log ("hit " + norm);
+				//Debug.Log ("hit " + norm);
 
 
 			}
@@ -262,15 +324,17 @@ public class Player : MonoBehaviour {
 		if (other.gameObject.tag == "Coin") {
 			other.gameObject.SetActive (false);
 		} else if (other.gameObject.tag == "Gravity") {
+			if(isGravity) {
+				isGravity = false;
+			} else {
+				isGravity = true;
+			}
 			reverseGravity ();
 			other.gameObject.SetActive (false);
 		} else if (other.gameObject.tag == "Health") {
 			//TODO add health
 			other.gameObject.SetActive (false);
-		} else if (other.gameObject.tag == "ExitPortal") {
-			AutoFade.LoadLevel("IntroLevel", 2, 3, Color.black);
-			//Application.LoadLevel("2ndLevel");
-			//Application.LoadLevelAsync
+			GameRepository.setPlayerLife(GameRepository.getPlayerLife() + 200.0f);
 		}
 	}
 
@@ -310,6 +374,10 @@ public class Player : MonoBehaviour {
 	public void reverseGravity()
 	{
 		gravity = -gravity;
-		Physics.gravity = new Vector3(0f, gravity, 0f);
+
+
+
+		rigidBody.AddForce(-1.8f * Physics.gravity);
+		//Physics.gravity = new Vector3(0f, gravity, 0f);
 	}
 }

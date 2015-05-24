@@ -22,9 +22,12 @@ public sealed class GameRepository : MonoBehaviour {
 	//camera specific variables
 	private bool rotate = false;
 	private bool raise = false;
-	private bool pause = false;
+	private bool pause = true;
 	private bool sounds = true;
 	private bool music = true;
+	private bool pauseScreen = false;
+	private bool mainScreen = true;
+	private bool gameOverScreen = false;
 
 	//background specific variables
 	private float backgroundSpeed = 0.0f;
@@ -154,5 +157,29 @@ public sealed class GameRepository : MonoBehaviour {
 	
 	public static float getTimeStamp(){
 		return instance.timestamp;
+	}
+
+	public static void setPauseScreen(bool pauseScreen){
+		instance.pauseScreen = pauseScreen;
+	}
+	
+	public static bool isPauseScreen(){
+		return instance.pauseScreen;
+	}
+
+	public static void setMainScreen(bool mainScreen){
+		instance.mainScreen = mainScreen;
+	}
+	
+	public static bool isMainScreen(){
+		return instance.mainScreen;
+	}
+
+	public static void setGameOverScreen(bool gameOverScreen){
+		instance.gameOverScreen = gameOverScreen;
+	}
+	
+	public static bool isGameOverScreen(){
+		return instance.gameOverScreen;
 	}
 }

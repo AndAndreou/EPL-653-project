@@ -13,7 +13,6 @@ public class SceneInit_intro : MonoBehaviour {
 	public Transform powerUp_gravity;
 	public Transform exitPortal;
 	public Transform text;
-	public Transform player;
 	
 	private Dimension prevDim; //karata to proigoumeno dimension
 	private float prevY=0; //krata to  proigoumeno y
@@ -41,7 +40,7 @@ public class SceneInit_intro : MonoBehaviour {
 		//dimension FRONT
 		
 		prevDim = Dimension.FRONT;
-		
+
 		Vector3 size = new Vector3(1,1,1);
 		Vector3 position = new Vector3(0,0,0);
 
@@ -509,14 +508,6 @@ public class SceneInit_intro : MonoBehaviour {
 		newTextMessage.gameObject.GetComponent<TextMessage> ().setAppearanceDistance (appearanceDistance);
 	}
 
-	/**
-	 * Function that creates an exit portal in the given position
-	 * */
-	private void createPlayer(Vector3 position, Dimension dimension) {
-		Transform  newExitPortal = Instantiate(player, position,Quaternion.identity ) as Transform;
-		newExitPortal.tag = "Player";
-		newExitPortal.Rotate( dimensionToVector(dimension) );
-	}
 	
 	/**
 	 * Convert the dimension to a vector that correpsonds to the rotation degrees
