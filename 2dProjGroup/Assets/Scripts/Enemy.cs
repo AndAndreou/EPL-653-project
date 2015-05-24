@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour {
 	private float damage;
 	private float jump=300.0f;
 	private bool findDimension= true;
-	private string lookAt; //metavliti p krato p vlepi o enemy left or right
+	public string lookAt; //metavliti p krato p vlepi o enemy left or right
 	private bool isJump=false;
 	private Animator animator;
 	private Renderer renderer;
@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour {
 	//metavlites gia floor testing
 	private int floorray ;
 	private int floorOnx ;
-	private int floorExists=1;
+	private int floorExists=0;
 	
 
 	// Use this for initialization
@@ -143,21 +143,22 @@ public class Enemy : MonoBehaviour {
 			RaycastHit visionRayHit ;
 			Vector3 startPosVisionRay= new Vector3 (transform.position.x,transform.position.y + 0.6f,transform.position.z); //exi sxesi me to ipsos tou enemy to 1.0f
 			Vector3 visionRayDirection = target.transform.position - transform.position;
-			if (((visionRayDirection.x < 0) && (lookAt=="right") && (Mathf.Abs(visionRayDirection.z)<=1)) || ((visionRayDirection.z < 0)&& (lookAt=="right") && (Mathf.Abs(visionRayDirection.x)<=1)) ) {
+			if (((visionRayDirection.x < 0) && (lookAt=="left") && (Mathf.Abs(visionRayDirection.z)<=0.5f)) || ((visionRayDirection.z < 0)&& (lookAt=="right") && (Mathf.Abs(visionRayDirection.x)<=0.5)) || ((visionRayDirection.z > 0)&& (lookAt=="left") && (Mathf.Abs(visionRayDirection.x)<=0.5)) || ((visionRayDirection.x > 0) && (lookAt=="right") && (Mathf.Abs(visionRayDirection.z)<=0.5f)) ) {
+			//if (((target.transform.position.x < transform.position.x) && (lookAt=="left") && (visionRayDirection.z<=0.5f)) ||((target.transform.position.z < transform.position.z) && (lookAt=="left") && (Mathf.Abs(visionRayDirection.z)<=0.5f))){
+				isVisionRayHit = Physics.Raycast (startPosVisionRay, visionRayDirection, out visionRayHit, vision);
 
-				isVisionRayHit = Physics.Raycast (startPosVisionRay, visionRayDirection, out visionRayHit, vision / 2);
 
 			} 
-			else if ((Mathf.Abs(visionRayDirection.z)<=1) || (Mathf.Abs(visionRayDirection.x)<=1))  {
+			else if ((Mathf.Abs(visionRayDirection.z)<=0.5) || (Mathf.Abs(visionRayDirection.x)<=0.5))  {
 
-				isVisionRayHit = Physics.Raycast (startPosVisionRay, visionRayDirection, out visionRayHit, vision);
+				isVisionRayHit = Physics.Raycast (startPosVisionRay, visionRayDirection, out visionRayHit, vision/2.0f);
 			}
 
 			string tagVisonRayHit="";
 
 			if (isVisionRayHit) {
 				tagVisonRayHit = visionRayHit.transform.tag;  
-
+				//Debug.Log(target.transform.position.z - transform.position.z);
 			}
 			//Debug.DrawLine (startPosVisionRay, visionRayHit.transform.position, Color.green);
 			/*Debug.Log(isVisionRayHit);
@@ -318,38 +319,43 @@ public class Enemy : MonoBehaviour {
 
 				Vector3 floorRayDirection;
 				if (floorOnx==1){
-					 floorRayDirection = new Vector3 (floorRayDireectionX,transform.position.y - 1.0f,transform.position.z);
+					floorRayDirection = (-(transform.position- new Vector3 (floorRayDireectionX,(transform.position.y - 1.0f),transform.position.z))).normalized;
 				}
 				else{
-					 floorRayDirection = new Vector3 (transform.position.x,transform.position.y - 1.0f,floorRayDireectionZ);
+					floorRayDirection = (-(transform.position- new Vector3 (transform.position.x,(transform.position.y - 1.0f),floorRayDireectionZ))).normalized;
 				}
-				Debug.Log("////////////////////");
-				Debug.Log(floorRayDirection);
-				isFloorRayHit = Physics.Raycast (startPosFloorRay, floorRayDirection, out floorRayHit, 20.0f);
+
+				//floorRayDirection =  new Vector3 (0.0f,1.0f,0.0f);
+
+				//Debug.Log("////////////////////");
+				//Debug.Log(floorRayDirection);
+				isFloorRayHit = Physics.Raycast (startPosFloorRay, floorRayDirection, out floorRayHit, 5.0f);
 				
 				string tagFloorRayHit="";
 				
 				if (isFloorRayHit) {
-					tagFloorRayHit = floorRayHit.transform.tag;  
+					tagFloorRayHit = floorRayHit.transform.tag;
+					//Debug.DrawLine (startPosFloorRay, floorRayHit.transform.position, Color.red);
 					//Debug.Log("-------------");
 				}
-				Debug.DrawLine (startPosFloorRay, floorRayDirection, Color.green);
+				//Debug.DrawLine (startPosFloorRay, floorRayDirection, Color.green);
 				//Debug.DrawLine (startPosRay, RayHit.transform.position, Color.red);
 				//Debug.Log(isJump);
 				//Debug.Log(tagRayHit);
 				//
-				if ((tagFloorRayHit == "StaticCube") || (tagFloorRayHit == "MovableCube") || (tagFloorRayHit == "Enemy")) {
+				if (isFloorRayHit) {
 					floorExists=1;
-					Debug.Log("************");
-					Debug.Log(tagFloorRayHit);
+					//Debug.Log("************");
+					//Debug.Log(isFloorRayHit);
+					//Debug.Log(tagFloorRayHit);
 					//Debug.Log("testray");
 				}
 				else{
 					floorExists=0;
 					animator.SetBool("enemyWalk", false);
-					Debug.Log("++++++++++++++");
-					Debug.Log(tagFloorRayHit);
-					Debug.Log("testray");
+					//Debug.Log("++++++++++++++");
+					//Debug.Log(isFloorRayHit);
+					//Debug.Log(tagFloorRayHit);
 				}
 
 				//
@@ -363,6 +369,9 @@ public class Enemy : MonoBehaviour {
 				if ( (Time.time - creationTime) > ratefire) { //pirovolima enemy
 					if (Random.Range (0, 2)==1){ //pithanotita an tha pirovolisi i oxi
 						Transform newEnemyBullet = Instantiate (enemyBullet, transform.position, Quaternion.identity) as Transform;
+						if ((dimension==Dimension.LEFT) || (dimension==Dimension.RIGHT)){
+							newEnemyBullet.Rotate(new Vector3(0.0f,1.0f,0.0f),90.0f);
+						}
 						newEnemyBullet.tag = "enemyBullet";
 					}
 					creationTime = Time.time;
