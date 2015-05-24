@@ -70,7 +70,7 @@ public class SceneInit_intro : MonoBehaviour {
 		}
 
 		//movalbe kivos
-		createMovableCube (new Vector3(18, 1, 0), size, Dimension.FRONT);
+		createMovableCube (new Vector3(14, 1, 0), size, Dimension.FRONT);
 
 		//dimiourgia epipedou anevasmeno kata 2
 		for (position.x=21, position.y=2; position.x<37; position.x++) {
@@ -202,10 +202,6 @@ public class SceneInit_intro : MonoBehaviour {
 			}
 		}
 
-		//exthros
-		Transform  newEnemy1 = Instantiate(Enemy,new Vector3(9, 9, 11),Quaternion.identity ) as Transform;
-		newEnemy1.tag="Enemy";
-
 
 		//coins
 		for (position.x=9, position.y=8, position.z=20; position.z<24; position.z++) {
@@ -221,11 +217,16 @@ public class SceneInit_intro : MonoBehaviour {
 			createStaticCube(position, size, Dimension.FRONT,1);
 		}
 
-		createHealthPowerUp (new Vector3 (12, 3, 20), Dimension.FRONT);
+		//string enemy
+		Transform  newEnemyStrong1 = Instantiate(Enemystrong,new Vector3(15,4,20),Quaternion.identity ) as Transform;
+		newEnemyStrong1.tag="Enemy";
 
 		for (position.x=20, position.y=2, position.z=20; position.z>=10; position.z--) {
 			createStaticCube(position, size, Dimension.LEFT,1);
 		}
+
+		//health
+		createHealthPowerUp (new Vector3 (20, 3, 18), Dimension.LEFT);
 
 		for (position.x=20, position.y=2, position.z=9; position.y<=7; position.y++) {
 			createStaticCube(position, size, Dimension.LEFT,1);
@@ -264,94 +265,32 @@ public class SceneInit_intro : MonoBehaviour {
 		createTextMessage (new Vector3(18.5f, 6, 0), Dimension.FRONT, "Dead-end again. Try pressing X!", 6f);
 		createTextMessage (new Vector3(18.5f, 6, 0), Dimension.BACK, "Dead-end again. Try pressing X!", 6f);
 
-		createTextMessage (new Vector3(22, 11, 0), Dimension.FRONT, "The red power up reverses gravity rules!", 20f);
-		createTextMessage (new Vector3(22, 11, 0), Dimension.BACK, "The red power up reverses gravity rules!", 20f);
+		createTextMessage (new Vector3(22, 11, 0), Dimension.FRONT, "The red power up inverses gravity", 20f);
+		createTextMessage (new Vector3(31, 11, 0), Dimension.BACK, "The red power up reverses gravity", 20f);
 
 		createTextMessage (new Vector3(3, 11, 0), Dimension.FRONT, "Well, use what you have learned :)", 20f);
-		createTextMessage (new Vector3(3, 11, 0), Dimension.BACK, "Well, use what you have learned :)", 20f);
+		createTextMessage (new Vector3(13, 11, 0), Dimension.BACK, "Well, use what you have learned :)", 20f);
 		
-		createTextMessage (new Vector3(9, 11, 3), Dimension.LEFT, "You can fire by pressing space!", 20f);
-		createTextMessage (new Vector3(9, 11, 3), Dimension.RIGHT, "You can fire by pressing space!", 20f);
+		createTextMessage (new Vector3(9, 11, 2), Dimension.LEFT, "You can fire by pressing space!", 20f);
+		createTextMessage (new Vector3(9, 11, 1), Dimension.RIGHT, "You can fire by pressing space!", 20f);
 
-		createTextMessage (new Vector3(9, 11, 15), Dimension.RIGHT, "Collect coins for more points", 20f);
-		createTextMessage (new Vector3(9, 11, 15), Dimension.LEFT, "Collect coins for more points", 20f);
+		createTextMessage (new Vector3(9, 11, 17), Dimension.RIGHT, "Collect coins for more points", 20f);
+		createTextMessage (new Vector3(9, 11, 21), Dimension.LEFT, "Collect coins for more points", 20f);
 
 		createTextMessage (new Vector3(9, 11, 25), Dimension.RIGHT, "Leap of faith?", 20f);
-		createTextMessage (new Vector3 (9, 11, 25), Dimension.LEFT, "Leap of faith?", 20f);
+		createTextMessage (new Vector3 (9, 11, 28), Dimension.LEFT, "Leap of faith?", 20f);
 
-		createTextMessage (new Vector3(14, 6, 20), Dimension.FRONT, "Collect this for\nhealth recovery",20f);
-		createTextMessage (new Vector3(14, 6, 20), Dimension.BACK, "Collect this for\nhealth recovery",20f);
+		createTextMessage (new Vector3(20, 6, 18), Dimension.RIGHT, "Collect this for\nhealth recovery",20f);
+		createTextMessage (new Vector3(20, 6, 21), Dimension.LEFT, "Collect this for\nhealth recovery",20f);
 
-
-		//Debug.Log(listOfList[0][0].x + "," + listOfList[0][0].z + "," + listOfList[0].Count);
-		if (/*(listOfList[0][0].x==0.0f)&&*/(listOfList[0][0].z==0.0f)&&(listOfList[0].Count>18)){//elexos an ime ontos sto proto diadromo ke an exi toulaxiston 7 cubes
-			//Debug.Log(listOfList[0][0].x + "," + listOfList[0][0].z + "," + listOfList[0].Count);
-			listOfList[0].RemoveRange(0,17); // stin arxi (tou stadiou) afinoume kapies thesis adies 
-			//Debug.Log(listOfList[0][0].x + "," + listOfList[0][0].z + "," + listOfList[0].Count);
-		}
+		createTextMessage (new Vector3(26, 18, 0), Dimension.FRONT, "This is a portal that\nleads to the next level",20f);
+		createTextMessage (new Vector3(30, 18, 0), Dimension.BACK, "This is a portal that\nleads to the next level",20f);
 		
-		//dimiourgia strong enemy gia testing
-		Transform  newEnemy3 = Instantiate(Enemystrong,new Vector3(15.0f,2.0f,0.0f),Quaternion.identity ) as Transform;
-		newEnemy3.tag="Enemy";
-		//
-		//Debug.Log("-----" + listOfList.Count);
-		List<int> zeroOrOne = new List<int>();// pithanotita 5/7 gia ton elaxisto aritmo ton exthron se mia grami 1:0
-		zeroOrOne.Add(1);
-		zeroOrOne.Add(1);
-		zeroOrOne.Add(0);
-		zeroOrOne.Add(1);
-		zeroOrOne.Add(1);
-		zeroOrOne.Add(0);
-		zeroOrOne.Add(1);
-		
-		//random dimiourgia exthron
-		for (int c=0 ; c<listOfList.Count ; c++){
-			if (listOfList[c].Count<=10)// gia ligotera apo 10 cubes epilego metaksi 0 kai 1
-			{
-				numOfEnemy = Random.Range (0, 2);// se ligoreto apo 10 cubes miono tin pithanotita na vgi ekthros
-			}
-			else if (listOfList[c].Count<=30)// gia ligotera apo 30 cubes epilego metaksi 0 i 1 me pithanotita na ine 1 5/7 kai ton arithmo to cubes/40
-			{
-				numOfEnemy = Random.Range (zeroOrOne[Random.Range(0,zeroOrOne.Count)], (Mathf.CeilToInt(listOfList[c].Count / 40.0f))+1); //tixeos arithmos exthron
-			}
-			else {// gia perisotera apo 30 cubes epilego metaksi 1 kai ton arithmo to cubes/40
-				numOfEnemy = Random.Range (1, (Mathf.CeilToInt(listOfList[c].Count / 40.0f))+1); //tixeos arithmos exthron
-			}
-			for (int i=0; i<numOfEnemy; i++) { //dimiourgia ekthron
-				if (listOfList[c].Count>0){
-					int p = Random.Range(0, (listOfList[c].Count));
-					//random dimiourgia easy or strong enemy
-					if(zeroOrOne[Random.Range(0,zeroOrOne.Count)]==1){
-						Transform  newEnemy = Instantiate(Enemy,listOfList[c][p],Quaternion.identity ) as Transform;
-						newEnemy.tag="Enemy";
-					}
-					else{
-						Transform  newEnemy2 = Instantiate(Enemystrong,listOfList[c][p],Quaternion.identity ) as Transform;
-						newEnemy2.tag="Enemy";
-					}
-					
-					if (p+2<=listOfList[c].Count-1){
-						listOfList[c].RemoveAt(p+2);
-					}
-					if (p+1<=listOfList[c].Count-1){
-						listOfList[c].RemoveAt(p+1);
-					}
-					
-					listOfList[c].RemoveAt(p);
-					
-					if (p-1>=0){ // p-1
-						listOfList[c].RemoveAt(p-1);
-					}
-					if (p-2>=0){ //p-2
-						listOfList[c].RemoveAt(p-2);
-					}
-				}
-			}
-			/*Debug.Log("-----" + numOfEnemy);*/
-			totalEnemyNumber+=numOfEnemy;
-			
-		}
-		Debug.Log("totalEnemyNumber:" + totalEnemyNumber);
+		//exthroi
+		Transform  newEnemyWeak1 = Instantiate(Enemy,new Vector3(9,10,10),Quaternion.identity ) as Transform;
+		newEnemyWeak1.tag="Enemy";
+
+
 		
 	}
 	
