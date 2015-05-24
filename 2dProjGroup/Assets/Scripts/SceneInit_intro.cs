@@ -27,11 +27,14 @@ public class SceneInit_intro : MonoBehaviour {
 	Renderer renderer;
 	private int totalEnemyNumber;
 	//
-	
+
 	// Use this for initialization
 	public void createScene() {
 		Player = GameObject.FindGameObjectWithTag ("Player");
 		Player.GetComponent<Renderer> ().enabled = true;
+		Color playerColor = Player.GetComponent<SpriteRenderer> ().material.color;
+		playerColor.a =  1.0f;
+		Debug.Log ("EnterHere = " + GameRepository.getScore ());
 
 		totalEnemyNumber = 0;
 		

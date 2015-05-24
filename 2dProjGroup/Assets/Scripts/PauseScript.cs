@@ -6,6 +6,8 @@ public class PauseScript : MonoBehaviour {
 	//private GameRepository repository;
 	//refrence for the pause menu panel in the hierarchy
 	public GameObject pauseMenuPanel;
+	private GameObject resumeButton;
+	private GameObject endScore;
 	private GameObject scoreText;
 	private GameObject pauseButton;
 	private GameObject pauseText;
@@ -31,6 +33,8 @@ public class PauseScript : MonoBehaviour {
 	// Use this for initialization
 
 	void Start () {
+		resumeButton = GameObject.FindGameObjectWithTag ("Resume");
+		endScore = GameObject.FindGameObjectWithTag ("EndScore");
 		scoreText = GameObject.FindGameObjectWithTag ("ScoreText");
 		pauseText = GameObject.FindGameObjectWithTag ("PauseText");
 		logoImage = GameObject.FindGameObjectWithTag ("Logo");
@@ -60,16 +64,16 @@ public class PauseScript : MonoBehaviour {
 			deathBar.SetActive (false);
 			healthBar.SetActive (false);
 			//backgroundImage.color = new Color( backgroundImage.color.r, backgroundImage.color.g, backgroundImage.color.b, 0f);
-			pauseMenuPanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(0.0f, 25.0f);
+			pauseMenuPanel.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0.0f, 25.0f);
 
-			backgroundImage.sprite = Resources.Load<Sprite>("images/background");
+			backgroundImage.sprite = Resources.Load<Sprite> ("images/background");
 			//backgroundImage.color = new Color(30f, 50f, 50f);
-			backgroundImage.CrossFadeColor(new Color(30f, 50f, 50f, 180f), 2.0f, false, true);
+			backgroundImage.CrossFadeColor (new Color (30f, 50f, 50f, 180f), 2.0f, false, true);
 			//backgroundImage.CrossFadeAlpha(0.8f, 1.0f, false);
 			Debug.Log ("Pauses Start");
-			logoImage.SetActive(true);
-			pauseText.SetActive(false);
-			scoreText.SetActive(false);
+			logoImage.SetActive (true);
+			pauseText.SetActive (false);
+			scoreText.SetActive (false);
 			//PauseGame ();
 		}
 
@@ -80,6 +84,7 @@ public class PauseScript : MonoBehaviour {
 		soundsOffObj.SetActive(true);
 		optionsOnObj.SetActive(false);
 		optionsOffObj.SetActive(true);
+		endScore.SetActive (false);
 		
 
 	}
@@ -99,7 +104,28 @@ public class PauseScript : MonoBehaviour {
 			logoImage.SetActive(false);
 			pauseText.SetActive(true);
 
+			Image resumeImage = resumeButton.GetComponent<Image>();
+			resumeImage.sprite = Resources.Load<Sprite>("images/replay");
+
 			pauseText.GetComponent<Text>().text = "Game Over";
+			backgroundImage.sprite = Resources.Load<Sprite>("images/backgroundTransparent");
+			//backgroundImage.color = new Color(0f, 150f, 0f);
+			//backgroundImage.CrossFadeAlpha(1.0f, 2.0f, false);
+			backgroundImage.CrossFadeColor(new Color(150f, 0f, 0f, 255f), 2.0f, false, true);
+			GameRepository.setPause (true);
+			anim.Play ("pauseAnimDown");
+			isPaused = true;
+			Debug.Log ("Pauses GameOver");
+			endScore.SetActive(true);
+			endScore.GetComponent<Text> ().text = "Score\n" + GameRepository.getScore();
+
+			audioOptions.SetActive (false);
+			musicOnObj.SetActive(false);
+			musicOffObj.SetActive(false);
+			soundsOnObj.SetActive(false);
+			soundsOffObj.SetActive(false);
+			optionsOnObj.SetActive(false);
+			optionsOffObj.SetActive(false);
 		}
 		if (GameRepository.isPauseScreen ()) {
 			logoImage.SetActive(false);
@@ -133,27 +159,56 @@ public class PauseScript : MonoBehaviour {
 			anim.enabled = true;
 			//backgroundImage.color = new Color(30f, 50f, 50f);
 			//backgroundImage.CrossFadeColor (new Color (30f, 50f, 50f, 30f), 2.0f, false, true);
-			backgroundImage.CrossFadeColor(new Color(30f, 50f, 50f, 30f), 2.0f, false, true);
+			backgroundImage.CrossFadeColor (new Color (30f, 50f, 50f, 30f), 2.0f, false, true);
 			//backgroundImage.CrossFadeAlpha(0.1f, 2.0f, false);
+			GameRepository.setPause (false);
+			//set the isPaused flag to false to indicate that the game is not paused
+			isPaused = false;
+			//play the SlideOut animation
+			anim.Play ("pauseAnimUp");
+			//set back the time scale to normal time scale
+			//Time.timeScale = 1;
+			pauseButton.SetActive (true);
+			deathBar.SetActive (true);
+			healthBar.SetActive (true);
+			scoreText.SetActive (true);
 		} else if (GameRepository.isPauseScreen ()) {
 
 			//backgroundImage.color = new Color(30f, 50f, 50f);
 			//backgroundImage.CrossFadeColor (new Color (0f, 150f, 0f, 30f), 2.0f, false, true);
-			backgroundImage.CrossFadeColor(new Color(0f, 150f, 0f, 30f), 2.0f, false, true);
+			backgroundImage.CrossFadeColor (new Color (0f, 150f, 0f, 30f), 2.0f, false, true);
 			//backgroundImage.CrossFadeAlpha(0.1f, 2.0f, false);
-		}
-		GameRepository.setPause (false);
-		//set the isPaused flag to false to indicate that the game is not paused
-		isPaused = false;
-		//play the SlideOut animation
-		anim.Play("pauseAnimUp");
-		//set back the time scale to normal time scale
-		//Time.timeScale = 1;
-		pauseButton.SetActive (true);
-		deathBar.SetActive (true);
-		healthBar.SetActive (true);
-		scoreText.SetActive (true);
+			GameRepository.setPause (false);
+			//set the isPaused flag to false to indicate that the game is not paused
+			isPaused = false;
+			//play the SlideOut animation
+			anim.Play ("pauseAnimUp");
+			//set back the time scale to normal time scale
+			//Time.timeScale = 1;
+			pauseButton.SetActive (true);
+			deathBar.SetActive (true);
+			healthBar.SetActive (true);
+			scoreText.SetActive (true);
+		} else if (GameRepository.isGameOverScreen ()) {
+			GameRepository.resetScore ();
+			GameRepository.resetPlayerLife ();
+			GameRepository.setMainScreen (true);
+			GameRepository.setPauseScreen (false);
+			GameRepository.setGameOverScreen (false);
+			//GameRepository.setPlayerLife(1000.0f);
+			//backgroundImage.color = new Color(30f, 50f, 50f);
+			//backgroundImage.CrossFadeColor (new Color (0f, 150f, 0f, 30f), 2.0f, false, true);
+			backgroundImage.CrossFadeColor (new Color (150f, 0f, 0f, 30f), 2.0f, false, true);
+			//backgroundImage.CrossFadeAlpha(0.1f, 2.0f, false);
+			GameRepository.setPause (true);
+			//set the isPaused flag to false to indicate that the game is not paused
+			isPaused = false;
+			//play the SlideOut animation
+			anim.Play ("pauseAnimUp");
 
+			//Application.LoadLevel(Application.loadedLevel);
+			AutoFade.LoadLevel(Application.loadedLevel, 2, 2, Color.black);
+		}
 		//backgroundImage.CrossFadeAlpha(0.1f, 2.0f, false);
 	}
 

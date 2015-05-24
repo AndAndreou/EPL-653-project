@@ -2,9 +2,15 @@
   <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PauseScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\SceneInit_intro.cs" Line="34" Column="51" />
-      <File FileName="Assets\Scripts\PauseScript.cs" Line="115" Column="55" />
-      <File FileName="Assets\Scripts\Player.cs" Line="67" Column="32" />
+      <File FileName="Assets\Scripts\PauseScript.cs" Line="108" Column="65" />
+      <File FileName="Assets\Scripts\Player.cs" Line="54" Column="3" />
+      <File FileName="Assets\Scripts\GameRepository.cs" Line="32" Column="2" />
+      <File FileName="Assets\Scripts\SceneInit.cs" Line="31" Column="25" />
+      <File FileName="Assets\Scripts\SceneInit_intro.cs" Line="37" Column="31" />
+      <File FileName="Assets\Scripts\ExitPortal.cs" Line="55" Column="33" />
+      <File FileName="Assets\Scripts\ScoreScript.cs" Line="9" Column="15" />
+      <File FileName="Assets\Scripts\DeathBar.cs" Line="11" Column="2" />
+      <File FileName="Assets\Scripts\HealthBar.cs" Line="15" Column="56" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

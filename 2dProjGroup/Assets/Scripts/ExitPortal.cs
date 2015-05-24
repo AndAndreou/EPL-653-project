@@ -48,6 +48,11 @@ public class ExitPortal : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "Player") {
+			GameRepository.setPauseScreen(false);
+			GameRepository.setMainScreen(true);
+			GameRepository.setGameOverScreen(false);
+			GameRepository.setPause(true);
+			Debug.Log(this.portalTarget);
 			AutoFade.LoadLevel(this.portalTarget, 2, 3, Color.black);
 		}
 	}

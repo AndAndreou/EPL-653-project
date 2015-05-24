@@ -63,7 +63,7 @@ public class Player : MonoBehaviour {
 			if(transform.position.y < -3.0f){
 				GameRepository.setGameOverScreen(true);
 				GameRepository.setPauseScreen(false);
-				GameRepository.setPause(true);
+				GameObject.FindGameObjectWithTag("CameraBackGround").GetComponent<PauseScript>().PauseGame();
 				//Destroy(this.gameObject);
 				//gameover
 			}
@@ -176,7 +176,7 @@ public class Player : MonoBehaviour {
 		
 		if (rotate) {
 			if(cameraDirection){
-				float angle = (Time.deltaTime - timestamp) / 0.1f * 90.0f;
+				float angle = (Time.deltaTime - GameRepository.getTimeStamp()) / 0.1f * 90.0f;
 				startRot = startRot + Mathf.Abs (angle);
 				
 				if(startRot < 90.0f){
@@ -187,7 +187,7 @@ public class Player : MonoBehaviour {
 					startRot = 0.0f;
 				}
 			} else {
-				float angle = (Time.deltaTime - timestamp) / 0.1f * -90.0f;
+				float angle = (Time.deltaTime - GameRepository.getTimeStamp()) / 0.1f * -90.0f;
 				startRot = startRot - Mathf.Abs (angle);
 				
 				if(startRot > -90.0f){

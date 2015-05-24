@@ -16,7 +16,7 @@ public sealed class GameRepository : MonoBehaviour {
 	//common game variables
 	private Dimension currentDimension = Dimension.FRONT;
 	private float playerLife = 1000.0f;
-	private float score = 0;
+	private float score = 0.0f;
 	private int playerLives = 3;
 	private float timestamp = Time.deltaTime;
 
@@ -90,22 +90,21 @@ public sealed class GameRepository : MonoBehaviour {
 
 	public static void setPlayerLife(float plife) {
 		instance.playerLife = plife;
-		Image healthBar = GameObject.FindGameObjectWithTag ("HealthBar").GetComponent<Image>();
-		healthBar.fillAmount = instance.playerLife / 1000.0f;
-		Image deathBar = GameObject.FindGameObjectWithTag ("DeathBar").GetComponent<Image>();
-		deathBar.fillAmount = 1.0f - instance.playerLife / 1000.0f;
 	}
 
 	public static void losePlayerLife(float lose) {
 		instance.playerLife -= lose;
-		Image healthBar = GameObject.FindGameObjectWithTag ("HealthBar").GetComponent<Image>();
-		healthBar.fillAmount = instance.playerLife / 1000.0f;
-		Image deathBar = GameObject.FindGameObjectWithTag ("DeathBar").GetComponent<Image>();
-		deathBar.fillAmount = 1.0f - instance.playerLife / 1000.0f;
 	}
 
 	public static void winPlayerLife(float win) {
-		instance.playerLife += win;
+		if (instance.playerLife + win > 1000.0f) {
+			instance.playerLife = 1000.0f;
+		} else {
+			instance.playerLife += win;
+		}
+	}
+	public static void resetPlayerLife() {
+		instance.playerLife = 1000.0f;
 	}
 
 	public static void setRotate(bool rotateInput){
@@ -184,13 +183,15 @@ public sealed class GameRepository : MonoBehaviour {
 		return instance.gameOverScreen;
 	}
 
-	public static void setScore(float score) {
-		instance.score = instance.score + score;
-		Text scoreText = GameObject.FindGameObjectWithTag ("ScoreText").GetComponent<Text> ();
-		scoreText.text = "Score: " + instance.score;
+	public static void setScore(float scoreInput) {
+		instance.score = instance.score + scoreInput;
 	}
 
 	public static float getScore() {
 		return instance.score;
+	}
+
+	public static void resetScore() {
+		instance.score = 0.0f;
 	}
 }
