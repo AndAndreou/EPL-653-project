@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour {
 	public float ratefire;
 	public float mindam;
 	public float maxdam;
+
 	//public RuntimeAnimatorController enemyeasy;
 	//public RuntimeAnimatorController enemystrong;
 
@@ -33,6 +34,7 @@ public class Enemy : MonoBehaviour {
 	//public float coly;
 	//public float colz;
 	public float rotanim;
+	public float points; //points p dini kathe enemy
 	private float epsilon = 0.4f; //timi gia dimiourgia orion stin oratotita
 	//private int isRaisedORisRotating=0;
 	//metavlites gia floor testing
@@ -92,12 +94,13 @@ public class Enemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (GameRepository.isPaused()) {
+		if ((GameRepository.isPaused()) && (findDimension==false)) {
 			rigidBody.Sleep();
 			return;
 		}
 
 		if ((life<=0.0f) || (this.transform.position.y<=0)){
+			GameRepository.setScore(points);
 			Destroy(this.gameObject );
 			return;
 		}
