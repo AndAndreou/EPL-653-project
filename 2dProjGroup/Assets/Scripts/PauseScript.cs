@@ -49,8 +49,10 @@ public class PauseScript : MonoBehaviour {
 		soundsOffObj = GameObject.FindGameObjectWithTag ("SoundsOffObj");
 		optionsOnObj = GameObject.FindGameObjectWithTag ("OptionsOnObj");
 		optionsOffObj = GameObject.FindGameObjectWithTag ("OptionsOffObj");
-		particles = GameObject.FindGameObjectWithTag ("ParticleBirds");
-		firstScecne = GameObject.Find("SceneInit").GetComponent<SceneInit_intro> ();
+
+		if (!GameRepository.isCreditsScreen ()) { 
+			particles = GameObject.FindGameObjectWithTag ("ParticleBirds");
+		}
 		//repository = GameRepository.Instance;
 		//unpause the game on start
 		//Time.timeScale = 1;
@@ -88,13 +90,42 @@ public class PauseScript : MonoBehaviour {
 		optionsOnObj.SetActive(false);
 		optionsOffObj.SetActive(true);
 		endScore.SetActive (false);
-		
-		psBirds = particles.gameObject.GetComponent<ParticleSystem> ();
-		psBirds.Stop ();
+
+		if (!GameRepository.isCreditsScreen ()) { 
+			psBirds = particles.gameObject.GetComponent<ParticleSystem> ();
+			psBirds.Stop ();
+		}
+
+		if (GameRepository.isCreditsScreen ()) {
+			pauseButton.SetActive (false);
+			deathBar.SetActive (false);
+			healthBar.SetActive (false);
+			logoImage.SetActive (true);
+			optionsOnObj.SetActive(false);
+			optionsOffObj.SetActive(false);
+			endScore.SetActive (true);
+			pauseText.SetActive(false);
+			scoreText.SetActive(false);
+
+			endScore.GetComponent<Text>().color = new Color(255,128,0,255);
+			endScore.GetComponent<Text>().fontSize = 40;
+			endScore.GetComponent<Text>().text = "Credits \n \n Andreas Andreou \n Nicolas Epaminonda \n Marios Komodromos";
+
+			
+			pauseMenuPanel.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (0.0f, 25.0f);
+			
+			backgroundImage.sprite = Resources.Load<Sprite> ("images/background");
+			//backgroundImage.color = new Color(30f, 50f, 50f);
+			backgroundImage.CrossFadeColor (new Color (130f, 50f, 150f, 180f), 2.0f, false, true);
+		}
 	}
 	
 	// Update is called once per frame
 	public void Update () {
+		if (GameRepository.isCreditsScreen ()) {
+			return;
+		}
+
 		if(Input.GetKeyUp(KeyCode.P) && !GameRepository.isPaused() && GameRepository.isPauseScreen ()){
 			PauseGame();
 			psBirds.Pause();
@@ -111,12 +142,16 @@ public class PauseScript : MonoBehaviour {
 			psBirds.startSpeed = 4;
 			//psBirds.Simulate(0.01f, true, false);
 		}
-		psBirds.startSpeed = 4;
+		if (psBirds != null) {
+			psBirds.startSpeed = 4;
+		}
 		//psBirds.Simulate(0.01f, true, false);
 	}
 	
 	//function to pause the game
 	public void PauseGame(){
+		if (GameRepository.isCreditsScreen ()) {
+		}
 		if (GameRepository.isGameOverScreen ()) {
 			logoImage.SetActive(false);
 			pauseText.SetActive(true);
@@ -170,17 +205,18 @@ public class PauseScript : MonoBehaviour {
 	//function to unpause the game
 	public void UnpauseGame(){
 		if (GameRepository.isMainScreen ()) {
-			SceneInit_intro scene_intro = GameObject.Find("SceneInit").GetComponent<SceneInit_intro>();
-			SceneInit_first scene_first = GameObject.Find("SceneInit").GetComponent<SceneInit_first>();
-			SceneInit_3th scene_second = GameObject.Find("SceneInit").GetComponent<SceneInit_3th>();
+			SceneInit_intro scene_intro = GameObject.Find ("SceneInit").GetComponent<SceneInit_intro> ();
+			SceneInit_first scene_first = GameObject.Find ("SceneInit").GetComponent<SceneInit_first> ();
+			SceneInit_3th scene_second = GameObject.Find ("SceneInit").GetComponent<SceneInit_3th> ();
+			SceneInit_credits scene_credits = GameObject.Find ("SceneInit").GetComponent<SceneInit_credits> ();
 			if (scene_intro != null) {
-				scene_intro.createScene();
-			}
-			else if (scene_first != null) {
-				scene_first.createScene();
-			}
-			else if (scene_second != null) {
-				scene_second.createScene();
+				scene_intro.createScene ();
+			} else if (scene_first != null) {
+				scene_first.createScene ();
+			} else if (scene_second != null) {
+				scene_second.createScene ();
+			} else if (scene_credits != null) {
+				scene_credits.createScene ();
 			}
 			GameRepository.setPauseScreen (true);
 			GameRepository.setMainScreen (false);
@@ -200,6 +236,7 @@ public class PauseScript : MonoBehaviour {
 			deathBar.SetActive (true);
 			healthBar.SetActive (true);
 			scoreText.SetActive (true);
+			psBirds.Play ();
 		} else if (GameRepository.isPauseScreen ()) {
 
 			//backgroundImage.color = new Color(30f, 50f, 50f);
@@ -217,6 +254,7 @@ public class PauseScript : MonoBehaviour {
 			deathBar.SetActive (true);
 			healthBar.SetActive (true);
 			scoreText.SetActive (true);
+			psBirds.Play ();
 		} else if (GameRepository.isGameOverScreen ()) {
 			GameRepository.resetScore ();
 			GameRepository.resetPlayerLife ();
@@ -235,10 +273,18 @@ public class PauseScript : MonoBehaviour {
 			anim.Play ("pauseAnimUp");
 
 			//Application.LoadLevel(Application.loadedLevel);
-			AutoFade.LoadLevel(Application.loadedLevel, 2, 2, Color.black);
+			AutoFade.LoadLevel (Application.loadedLevel, 2, 3, Color.black);
+			psBirds.Play ();
+		} else if (GameRepository.isCreditsScreen ()) {
+			GameRepository.setMainScreen(true);
+			GameRepository.setPauseScreen(false);
+			GameRepository.setGameOverScreen(false);
+			GameRepository.setCreditsScreen(false);
+			GameRepository.setPause(true);
+			GameRepository.resetScore();
+			GameRepository.resetPlayerLife();
+			AutoFade.LoadLevel("IntroLevel", 2, 3, Color.black);
 		}
-		//backgroundImage.CrossFadeAlpha(0.1f, 2.0f, false);
-		psBirds.Play ();
 	}
 
 	public void onOptionsClick(bool on) {

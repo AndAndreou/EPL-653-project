@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
 	private bool isGravity;
 	private bool touchesCube;
 	private float startPos;
+	private bool gameOver;
 	
 	//bullet
 	public Transform energyBullet;
@@ -41,9 +42,22 @@ public class Player : MonoBehaviour {
 		isGravity = false;
 		touchesCube = true;
 		startPos = 1.34f;
+		gameOver = false;
 	}
 	
 	void Update () {
+		if (GameRepository.getPlayerLife () <= 0f) {
+			GameRepository.setGameOverScreen(true);
+			GameRepository.setPauseScreen(false);
+			GameObject.FindGameObjectWithTag("CameraBackGround").GetComponent<PauseScript>().PauseGame();
+			Color playerColor = this.gameObject.GetComponent<SpriteRenderer> ().material.color;
+			//float newTransparencyValue = 1.0f - newTransparencyValue;
+			Debug.Log("Transparency = " + playerColor.a);
+			playerColor.a =  playerColor.a - 0.01f;
+			this.gameObject.GetComponent<SpriteRenderer> ().material.color = playerColor;
+			gameOver = true;
+		}
+
 		if (GameRepository.isPaused ()) {
 			rigidBody.isKinematic = true;
 			animator.SetBool ("walkBool", false);
@@ -64,12 +78,13 @@ public class Player : MonoBehaviour {
 				GameRepository.setGameOverScreen(true);
 				GameRepository.setPauseScreen(false);
 				GameObject.FindGameObjectWithTag("CameraBackGround").GetComponent<PauseScript>().PauseGame();
+				gameOver = true;
 				//Destroy(this.gameObject);
 				//gameover
 			}
 		}
 		
-		if (GameRepository.isRaised ()) {
+		if (GameRepository.isRaised () || gameOver) {
 			if (isGravity) {
 				reverseGravity();
 			}
@@ -331,6 +346,9 @@ public class Player : MonoBehaviour {
 		if (other.gameObject.tag == "Coin") {
 			GameRepository.setScore(10.0f);
 			other.gameObject.SetActive (false);
+			if (GameRepository.isSoundsOn ()) {
+				GetComponent<AudioSource>().Play();
+			}
 		} else if (other.gameObject.tag == "Gravity") {
 			if(isGravity) {
 				isGravity = false;

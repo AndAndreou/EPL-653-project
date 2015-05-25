@@ -52,7 +52,15 @@ public class ExitPortal : MonoBehaviour {
 			GameRepository.setMainScreen(true);
 			GameRepository.setGameOverScreen(false);
 			GameRepository.setPause(true);
-			Debug.Log(this.portalTarget);
+			if (GameRepository.isSoundsOn ()) {
+				GetComponent<AudioSource>().Play();
+			}
+			if(this.portalTarget == "CreditsLevel") {
+				GameRepository.setPauseScreen(false);
+				GameRepository.setMainScreen(false);
+				GameRepository.setGameOverScreen(false);
+				GameRepository.setCreditsScreen(true);
+			}
 			AutoFade.LoadLevel(this.portalTarget, 2, 3, Color.black);
 		}
 	}

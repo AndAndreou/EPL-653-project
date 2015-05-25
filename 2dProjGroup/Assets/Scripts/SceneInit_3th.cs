@@ -247,7 +247,7 @@ public class SceneInit_3th : MonoBehaviour {
 
 		//
 		position = new Vector3 (14,19,21);
-		createExitPortal (position,Dimension.FRONT, "CreditLevel");
+		createExitPortal (position,Dimension.FRONT, "CreditsLevel");
 
 
 

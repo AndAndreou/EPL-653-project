@@ -29,6 +29,7 @@ public sealed class GameRepository : MonoBehaviour {
 	private bool pauseScreen = false;
 	private bool mainScreen = true;
 	private bool gameOverScreen = false;
+	private bool creditsScreen = false;
 
 	//background specific variables
 	private float backgroundSpeed = 0.0f;
@@ -181,6 +182,14 @@ public sealed class GameRepository : MonoBehaviour {
 	
 	public static bool isGameOverScreen(){
 		return instance.gameOverScreen;
+	}
+
+	public static void setCreditsScreen(bool creditsScreen){
+		instance.creditsScreen = creditsScreen;
+	}
+	
+	public static bool isCreditsScreen(){
+		return instance.creditsScreen;
 	}
 
 	public static void setScore(float scoreInput) {
