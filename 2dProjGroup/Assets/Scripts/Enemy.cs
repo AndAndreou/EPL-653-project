@@ -154,7 +154,7 @@ public class Enemy : MonoBehaviour {
 			} 
 			else if ((Mathf.Abs(visionRayDirection.z)<=0.5) || (Mathf.Abs(visionRayDirection.x)<=0.5))  {
 
-				isVisionRayHit = Physics.Raycast (startPosVisionRay, visionRayDirection, out visionRayHit, vision/2.0f);
+				isVisionRayHit = Physics.Raycast (startPosVisionRay, visionRayDirection, out visionRayHit, (vision-1.0f));
 			}
 
 			string tagVisonRayHit="";

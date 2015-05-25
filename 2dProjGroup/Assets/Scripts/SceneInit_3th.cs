@@ -7,6 +7,7 @@ public class SceneInit_3th : MonoBehaviour {
 	public Material cubeMaterial;
 	
 	//Prefubs
+	private GameObject Player;
 	public Transform Enemy;
 	public Transform Enemystrong;
 	public Transform powerUp_coin;
@@ -29,7 +30,10 @@ public class SceneInit_3th : MonoBehaviour {
 	//
 	
 	// Use this for initialization
-	void Start() {
+	public void createScene() {
+		Player = GameObject.FindGameObjectWithTag ("Player");
+		Player.GetComponent<Renderer> ().enabled = true;
+
 		totalEnemyNumber = 0;
 		
 		listOfList.Add(new List<Vector3>());
@@ -243,7 +247,7 @@ public class SceneInit_3th : MonoBehaviour {
 
 		//
 		position = new Vector3 (14,19,21);
-		createExitPortal (position,Dimension.FRONT, "FirstLevel");
+		createExitPortal (position,Dimension.FRONT, "CreditLevel");
 
 
 

@@ -1,16 +1,19 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PauseScript.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Enemy.cs">
     <Files>
-      <File FileName="Assets\Scripts\PauseScript.cs" Line="108" Column="65" />
-      <File FileName="Assets\Scripts\Player.cs" Line="54" Column="3" />
-      <File FileName="Assets\Scripts\GameRepository.cs" Line="32" Column="2" />
-      <File FileName="Assets\Scripts\SceneInit.cs" Line="31" Column="25" />
-      <File FileName="Assets\Scripts\SceneInit_intro.cs" Line="37" Column="31" />
-      <File FileName="Assets\Scripts\ExitPortal.cs" Line="55" Column="33" />
-      <File FileName="Assets\Scripts\ScoreScript.cs" Line="9" Column="15" />
-      <File FileName="Assets\Scripts\DeathBar.cs" Line="11" Column="2" />
-      <File FileName="Assets\Scripts\HealthBar.cs" Line="15" Column="56" />
+      <File FileName="Assets\Scripts\SceneInit_intro.cs" Line="32" Column="25" />
+      <File FileName="Assets\Scripts\PauseScript.cs" Line="114" Column="14" />
+      <File FileName="Assets\Scripts\Player.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GameRepository.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SceneInit.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ExitPortal.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ScoreScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\DeathBar.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\HealthBar.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SceneInit_first.cs" Line="32" Column="2" />
+      <File FileName="Assets\Scripts\SceneInit_3th.cs" Line="501" Column="2" />
+      <File FileName="Assets\Scripts\Enemy.cs" Line="157" Column="105" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

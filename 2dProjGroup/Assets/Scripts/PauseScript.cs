@@ -23,8 +23,10 @@ public class PauseScript : MonoBehaviour {
 	private GameObject soundsOffObj;
 	private GameObject optionsOnObj;
 	private GameObject optionsOffObj;
+	private GameObject particles;
 	private Image backgroundImage;
 	private SceneInit_intro firstScecne;
+	private ParticleSystem psBirds;
 	//animator reference
 	private Animator anim;
 	//variable for checking if the game is paused 
@@ -47,6 +49,7 @@ public class PauseScript : MonoBehaviour {
 		soundsOffObj = GameObject.FindGameObjectWithTag ("SoundsOffObj");
 		optionsOnObj = GameObject.FindGameObjectWithTag ("OptionsOnObj");
 		optionsOffObj = GameObject.FindGameObjectWithTag ("OptionsOffObj");
+		particles = GameObject.FindGameObjectWithTag ("ParticleBirds");
 		firstScecne = GameObject.Find("SceneInit").GetComponent<SceneInit_intro> ();
 		//repository = GameRepository.Instance;
 		//unpause the game on start
@@ -86,16 +89,30 @@ public class PauseScript : MonoBehaviour {
 		optionsOffObj.SetActive(true);
 		endScore.SetActive (false);
 		
-
+		psBirds = particles.gameObject.GetComponent<ParticleSystem> ();
+		psBirds.Stop ();
 	}
 	
 	// Update is called once per frame
 	public void Update () {
 		if(Input.GetKeyUp(KeyCode.P) && !GameRepository.isPaused() && GameRepository.isPauseScreen ()){
 			PauseGame();
+			psBirds.Pause();
 		} else if(Input.GetKeyUp(KeyCode.P) && GameRepository.isPaused() && GameRepository.isPauseScreen ()){
 			UnpauseGame();
+			psBirds.Play();
 		}
+
+		if (Input.GetKey (KeyCode.LeftArrow) && (!GameRepository.isRotating())){
+			//psBirds.Simulate(0.03f, true, false);
+			psBirds.startSpeed = 8;
+		}
+		if (Input.GetKey (KeyCode.RightArrow) && (!GameRepository.isRotating())){
+			psBirds.startSpeed = 4;
+			//psBirds.Simulate(0.01f, true, false);
+		}
+		psBirds.startSpeed = 4;
+		//psBirds.Simulate(0.01f, true, false);
 	}
 	
 	//function to pause the game
@@ -153,7 +170,18 @@ public class PauseScript : MonoBehaviour {
 	//function to unpause the game
 	public void UnpauseGame(){
 		if (GameRepository.isMainScreen ()) {
-			firstScecne.createScene ();
+			SceneInit_intro scene_intro = GameObject.Find("SceneInit").GetComponent<SceneInit_intro>();
+			SceneInit_first scene_first = GameObject.Find("SceneInit").GetComponent<SceneInit_first>();
+			SceneInit_3th scene_second = GameObject.Find("SceneInit").GetComponent<SceneInit_3th>();
+			if (scene_intro != null) {
+				scene_intro.createScene();
+			}
+			else if (scene_first != null) {
+				scene_first.createScene();
+			}
+			else if (scene_second != null) {
+				scene_second.createScene();
+			}
 			GameRepository.setPauseScreen (true);
 			GameRepository.setMainScreen (false);
 			anim.enabled = true;
@@ -210,6 +238,7 @@ public class PauseScript : MonoBehaviour {
 			AutoFade.LoadLevel(Application.loadedLevel, 2, 2, Color.black);
 		}
 		//backgroundImage.CrossFadeAlpha(0.1f, 2.0f, false);
+		psBirds.Play ();
 	}
 
 	public void onOptionsClick(bool on) {

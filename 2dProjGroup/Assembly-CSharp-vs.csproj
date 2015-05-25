@@ -65,11 +65,11 @@
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\SceneInit.cs" />
      <Compile Include="Assets\Scripts\SceneInit_3th.cs" />
+     <Compile Include="Assets\Scripts\SceneInit_first.cs" />
      <Compile Include="Assets\Scripts\SceneInit_intro.cs" />
      <Compile Include="Assets\Scripts\ScoreScript.cs" />
      <Compile Include="Assets\Scripts\TextMessage.cs" />
      <Compile Include="Assets\Scripts\WaterScript.cs" />
-     <Compile Include="Assets\aa.cs" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Simple.shader" />
      <None Include="Assets\Standard Assets\Environment\Water (Basic)\Shaders\FXWaterBasic.shader" />
      <None Include="Assets\Standard Assets\Environment\Water\Water\Shaders\FXWaterPro.shader" />

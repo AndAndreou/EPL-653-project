@@ -6,6 +6,7 @@ public class SceneInit_first : MonoBehaviour {
 	public Material cubeMaterial;
 	
 	//Prefubs
+	private GameObject Player;
 	public Transform Enemy;
 	public Transform Enemystrong;
 	public Transform powerUp_coin;
@@ -28,7 +29,13 @@ public class SceneInit_first : MonoBehaviour {
 	//
 	
 	// Use this for initialization
-	void Start() {
+	public void createScene() {
+		Player = GameObject.FindGameObjectWithTag ("Player");
+		Player.GetComponent<Renderer> ().enabled = true;
+		//Color playerColor = Player.GetComponent<SpriteRenderer> ().material.color;
+		//playerColor.a =  1.0f;
+		Debug.Log ("EnterHere = " + GameRepository.getScore ());
+
 		totalEnemyNumber = 0;
 		
 		listOfList.Add(new List<Vector3>());
@@ -222,7 +229,7 @@ public class SceneInit_first : MonoBehaviour {
 			}
 		}
 
-		createExitPortal (new Vector3(-19,17,34),Dimension.RIGHT,"3thlevel");
+		createExitPortal (new Vector3(-19,17,34),Dimension.RIGHT,"SecondLevel");
 			
 			
 			
