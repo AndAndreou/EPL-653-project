@@ -225,7 +225,7 @@ public class SceneInit_intro : MonoBehaviour {
 		}
 
 		//string enemy
-		Transform  newEnemyStrong1 = Instantiate(Enemystrong,new Vector3(15,4,20),Quaternion.identity ) as Transform;
+		Transform  newEnemyStrong1 = Instantiate(Enemystrong,new Vector3(17,4,20),Quaternion.identity ) as Transform;
 		newEnemyStrong1.tag="Enemy";
 
 		for (position.x=20, position.y=2, position.z=20; position.z>=10; position.z--) {
@@ -254,7 +254,7 @@ public class SceneInit_intro : MonoBehaviour {
 
 		createGravityPowerUp (new Vector3(20,16,0),Dimension.LEFT);
 
-		createExitPortal (new Vector3(28,15,0),Dimension.FRONT, "IntroLevel");
+		createExitPortal (new Vector3(28,15,0),Dimension.FRONT, "FirstLevel");
 
 		//text messages
 		createTextMessage (new Vector3(-29, 4, 0), Dimension.FRONT, "Dead-end. Go back!",20f);
